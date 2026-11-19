@@ -19,4 +19,4 @@ Colores: crema `#fbf4e8`, espresso `#3a1d12`, rosado `#efc6b4`, rojo taza `#d33a
 ## Entrada y taza 3D
 - `assets/hero/desktop/` y `assets/hero/mobile/`: 120 fotogramas WebP cada una (1600 px y 900 px). El scroll pinta el fotograma en un `<canvas>`; se elige la secuencia por orientación de pantalla.
 - `assets/hero/entrada-16x9.mp4` y `entrada-9x16.mp4`: los vídeos de la transición (1080p), generados con Higgsfield (FLUX 3 Video, fotograma inicial + final).
-- `assets/3d/taza-roja.glb`: la taza roja en 3D (Higgsfield, imagen → 3D), mostrada con model-viewer y girando con el scroll.
+- `assets/3d/taza-roja.glb`: la taza roja en 3D (Higgsfield, Hunyuan3D v3, imagen → 3D), mostrada con model-viewer y girando con el scroll.
