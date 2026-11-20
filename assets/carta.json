@@ -1,0 +1,119 @@
+{
+  "_fuente": "Carta oficial de La Mareta (Google Drive enlazado desde su Instagram): CARTA (5 páginas, 27 mar) y DESAYUNO (1 página, 31 jul). Precios en euros, copiados tal cual.",
+  "alergenos": {
+    "1": "Cereales con gluten", "2": "Crustáceos", "3": "Huevos", "4": "Pescado", "5": "Cacahuetes", "6": "Soja", "7": "Lácteos",
+    "8": "Frutos secos", "9": "Apio", "10": "Mostaza", "11": "Sésamo", "12": "Sulfitos", "13": "Altramuz", "14": "Moluscos"
+  },
+  "desayunos": {
+    "titulo": "Menú desayunos",
+    "subtitulo": "Tostadas + café",
+    "horario": "De lunes a sábado, de 8:00 a 12:00",
+    "items": [
+      { "n": "Desayuno clásico", "d": "Aceite, tomate o mantequilla y mermelada", "p": "2,80" },
+      { "n": "Desayuno de jamón", "d": "Tomate y jamón", "p": "3,60" },
+      { "n": "Desayuno de aguacate", "d": "Tomate y aguacate", "p": "3,80" },
+      { "n": "Desayuno de jamón y aguacate", "d": "Tomate, jamón y aguacate", "p": "4,20" },
+      { "n": "Desayuno de hummus de aguacate", "d": "Hummus de aguacate, queso curado y huevo revuelto", "p": "5,20" },
+      { "n": "Desayuno de tortilla y jamón", "d": "Tortilla y jamón serrano", "p": "4,80" },
+      { "n": "Desayuno de salmón", "d": "Queso crema, salmón y aguacate", "p": "5,20" },
+      { "n": "Desayuno especial", "d": "Tomate, pavo, aguacate y huevo revuelto", "p": "5,20" },
+      { "n": "Desayuno de huevo poché", "d": "Tomate, jamón, rúcula y huevo poché", "p": "5,20" }
+    ]
+  },
+  "brunch": {
+    "incluye": ["Café con leche o clásico (añade tu bebida premium por un extra)", "Zumo de naranja natural", "Yogur griego con fruta y granola o nuestro dulce del día casero"],
+    "items": [
+      { "id": "benedict-clasico", "n": "Huevos benedictinos clásicos", "d": "Huevos poché al punto sobre brioche tostado, salmón ahumado y aguacate, cubiertos con nuestra salsa holandesa casera y un toque de rúcula.", "p": "9,50", "m": "15,00", "a": "1, 3, 7, 10" },
+      { "id": "benedict-bacon", "n": "Huevos benedictinos bacon & cheese", "d": "Huevos poché al punto sobre brioche tostado, bacon crujiente y aguacate, cubiertos con salsa de queso cabrales y un toque de rúcula.", "p": "9,50", "m": "15,00", "a": "1, 3, 7" },
+      { "id": "truffle-brioche", "n": "Truffle Brioche Deluxe", "d": "Sándwich con huevos revueltos y mezcla de quesos cremosos, bacon crujiente, rúcula y mayonesa trufada, acompañado de boniato.", "p": "8,50", "m": "15,00", "a": "1, 3, 7, 11" },
+      { "id": "nordic-burrata", "n": "Nordic Burrata Toast", "d": "Pan payés tostado con queso crema, aguacate, salmón ahumado y huevos revueltos melosos, coronada con queso burrata y un toque final de cebollino.", "p": "8,00", "m": "14,50", "a": "1, 3, 7, 11" },
+      { "id": "green-garden", "n": "Green Garden Brunch", "d": "Pan payés en plato con aguacate, huevos revueltos, pavo, jamón serrano, hummus casero, rúcula, queso curado y cherrys asados. Acompañado de boniato.", "p": "8,00", "m": "14,00", "a": "1, 3, 7, 11" },
+      { "id": "american-dream", "n": "American Dream", "d": "Torre de tres tortitas esponjosas impregnadas en salsa de arce, con bacon crujiente y huevo a la plancha, acompañado de boniato.", "p": "7,50", "m": "14,00", "a": "1, 3, 7, 11" },
+      { "id": "iberian-truffle", "n": "Iberian Truffle Toast", "d": "Pan payés tostado con queso curado fundido, jamón serrano a la plancha, tomates cherry asados, huevo poché y un toque de mayonesa trufada.", "p": "8,00", "m": "14,00", "a": "1, 3, 7, 11" }
+    ]
+  },
+  "carta": [
+    { "t": "Tostadas", "items": [
+      { "n": "Clásica", "d": "AOVE / tomate / mantequilla y mermelada", "p": "1,70", "a": "1" },
+      { "n": "Tomate y jamón serrano", "p": "2,60", "a": "1" },
+      { "n": "Tomate y aguacate", "p": "3,20", "a": "1, 11" },
+      { "n": "Tomate, jamón y aguacate", "p": "3,70", "a": "1, 11" },
+      { "n": "Queso crema, salmón y aguacate", "p": "4,20", "a": "1, 4, 7, 11" },
+      { "n": "Jamón serrano y tortilla francesa", "p": "4,00", "a": "1, 3, 7" },
+      { "n": "Tomate, pavo, aguacate con huevo revuelto", "p": "4,20", "a": "1, 3, 7, 11" },
+      { "n": "Hummus de aguacate, queso curado y huevo revuelto", "p": "4,20", "a": "1, 3, 7, 11" },
+      { "n": "Tomate, jamón, rúcula y huevo poché", "p": "4,20" }
+    ]},
+    { "t": "Bocadillos", "items": [
+      { "n": "Clásico de aguacate", "d": "Tomate, jamón, aguacate y huevos revueltos", "p": "6,50", "a": "1, 3, 11" },
+      { "n": "Mediterráneo caliente", "d": "Jamón serrano, burrata, cherrys asados, rúcula y toque de pesto", "p": "7,00", "a": "1, 5, 6, 3, 8, 7, 10, 11" },
+      { "n": "Mareta trufado", "d": "Huevos revueltos con queso, bacon crujiente, rúcula y mayonesa trufada", "p": "7,00", "a": "1, 3, 6, 7, 11" },
+      { "n": "Sobrasada royale", "d": "Sobrasada, queso de cabra y cebolla caramelizada casera", "p": "6,50", "a": "1, 7, 11" }
+    ]},
+    { "t": "Fresh bowls", "nota": "Con fruta y granola", "items": [
+      { "n": "Bowl açaí Alma Libre", "p": "7,00", "a": "5" },
+      { "n": "Copa de yogur griego", "p": "2,70", "a": "1, 6, 7, 8" },
+      { "n": "Bowl de yogur griego", "p": "4,50", "a": "1, 6, 7, 8" }
+    ]},
+    { "t": "Crepes, pancakes o gofres", "nota": "Masa de crepes, pancakes y gofre: alérgenos 1, 3, 7", "items": [
+      { "n": "Nutella", "p": "5,00", "a": "6, 8" },
+      { "n": "Dulce de leche", "p": "5,00", "a": "6, 8" },
+      { "n": "Chocolate blanco", "p": "5,00", "a": "6, 8" },
+      { "n": "Nutella, fresas, plátano y nata", "p": "6,50", "a": "6, 8" },
+      { "n": "Crema de avellana y Kinder Bueno", "p": "6,50", "a": "6, 8" },
+      { "n": "Chocolate blanco, Oreo y nata", "p": "6,50", "a": "6, 8" },
+      { "n": "Nutella y helado de vainilla", "p": "6,50", "a": "6, 8" }
+    ]},
+    { "t": "Crepes salados", "items": [
+      { "n": "Crepe de jamón york, queso y orégano", "p": "5,50", "a": "1, 3, 7" },
+      { "n": "Crepe de pollo, aguacate, tomate y queso", "p": "7,00", "a": "1, 3, 7" },
+      { "n": "Crepe de jamón serrano, queso de cabra, rúcula, tomate", "p": "7,00", "a": "1, 3, 7" }
+    ]}
+  ],
+  "bebidas": [
+    { "t": "Lattes", "cols": ["Hot", "Iced"], "nota": "Los lattes hot se sirven calientes con nata montada. Los iced se sirven con hielo e incluyen doble carga de café.", "items": [
+      { "n": "Pistachio latte", "p": ["3,50", "4,00"], "a": "6, 7, 8" },
+      { "n": "Lotus Biscoff latte", "p": ["3,50", "4,00"], "a": "1, 6, 7, 8" },
+      { "n": "Avellana latte", "p": ["3,50", "4,00"], "a": "1, 6, 7, 8" },
+      { "n": "Tiramisú latte", "p": ["3,50", "4,00"], "a": "1, 7" },
+      { "n": "Nutella dream latte", "p": ["3,50", "4,00"], "a": "6, 7, 8" },
+      { "n": "Salted caramel latte", "p": ["3,50", "4,00"], "a": "7" },
+      { "n": "Vainilla latte", "p": ["3,50", "4,00"], "a": "7" },
+      { "n": "Frappé", "p": ["4,00", "4,00"], "a": "7" },
+      { "n": "Golden latte", "p": ["2,70", "3,50"], "a": "1, 3, 5, 6, 7, 8, 11, 12" },
+      { "n": "Chai latte", "p": ["2,70", "2,80"], "a": "7" }
+    ]},
+    { "t": "Matcha bar", "cols": ["Hot", "Iced"], "items": [
+      { "n": "Matcha latte", "p": ["3,60", "3,80"], "a": "7" },
+      { "n": "Coconut matcha latte", "p": ["3,70", "3,90"], "a": "7" },
+      { "n": "Coconut matcha latte & vainilla", "p": ["4,20", "4,20"], "a": "7" },
+      { "n": "Strawberry matcha latte", "p": ["4,20", "4,20"], "a": "7" },
+      { "n": "Pistacho matcha latte", "p": ["4,20", "4,20"], "a": "6, 7, 8" },
+      { "n": "Mango matcha latte", "p": ["4,20", "4,20"] },
+      { "n": "Horchata matcha latte", "p": ["4,70", "4,70"], "a": "12" }
+    ]},
+    { "t": "Tés fríos", "items": [
+      { "n": "Iced tea de limón y fresa", "p": "3,50" },
+      { "n": "Kiwi lemonade", "p": "3,50" },
+      { "n": "Infusión mojito", "p": "2,20" },
+      { "n": "Rooibos yogur y manzana", "d": "Sugar free", "p": "2,20" }
+    ]},
+    { "t": "Licuados", "items": [
+      { "n": "La Mareta", "d": "Fresa, kiwi y manzana", "p": "4,00" },
+      { "n": "Detox", "d": "Manzana, jengibre y lima", "p": "4,00" },
+      { "n": "Orange boost", "d": "Naranja, zanahoria y manzana", "p": "4,00" },
+      { "n": "Golden fresh", "d": "Piña, naranja, manzana y fresa", "p": "4,00" },
+      { "n": "Velvet sunrise", "d": "Manzana, remolacha, fresa y naranja", "p": "4,00" }
+    ]},
+    { "t": "Smoothie", "items": [
+      { "n": "Smoothie fresa, plátano y leche", "p": "4,50", "a": "7" },
+      { "n": "Smoothie banana y leche de coco", "d": "Sugar free", "p": "4,50" }
+    ]},
+    { "t": "Batidos de helado", "items": [
+      { "n": "Batido de Oreo", "p": "4,50", "a": "1, 6, 7" },
+      { "n": "Batido de Kinder Bueno", "p": "4,50", "a": "1, 6, 7, 8" },
+      { "n": "Batido de Nutella", "p": "4,50", "a": "1, 6, 7, 8" },
+      { "n": "Batido de fresa", "p": "4,50", "a": "7" }
+    ]}
+  ]
+}

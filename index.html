@@ -150,6 +150,70 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
   .rcard{transition:none}
 }
 
+/* ---------- MESA GIRATORIA ---------- */
+.mesa{position:relative;overflow:hidden;isolation:isolate;background:var(--deep);color:var(--bg);min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;padding:110px clamp(20px,5vw,72px) 90px}
+.mglow{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 78% 50%,rgba(239,198,180,.16),transparent 70%),radial-gradient(40% 50% at 10% 20%,rgba(211,58,44,.18),transparent 70%)}
+.minfo{position:relative;z-index:3;max-width:520px}
+.mcount{display:flex;align-items:center;gap:14px;font-size:14px;color:rgba(251,244,232,.7);font-variant-numeric:tabular-nums}
+.mcount b{color:var(--bg)}
+.mdash{display:flex;gap:5px}
+.mdash i{width:18px;height:2px;border-radius:2px;background:rgba(251,244,232,.25);transition:background .6s var(--ease)}
+.mdash i.on{background:var(--bg)}
+.mtitle{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em;margin:22px 0 18px;min-height:2em}
+.mdesc{font-size:17px;line-height:1.55;opacity:.88;margin:0 0 24px;min-height:5em}
+.mtitle,.mdesc,.mprice{transition:opacity .45s var(--ease),filter .45s var(--ease),transform .45s var(--ease)}
+.mesa.swap .mtitle,.mesa.swap .mdesc,.mesa.swap .mprice{opacity:0;filter:blur(6px);transform:translateY(10px)}
+.mprice{display:flex;gap:28px;margin-bottom:14px}
+.mprice span{display:flex;flex-direction:column;gap:2px}
+.mprice small{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;font-weight:700}
+.mprice b{font-family:"Instrument Serif",serif;font-weight:400;font-size:34px;line-height:1;color:var(--soft)}
+.mincl{font-size:13.5px;line-height:1.5;opacity:.6;margin:0 0 28px;max-width:440px}
+.mctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.marrow{width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(251,244,232,.4);background:transparent;color:var(--bg);display:grid;place-items:center;cursor:pointer;transition:background .3s,color .3s,transform .25s var(--ease)}
+.marrow:hover{background:var(--bg);color:var(--deep)}
+.marrow:active{transform:scale(.94)}
+.mbtn{margin-left:8px;display:inline-flex;align-items:center;padding:14px 22px;border-radius:999px;background:var(--bg);color:var(--deep);font-weight:700;font-size:15px;text-decoration:none;transition:background .4s var(--ease),transform .25s var(--ease)}
+.mbtn:hover{background:var(--soft);transform:translateY(-2px)}
+.mstage{position:absolute;top:50%;left:64%;width:min(960px,78vw);aspect-ratio:1;transform:translate(-30%,-50%);perspective:1800px;perspective-origin:50% 50%;z-index:2;touch-action:pan-y;cursor:grab;user-select:none}
+.mstage:active{cursor:grabbing}
+.mtilt{position:absolute;inset:0;transform:rotateX(var(--tilt,32deg)) rotateY(var(--ty,0deg))}
+.mplates{position:absolute;inset:0;pointer-events:none}
+.mtable{position:absolute;inset:0;border-radius:50%;will-change:transform}
+.mwood{position:absolute;inset:0;border-radius:50%;background:url(assets/mesa/tablero.webp) center/cover;box-shadow:0 60px 120px -20px rgba(0,0,0,.75),inset 0 0 0 10px rgba(120,70,30,.35),inset 0 0 80px rgba(60,30,10,.35)}
+.mwood::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 36% 30%,rgba(255,236,200,.22),transparent 45%),radial-gradient(circle,transparent 60%,rgba(30,12,4,.35))}
+.mseat{position:absolute;left:0;top:0;width:24%;height:0;will-change:transform}
+.pshadow{position:absolute;left:-50%;top:-16px;width:100%;height:32px;border-radius:50%;background:radial-gradient(closest-side,rgba(30,14,4,.55),transparent)}
+.plate{position:absolute;left:-50%;bottom:-10px;width:100%;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;transition:filter .5s var(--ease)}
+.plate img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 12px rgba(20,8,2,.4));pointer-events:none}
+.mseat.on .plate{filter:brightness(1.05)}
+.mhint{position:absolute;left:clamp(20px,5vw,72px);bottom:28px;z-index:3;display:flex;align-items:center;gap:10px;margin:0;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid rgba(251,244,232,.35);background:rgba(34,16,10,.5);backdrop-filter:blur(7px);font-size:14px;color:rgba(251,244,232,.85)}
+@media (max-width:900px){
+  .mesa{grid-template-columns:minmax(0,1fr);align-items:start;padding:96px 20px 0;min-height:auto}
+  .mtitle{min-height:0;font-size:clamp(40px,11vw,56px)}
+  .mdesc{min-height:0;font-size:16px}
+  .mstage{position:relative;left:50%;top:auto;width:118vw;transform:translateX(-50%);margin-top:10vw;margin-bottom:-6vw}
+  .mhint{position:relative;left:auto;bottom:auto;justify-self:center;margin:12px 0 34px}
+}
+/* ---------- ACCESO A LA CARTA ---------- */
+.cartas{padding:110px 0 30px}
+.cartas .chead{margin-bottom:40px}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;perspective:1400px}
+.ccard{position:relative;display:block;border-radius:28px;overflow:hidden;min-height:440px;color:var(--bg);text-decoration:none;transform-style:preserve-3d;transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 30px 60px -40px rgba(34,16,10,.6)}
+.ccard:hover{box-shadow:0 44px 80px -40px rgba(34,16,10,.75)}
+.ccard .cimg{position:absolute;inset:0}
+.ccard .cimg img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.2s var(--ease)}
+.ccard:hover .cimg img{transform:scale(1.12)}
+.ccard .cimg::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(34,16,10,.05) 30%,rgba(34,16,10,.82))}
+.ccard .ctext{position:absolute;left:0;right:0;bottom:0;padding:32px;transform:translateZ(40px)}
+.ccard .ctag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(251,244,232,.16);backdrop-filter:blur(6px);padding:7px 12px;border-radius:999px}
+.ccard h3{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(48px,5vw,72px);line-height:1;margin:16px 0 8px}
+.ccard p{margin:0 0 18px;font-size:16px;opacity:.9}
+.ccard .cgo{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;border-bottom:1.5px solid currentColor;padding-bottom:3px}
+.ccard .cgo i{font-style:normal;transition:transform .4s var(--ease)}
+.ccard:hover .cgo i{transform:translateX(5px)}
+@media (max-width:810px){.cgrid{grid-template-columns:1fr}.ccard{min-height:360px}.cartas{padding:80px 0 20px}}
+@media (prefers-reduced-motion:reduce){.mtilt,.ccard,.mtitle,.mdesc,.mprice{transition:none}}
+
 /* ---------- REVEAL ---------- */
 [data-r]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
 [data-r="left"]{transform:translateX(-40px)}
@@ -426,7 +490,7 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
   <div class="bar">
     <a class="logo" href="#top" aria-label="La Mareta, inicio"><img class="logo-img" src="assets/logo.webp" alt="La Mareta · Coffee &amp; Brunch" width="720" height="343"></a>
     <nav class="links" aria-label="Principal">
-      <a href="#carta"><span>Carta</span><span aria-hidden="true">Carta</span></a>
+      <a href="carta.html"><span>Carta</span><span aria-hidden="true">Carta</span></a>
       <a href="#espacio"><span>Espacio</span><span aria-hidden="true">Espacio</span></a>
       <a href="#historia"><span>Historia</span><span aria-hidden="true">Historia</span></a>
     </nav>
@@ -495,6 +559,81 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
         <div class="photo" data-word="Obrador"><img src="assets/img/foto-10.jpg" alt="Caja de cookies XL de La Mareta: Oreo, pistacho y Kinder" loading="lazy"></div>
         <div class="meta"><h3>Cookies XL</h3><p>Horneadas en casa: Oreo, pistacho, Kinder… y en caja para llevar.</p></div>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- MESA -->
+<section class="mesa" id="mesa" aria-label="La mesa del brunch">
+  <div class="mglow" aria-hidden="true"></div>
+  <div class="minfo">
+    <div class="mcount"><span>Plato <b id="mNum">1</b> de 7</span><span class="mdash" id="mDash"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+    <h2 class="mtitle" id="mTitle">Huevos benedictinos clásicos</h2>
+    <p class="mdesc" id="mDesc">Huevos poché al punto sobre brioche tostado, salmón ahumado y aguacate, cubiertos con nuestra salsa holandesa casera y un toque de rúcula.</p>
+    <div class="mprice" id="mPrice"><span><small>Plato</small><b>9,50 €</b></span><span><small>Menú brunch</small><b>15,00 €</b></span></div>
+    <p class="mincl">El menú brunch incluye café con leche o clásico, zumo de naranja natural y yogur griego con fruta y granola o el dulce del día casero.</p>
+    <div class="mctrl">
+      <button class="marrow" id="mPrev" type="button" aria-label="Plato anterior"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M11 4 6 9l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="marrow" id="mNext" type="button" aria-label="Plato siguiente"><svg width="18" height="18" viewBox="0 0 18 18"><path d="m7 4 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <a class="mbtn" href="carta.html#carta">Ver la carta completa</a>
+    </div>
+  </div>
+  <div class="mstage" id="mStage">
+    <div class="mtilt">
+      <div class="mtable" id="mTable">
+        <div class="mwood" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="mplates" id="mPlates">
+          <div class="mseat" data-i="0" style="--a:0.000deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="Huevos benedictinos clásicos"><img src="assets/mesa/benedict-clasico.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+          <div class="mseat" data-i="1" style="--a:51.429deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="Huevos benedictinos bacon &amp; cheese"><img src="assets/mesa/benedict-bacon.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+          <div class="mseat" data-i="2" style="--a:102.857deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="Truffle Brioche Deluxe"><img src="assets/mesa/truffle-brioche.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+          <div class="mseat" data-i="3" style="--a:154.286deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="Nordic Burrata Toast"><img src="assets/mesa/nordic-burrata.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+          <div class="mseat" data-i="4" style="--a:205.714deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="Green Garden Brunch"><img src="assets/mesa/green-garden.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+          <div class="mseat" data-i="5" style="--a:257.143deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="American Dream"><img src="assets/mesa/american-dream.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+          <div class="mseat" data-i="6" style="--a:308.571deg">
+            <div class="pshadow" aria-hidden="true"></div>
+            <button class="plate" type="button" aria-label="Iberian Truffle Toast"><img src="assets/mesa/iberian-truffle.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
+          </div>
+    </div>
+  </div>
+  <p class="mhint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Arrastra la mesa para girarla</p>
+</section>
+
+<!-- CARTAS -->
+<section class="cartas" id="cartas" aria-label="Nuestra carta">
+  <div class="wrap">
+    <div class="chead">
+      <div class="eyebrow" data-r>Nuestra carta</div>
+      <h2 class="h2 split" data-split>¿Desayuno o brunch?</h2>
+    </div>
+    <div class="cgrid">
+      <a class="ccard" href="carta.html#desayunos" data-r>
+        <div class="cimg"><img src="assets/img/foto-14.jpg" alt="Tostada con huevo poché, jamón, tomates cherry, aguacate y salsa" loading="lazy"></div>
+        <div class="ctext"><span class="ctag">De lunes a sábado · 8:00 a 12:00</span><h3>Desayunos</h3><p>Tostadas + café desde 2,80 €</p><span class="cgo">Ver desayunos <i>→</i></span></div>
+      </a>
+      <a class="ccard" href="carta.html#carta" data-r style="--d:.12s">
+        <div class="cimg"><img src="assets/img/foto-07.jpg" alt="Truffle Brioche Deluxe con huevo, bacon y salsa de trufa, con boniato y tomate cherry" loading="lazy"></div>
+        <div class="ctext"><span class="ctag">Brunch, tostadas, bowls, crepes y bebidas</span><h3>La carta</h3><p>Brunch con menú desde 14,00 €</p><span class="cgo">Ver la carta <i>→</i></span></div>
+      </a>
     </div>
   </div>
 </section>
@@ -1071,6 +1210,90 @@ document.getElementById('form').addEventListener('submit',e=>{
     requestAnimationFrame(loop);
   }
   layout(); requestAnimationFrame(loop);
+})();
+</script>
+<script>
+/* Mesa giratoria en 3D: los platos del brunch alrededor de una mesa de madera inclinada */
+(() => {
+  const RMq = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sec = document.getElementById('mesa'); if (!sec) return;
+  const D = [{"n":"Huevos benedictinos clásicos","d":"Huevos poché al punto sobre brioche tostado, salmón ahumado y aguacate, cubiertos con nuestra salsa holandesa casera y un toque de rúcula.","p":"9,50","m":"15,00"},{"n":"Huevos benedictinos bacon & cheese","d":"Huevos poché al punto sobre brioche tostado, bacon crujiente y aguacate, cubiertos con salsa de queso cabrales y un toque de rúcula.","p":"9,50","m":"15,00"},{"n":"Truffle Brioche Deluxe","d":"Sándwich con huevos revueltos y mezcla de quesos cremosos, bacon crujiente, rúcula y mayonesa trufada, acompañado de boniato.","p":"8,50","m":"15,00"},{"n":"Nordic Burrata Toast","d":"Pan payés tostado con queso crema, aguacate, salmón ahumado y huevos revueltos melosos, coronada con queso burrata y un toque final de cebollino.","p":"8,00","m":"14,50"},{"n":"Green Garden Brunch","d":"Pan payés en plato con aguacate, huevos revueltos, pavo, jamón serrano, hummus casero, rúcula, queso curado y cherrys asados. Acompañado de boniato.","p":"8,00","m":"14,00"},{"n":"American Dream","d":"Torre de tres tortitas esponjosas impregnadas en salsa de arce, con bacon crujiente y huevo a la plancha, acompañado de boniato.","p":"7,50","m":"14,00"},{"n":"Iberian Truffle Toast","d":"Pan payés tostado con queso curado fundido, jamón serrano a la plancha, tomates cherry asados, huevo poché y un toque de mayonesa trufada.","p":"8,00","m":"14,00"}];
+  const stage = document.getElementById('mStage'), table = document.getElementById('mTable'), tilt = stage.querySelector('.mtilt');
+  const seats = [...document.querySelectorAll('#mPlates .mseat')], N = seats.length, STEP = 360 / N;
+  let tiltDeg = 32, tyDeg = 0;
+  const tEl = document.getElementById('mTitle'), dEl = document.getElementById('mDesc'), pEl = document.getElementById('mPrice'), nEl = document.getElementById('mNum'), dash = [...document.querySelectorAll('#mDash i')];
+  const frontAngle = () => innerWidth <= 900 ? 90 : 180;   // dónde queda el plato activo: a la izquierda (escritorio) o abajo, hacia el texto (móvil)
+  let cur = 0, target = 0, idx = 0, shown = -1, drag = null, last = performance.now(), visible = false;
+  const norm = a => ((a % 360) + 360) % 360;
+  const rotFor = i => frontAngle() - i * STEP;
+  function nearestIdx(rot) { return ((Math.round((frontAngle() - rot) / STEP) % N) + N) % N; }
+  function goTo(i) { idx = (i + N) % N; const base = rotFor(idx); target = base + Math.round((target - base) / 360) * 360; last = performance.now(); }
+  function show(i) {
+    if (i === shown) return; shown = i;
+    const d = D[i];
+    sec.classList.add('swap');
+    setTimeout(() => {
+      tEl.textContent = d.n; dEl.textContent = d.d;
+      pEl.innerHTML = '<span><small>Plato</small><b>' + d.p + ' €</b></span><span><small>Menú brunch</small><b>' + d.m + ' €</b></span>';
+      nEl.textContent = i + 1; dash.forEach((e, k) => e.classList.toggle('on', k <= i));
+      sec.classList.remove('swap');
+    }, RMq ? 0 : 260);
+  }
+  function render() {
+    table.style.transform = 'rotate(' + cur.toFixed(2) + 'deg)';
+    const fa = frontAngle(), W = stage.clientWidth, R = W * .345, P = 1800, t = tiltDeg * Math.PI / 180, ty = tyDeg * Math.PI / 180;
+    seats.forEach((s, i) => {
+      const world = norm(i * STEP + cur), th = world * Math.PI / 180;
+      let d = Math.abs(world - fa); d = Math.min(d, 360 - d);
+      const k = Math.max(0, 1 - d / STEP);
+      // punto de la mesa (x, y) girado por la inclinación X e Y y proyectado con perspectiva
+      let x = R * Math.cos(th), y = R * Math.sin(th), z = 0;
+      const y1 = y * Math.cos(t) - z * Math.sin(t), z1 = y * Math.sin(t) + z * Math.cos(t);
+      const x2 = x * Math.cos(ty) + z1 * Math.sin(ty), z2 = -x * Math.sin(ty) + z1 * Math.cos(ty);
+      const f = P / (P - z2), sc = f * (1 + k * .32);
+      s.style.transform = 'translate3d(' + (W / 2 + x2 * f).toFixed(1) + 'px,' + (W / 2 + y1 * f).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+      s.style.zIndex = String(500 + Math.round(y1));
+      s.classList.toggle('on', k > .6);
+    });
+    show(nearestIdx(cur));
+  }
+  // arrastrar
+  stage.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, start: target, moved: 0 }; stage.setPointerCapture(e.pointerId); });
+  stage.addEventListener('pointermove', e => {
+    const r = stage.getBoundingClientRect();
+    if (!drag) { if (!RMq) { tyDeg = ((e.clientX - r.left) / r.width - .5) * 6; tilt.style.setProperty('--ty', tyDeg.toFixed(2) + 'deg'); } return; }
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.moved = Math.max(drag.moved, Math.abs(dx) + Math.abs(dy));
+    target = drag.start + (innerWidth <= 900 ? -dx : dy - dx * .4) * .35; last = performance.now();
+  });
+  const end = e => { if (!drag) return; const moved = drag.moved; drag = null;
+    if (moved < 6) { const s = e.target.closest && e.target.closest('.mseat'); if (s) { goTo(+s.dataset.i); return; } }
+    goTo(nearestIdx(target)); };
+  stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+  stage.addEventListener('pointerleave', () => { tyDeg = 0; tilt.style.setProperty('--ty', '0deg'); });
+  document.getElementById('mNext').addEventListener('click', () => goTo(idx + 1));
+  document.getElementById('mPrev').addEventListener('click', () => goTo(idx - 1));
+  sec.addEventListener('keydown', e => { if (e.key === 'ArrowRight') goTo(idx + 1); if (e.key === 'ArrowLeft') goTo(idx - 1); });
+  new IntersectionObserver(es => es.forEach(x => visible = x.isIntersecting), { threshold: .2 }).observe(sec);
+  addEventListener('resize', () => { goTo(idx); });
+  // inclinación de la mesa con el scroll
+  function loop(t) {
+    if (visible) {
+      if (!drag && !RMq && t - last > 5200) goTo(idx + 1);       // pasa sola cada 5 s
+      cur += (target - cur) * (RMq ? 1 : .085);
+      if (Math.abs(target - cur) < .01) cur = target;
+      const r = sec.getBoundingClientRect();
+      const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - innerHeight / 2) / innerHeight));
+      if (!RMq) { tiltDeg = 32 + p * 14; tilt.style.setProperty('--tilt', tiltDeg.toFixed(2) + 'deg'); }
+      render();
+    }
+    requestAnimationFrame(loop);
+  }
+  target = cur = rotFor(0); render(); requestAnimationFrame(loop);
+  // tarjetas de la carta: inclinación 3D con el ratón
+  document.querySelectorAll('.ccard').forEach(c => {
+    c.addEventListener('pointermove', e => { if (RMq || e.pointerType !== 'mouse') return; const r = c.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; c.style.transform = 'rotateY(' + (x * 8).toFixed(2) + 'deg) rotateX(' + (-y * 8).toFixed(2) + 'deg)'; });
+    c.addEventListener('pointerleave', () => { c.style.transform = ''; });
+  });
 })();
 </script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
