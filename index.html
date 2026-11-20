@@ -163,10 +163,10 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .mdash{display:flex;gap:5px}
 .mdash i{width:18px;height:2px;border-radius:2px;background:rgba(251,244,232,.25);transition:background .6s var(--ease)}
 .mdash i.on{background:var(--bg)}
-.mtitle{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em;margin:22px 0 18px;min-height:2em}
-.mdesc{font-size:17px;line-height:1.55;opacity:.88;margin:0 0 28px;min-height:5em}
-.mtitle,.mdesc,.mprice b{transition:opacity .45s var(--ease),filter .45s var(--ease),transform .45s var(--ease)}
-.mesa.swap .mtitle,.mesa.swap .mdesc,.mesa.swap .mprice b{opacity:0;filter:blur(6px);transform:translateY(10px)}
+.mtitle{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(44px,5.4vw,80px);line-height:.98;letter-spacing:-.02em;margin:22px 0 18px;min-height:2.94em;display:flex;align-items:flex-end}
+.mdesc{font-size:17px;line-height:1.55;opacity:.88;margin:0 0 28px;min-height:4.65em}
+.mtitle,.mdesc{transition:opacity .35s ease,transform .45s var(--ease)}
+.mesa.swap .mtitle,.mesa.swap .mdesc{opacity:0;transform:translateY(6px)}
 .mbar{position:absolute;left:clamp(20px,5vw,72px);right:auto;max-width:min(600px,42vw);bottom:26px;z-index:3;display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap}
 .mprice{display:inline-flex;align-items:baseline;gap:8px;padding:10px 18px;border-radius:999px;background:rgba(251,244,232,.1);border:1px solid rgba(251,244,232,.2);font-size:14px;color:rgba(251,244,232,.75)}
 .mprice b{font-family:"Instrument Serif",serif;font-weight:400;font-size:22px;color:var(--soft)}
@@ -197,8 +197,8 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .mhint{display:flex;align-items:center;gap:10px;margin:0;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid rgba(251,244,232,.35);background:rgba(34,16,10,.5);backdrop-filter:blur(7px);font-size:14px;color:rgba(251,244,232,.85)}
 @media (max-width:900px){
   .mesa{grid-template-columns:minmax(0,1fr);align-items:start;padding:96px 20px 0;min-height:auto}
-  .mtitle{min-height:0;font-size:clamp(40px,11vw,56px)}
-  .mdesc{min-height:0;font-size:16px}
+  .mtitle{min-height:2.94em;font-size:clamp(36px,10vw,52px)}
+  .mdesc{min-height:7.2em;font-size:16px}
   .mstage{position:relative;left:50%;top:auto;width:118vw;transform:translateX(-50%);margin-top:10vw;margin-bottom:-6vw}
   .mbar{position:relative;left:auto;right:auto;bottom:auto;flex-direction:column;align-items:center;text-align:center;margin:12px 0 40px}
   .mincl{max-width:340px}
@@ -269,7 +269,27 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .dish p{margin:0;font-size:14.5px;line-height:1.45;opacity:.72;min-height:42px}
 
 /* ---------- BEBIDA ---------- */
-.drink{padding:0 16px}
+.drink{padding:0 16px;margin-top:90px}
+.drink .board{background:#f3dccd;color:var(--ink);text-align:center;padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px) clamp(48px,6vw,80px);position:relative;isolation:isolate}
+.drink .board::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 50% 55%,rgba(255,250,240,.75),transparent 70%)}
+.drink .eyebrow{color:var(--red)}
+.sp-title{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(54px,8vw,120px);line-height:.92;letter-spacing:-.02em;margin:12px 0 14px}
+.sp-sub{font-size:18px;line-height:1.45;max-width:460px;margin:0 auto;opacity:.8}
+.sp-stage{display:grid;grid-template-columns:1fr minmax(0,380px) 1fr;align-items:center;gap:clamp(20px,4vw,56px);margin:clamp(36px,5vw,60px) auto 0;max-width:1100px}
+.sp-glass{aspect-ratio:3/4;border-radius:200px 200px 28px 28px;overflow:hidden;box-shadow:0 50px 90px -50px rgba(58,29,18,.6)}
+.sp-glass img{width:100%;height:112%;object-fit:cover;will-change:transform}
+.sp-col{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(40px,8vw,110px)}
+.sp-capa{position:relative;display:flex;flex-direction:column;gap:4px}
+.sp-capa b{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(24px,2.4vw,34px);line-height:1.05}
+.sp-capa span{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.sp-col.izq .sp-capa{align-items:flex-end;text-align:right;padding-right:clamp(30px,4vw,64px)}
+.sp-col.der .sp-capa{align-items:flex-start;text-align:left;padding-left:clamp(30px,4vw,64px)}
+.sp-capa::after{content:"";position:absolute;top:50%;width:clamp(22px,3.4vw,52px);height:1.5px;background:var(--ink);opacity:.35}
+.sp-col.izq .sp-capa::after{right:0}
+.sp-col.der .sp-capa::after{left:0}
+.sp-foot{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:clamp(36px,5vw,56px);flex-wrap:wrap}
+.sp-price{font-family:"Instrument Serif",serif;font-size:44px;line-height:1;display:flex;align-items:baseline;gap:8px}
+.sp-price small{font-family:Inter,sans-serif;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.6}
 .board{background:var(--ink);color:var(--bg);border-radius:28px;overflow:hidden;will-change:transform;transform-origin:50% 0}
 .board .inner{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;padding:56px;max-width:1440px;margin:0 auto}
 .board .photo{border-radius:20px;overflow:hidden;aspect-ratio:4/5;max-height:640px}
@@ -467,8 +487,13 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1100px){
   .grid4{grid-template-columns:repeat(2,1fr)}
-  .board .inner{grid-template-columns:1fr;gap:36px;padding:28px}
-  .board .photo{aspect-ratio:16/11}
+  .drink{margin-top:60px}
+  .sp-stage{grid-template-columns:1fr 1fr;gap:26px 16px}
+  .sp-glass{grid-column:1 / -1;grid-row:1;max-width:300px;width:100%;margin:0 auto}
+  .sp-col{gap:22px}
+  .sp-col.izq .sp-capa,.sp-col.der .sp-capa{align-items:center;text-align:center;padding:0}
+  .sp-capa::after{display:none}
+  .sp-capa b{font-size:22px}
   .story .row,.faq .grid,.mapgrid{grid-template-columns:1fr;gap:40px}
   .cols{grid-template-columns:1fr;text-align:center}
   .contact{text-align:center}.social{justify-content:center}
@@ -683,23 +708,21 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 </section>
 
 <!-- BEBIDA -->
-<section class="drink">
+<section class="drink" aria-labelledby="especial-t">
   <div class="board" id="board">
-    <div class="inner">
-      <div class="photo" data-r="scale"><img src="assets/img/foto-02.jpg" alt="Iced tiramisú latte con bizcocho de soletilla encima" loading="lazy" data-par="0.12"></div>
-      <div class="text" data-r="left">
-        <div class="eyebrow">La especial de la casa</div>
-        <h2 class="h2 split" data-split>Un café que sabe a postre.</h2>
-        <div class="lines">
-          <div class="ln big"><span>Iced Tiramisú Latte</span><span class="ld" style="--d:.2s"></span><b>frío</b></div>
-          <div class="ln"><span>+ Espresso de especialidad</span><span class="ld" style="--d:.3s"></span><small>doble</small></div>
-          <div class="ln"><span>+ Leche fría</span><span class="ld" style="--d:.4s"></span><small>con hielo</small></div>
-          <div class="ln"><span>+ Espuma de tiramisú</span><span class="ld" style="--d:.5s"></span><small>y cacao</small></div>
-          <div class="ln"><span>+ Bizcocho de soletilla</span><span class="ld" style="--d:.6s"></span><small>encima</small></div>
-        </div>
-        <p class="lead" style="opacity:.85;margin:0 0 26px">Frío, cremoso y peligrosamente adictivo.</p>
-        <a class="cbtn" href="#visita">Pídelo en barra <span class="circ"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      </div>
+    <div class="sp-head">
+      <div class="eyebrow" data-r>La especial de la casa</div>
+      <h2 class="sp-title split" id="especial-t" data-split>Iced Tiramisú Latte</h2>
+      <p class="sp-sub" data-r style="--d:.1s">Un café que sabe a postre: frío, cremoso y peligrosamente adictivo.</p>
+    </div>
+    <div class="sp-stage">
+      <ul class="sp-col izq"><li class="sp-capa" data-r style="--d:0.15s"><b>Bizcocho de soletilla</b><span>encima</span></li><li class="sp-capa" data-r style="--d:0.27s"><b>Espuma de tiramisú</b><span>y cacao</span></li></ul>
+      <div class="sp-glass" data-r="scale"><img src="assets/img/foto-02.jpg" alt="Iced tiramisú latte con bizcocho de soletilla encima" loading="lazy" data-par="0.08"></div>
+      <ul class="sp-col der"><li class="sp-capa" data-r style="--d:0.39s"><b>Espresso de especialidad</b><span>doble</span></li><li class="sp-capa" data-r style="--d:0.51s"><b>Leche fría</b><span>con hielo</span></li></ul>
+    </div>
+    <div class="sp-foot" data-r style="--d:.2s">
+      <span class="sp-price"><small>Iced</small>4,00 €</span>
+      <a class="cbtn dark" href="carta.html#lattes">Ver todos los lattes <span class="circ"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 10.5 10.5 3.5M5 3.5h5.5V9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -1341,7 +1364,7 @@ document.querySelectorAll('.fcard').forEach(c => {
       s.style.transform = 'translate3d(' + sx.toFixed(1) + 'px,' + (sy - lift).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
       const kk = e.toFixed(2); if (s._k !== kk) { s._k = kk; s.style.setProperty('--k', kk); s.style.setProperty('--b', (.5 + e * .55).toFixed(2)); }
       if (k > .5) { tag.style.transform = 'translate(-50%,0) translate3d(' + sx.toFixed(1) + 'px,' + (sy + W * .02).toFixed(1) + 'px,0)'; }
-      s.style.zIndex = String(500 + Math.round(y1) + (k > .5 ? 1000 : 0));
+      s.style.zIndex = String(500 + Math.round(y1 + e * 400));
       s.classList.toggle('on', k > .6);
     });
     show(nearestIdx(cur));
