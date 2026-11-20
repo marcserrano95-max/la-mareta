@@ -154,6 +154,9 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .mesa{position:relative;overflow:hidden;isolation:isolate;background:var(--deep);color:var(--bg);min-height:100vh;min-height:100svh;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;padding:110px clamp(20px,5vw,72px) 90px}
 .mglow{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 78% 50%,rgba(239,198,180,.16),transparent 70%),radial-gradient(40% 50% at 10% 20%,rgba(211,58,44,.18),transparent 70%)}
 .minfo{position:relative;z-index:3;max-width:520px}
+.mhead{margin-bottom:26px;padding-bottom:22px;border-bottom:1px solid rgba(251,244,232,.16)}
+.mhead .eyebrow{color:var(--soft)}
+.mhead p{margin:10px 0 0;font-size:15px;line-height:1.5;opacity:.75;max-width:440px}
 .mcount{display:flex;align-items:center;gap:14px;font-size:14px;color:rgba(251,244,232,.7);font-variant-numeric:tabular-nums}
 .mcount b{color:var(--bg)}
 .mdash{display:flex;gap:5px}
@@ -183,9 +186,12 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .mwood::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 36% 30%,rgba(255,236,200,.22),transparent 45%),radial-gradient(circle,transparent 60%,rgba(30,12,4,.35))}
 .mseat{position:absolute;left:0;top:0;width:24%;height:0;will-change:transform}
 .pshadow{position:absolute;left:-50%;top:-16px;width:100%;height:32px;border-radius:50%;background:radial-gradient(closest-side,rgba(30,14,4,.55),transparent)}
-.plate{position:absolute;left:-50%;bottom:-10px;width:100%;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;transition:filter .5s var(--ease)}
+.plate{position:absolute;left:-50%;bottom:-10px;width:100%;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;filter:brightness(calc(.5 + var(--k,0) * .55)) saturate(calc(.6 + var(--k,0) * .45)) drop-shadow(0 0 calc(var(--k,0) * 34px) rgba(255,214,160,calc(var(--k,0) * .45)))}
+.mseat .pglow{display:none;position:absolute;left:-70%;top:-46px;width:140%;height:92px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,226,180,.55),rgba(255,226,180,0));opacity:var(--k,0)}
+.mtag{position:absolute;left:0;top:0;z-index:2000;transform:translate(-50%,0);white-space:nowrap;pointer-events:none;padding:8px 14px;border-radius:999px;background:var(--bg);color:var(--deep);font-size:13px;font-weight:800;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);transition:opacity .35s var(--ease)}
+.mesa.swap .mtag{opacity:0}
 .plate img{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 12px rgba(20,8,2,.4));pointer-events:none}
-.mseat.on .plate{filter:brightness(1.05)}
+
 .mhint{position:absolute;left:clamp(20px,5vw,72px);bottom:28px;z-index:3;display:flex;align-items:center;gap:10px;margin:0;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid rgba(251,244,232,.35);background:rgba(34,16,10,.5);backdrop-filter:blur(7px);font-size:14px;color:rgba(251,244,232,.85)}
 @media (max-width:900px){
   .mesa{grid-template-columns:minmax(0,1fr);align-items:start;padding:96px 20px 0;min-height:auto}
@@ -231,6 +237,25 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .obtn:hover{background:var(--ink);color:var(--bg)}
 .obtn:active{transform:scale(.97)}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+/* favoritos: cartas que se dan la vuelta */
+.fcard{perspective:1400px;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.fcard .fin{position:relative;aspect-ratio:3/4;transform-style:preserve-3d;transition:transform .9s var(--ease)}
+.fcard.on .fin{transform:rotateY(180deg)}
+@media (hover:hover){.fcard:hover .fin{transform:rotateY(180deg)}}
+.fcard:focus-visible .fin{box-shadow:0 0 0 3px var(--red);border-radius:22px}
+.ff{position:absolute;inset:0;border-radius:22px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 30px 60px -40px rgba(34,16,10,.55)}
+.front img{width:100%;height:100%;object-fit:cover}
+.front::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(34,16,10,0) 45%,rgba(34,16,10,.78))}
+.fcap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:20px;color:var(--bg)}
+.ftag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(251,244,232,.18);backdrop-filter:blur(6px)}
+.ff h3{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(26px,2.3vw,34px);line-height:1;margin:10px 0 8px;letter-spacing:-.01em}
+.fhint{font-size:13px;font-weight:600;opacity:.85}
+.fhint i{font-style:normal;display:inline-block;margin-left:4px}
+.back{transform:rotateY(180deg);background:var(--ink);color:var(--bg);padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+.back .ftag{align-self:flex-start;background:rgba(251,244,232,.14)}
+.back p{font-size:14.5px;line-height:1.5;opacity:.85;margin:0 0 14px}
+.back .fprice{font-family:"Instrument Serif",serif;font-weight:400;font-size:21px;color:var(--soft);margin-bottom:16px}
+.back a{align-self:flex-start;font-weight:700;font-size:14px;color:var(--bg);text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
 .dish .photo{aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:var(--tan)}
 .dish .photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .dish:hover .photo img{transform:scale(1.06)}
@@ -458,9 +483,10 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
   .hint{bottom:auto;top:22px}
   .dishes{padding:80px 0}
   .dishes .head{flex-direction:column;align-items:flex-start}
-  .grid4{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -20px;padding:0 20px 8px;scrollbar-width:none}
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .fcard .fin{aspect-ratio:3/4.7}.back .ftag{display:none}
+  .fcap{padding:14px}.back{padding:16px}.ff h3{font-size:22px}.back p{font-size:12px;line-height:1.38;margin-bottom:8px}.back .fprice{font-size:16px;margin-bottom:10px}.fhint{font-size:11.5px}.ftag{font-size:10px;padding:5px 8px}
   .grid4::-webkit-scrollbar{display:none}
-  .dish{flex:0 0 72%;scroll-snap-align:start}
   .drink,.visit,.reviews{padding:0 10px}
   .space .statement{left:20px;top:48px}
   .space .bottom{left:16px;right:16px;bottom:16px;flex-direction:column;align-items:stretch}
@@ -542,22 +568,30 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
         <a class="obtn" href="https://www.instagram.com/lamaretapaiporta/" target="_blank" rel="noopener">Ver más en Instagram ↗</a>
       </div>
     </div>
-    <div class="grid4">
-      <article class="dish" data-r style="--d:0s">
-        <div class="photo" data-word="Brunch"><img src="assets/img/foto-07.jpg" alt="Truffle Brioche Deluxe con huevo, bacon y salsa de trufa, con boniato y tomate cherry" loading="lazy"></div>
-        <div class="meta"><h3>Truffle Brioche Deluxe</h3><p>Brioche tostado, huevo, bacon, rúcula y salsa de trufa, con boniato.</p></div>
+    <div class="grid4 fgrid">
+      <article class="fcard" data-r style="--d:0s" tabindex="0" aria-label="Truffle Brioche Deluxe: toca para ver más">
+        <div class="fin">
+          <div class="ff front"><img src="assets/img/foto-07.jpg" alt="Truffle Brioche Deluxe con huevo, bacon y salsa de trufa, con boniato y tomate cherry" loading="lazy"><div class="fcap"><span class="ftag">Brunch</span><h3>Truffle Brioche Deluxe</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
+          <div class="ff back"><span class="ftag">Brunch</span><h3>Truffle Brioche Deluxe</h3><p>Sándwich con huevos revueltos y mezcla de quesos cremosos, bacon crujiente, rúcula y mayonesa trufada, acompañado de boniato.</p><b class="fprice">Plato 8,50 € · Menú brunch 15,00 €</b><a href="carta.html#brunch">Ver en la carta</a></div>
+        </div>
       </article>
-      <article class="dish" data-r style="--d:.08s">
-        <div class="photo" data-word="Brunch"><img src="assets/img/foto-08.jpg" alt="Pancakes con bacon crujiente, huevo frito y sirope, con un café en taza roja" loading="lazy"></div>
-        <div class="meta"><h3>Pancakes con bacon</h3><p>Tortitas esponjosas, huevo frito, bacon crujiente y sirope.</p></div>
+      <article class="fcard" data-r style="--d:0.08s" tabindex="0" aria-label="American Dream: toca para ver más">
+        <div class="fin">
+          <div class="ff front"><img src="assets/img/foto-08.jpg" alt="Pancakes con bacon crujiente, huevo frito y sirope, con un café en taza roja" loading="lazy"><div class="fcap"><span class="ftag">Brunch</span><h3>American Dream</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
+          <div class="ff back"><span class="ftag">Brunch</span><h3>American Dream</h3><p>Torre de tres tortitas esponjosas impregnadas en salsa de arce, con bacon crujiente y huevo a la plancha, acompañado de boniato.</p><b class="fprice">Plato 7,50 € · Menú brunch 14,00 €</b><a href="carta.html#brunch">Ver en la carta</a></div>
+        </div>
       </article>
-      <article class="dish" data-r style="--d:.16s">
-        <div class="photo" data-word="Brunch"><img src="assets/img/foto-09.jpg" alt="Tostada de pan de masa madre con queso crema, salmón, aguacate, huevo revuelto y burrata" loading="lazy"></div>
-        <div class="meta"><h3>Tostada de salmón</h3><p>Queso crema, salmón ahumado, aguacate, huevo revuelto y rúcula.</p></div>
+      <article class="fcard" data-r style="--d:0.16s" tabindex="0" aria-label="Nordic Burrata Toast: toca para ver más">
+        <div class="fin">
+          <div class="ff front"><img src="assets/img/foto-09.jpg" alt="Tostada de pan de masa madre con queso crema, salmón, aguacate, huevo revuelto y burrata" loading="lazy"><div class="fcap"><span class="ftag">Brunch</span><h3>Nordic Burrata Toast</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
+          <div class="ff back"><span class="ftag">Brunch</span><h3>Nordic Burrata Toast</h3><p>Pan payés tostado con queso crema, aguacate, salmón ahumado y huevos revueltos melosos, coronada con queso burrata y cebollino.</p><b class="fprice">Plato 8,00 € · Menú brunch 14,50 €</b><a href="carta.html#brunch">Ver en la carta</a></div>
+        </div>
       </article>
-      <article class="dish" data-r style="--d:.24s">
-        <div class="photo" data-word="Obrador"><img src="assets/img/foto-10.jpg" alt="Caja de cookies XL de La Mareta: Oreo, pistacho y Kinder" loading="lazy"></div>
-        <div class="meta"><h3>Cookies XL</h3><p>Horneadas en casa: Oreo, pistacho, Kinder… y en caja para llevar.</p></div>
+      <article class="fcard" data-r style="--d:0.24s" tabindex="0" aria-label="Cookies XL: toca para ver más">
+        <div class="fin">
+          <div class="ff front"><img src="assets/img/foto-10.jpg" alt="Caja de cookies XL de La Mareta: Oreo, pistacho y Kinder" loading="lazy"><div class="fcap"><span class="ftag">Obrador</span><h3>Cookies XL</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
+          <div class="ff back"><span class="ftag">Obrador</span><h3>Cookies XL</h3><p>Horneadas en casa: Oreo, pistacho, Kinder… y en caja para llevar, perfectas para regalar.</p><b class="fprice">Pregunta por las de hoy en barra</b><a href="https://www.instagram.com/lamaretapaiporta/" target="_blank" rel="noopener">Verlas en Instagram ↗</a></div>
+        </div>
       </article>
     </div>
   </div>
@@ -567,6 +601,10 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 <section class="mesa" id="mesa" aria-label="La mesa del brunch">
   <div class="mglow" aria-hidden="true"></div>
   <div class="minfo">
+    <div class="mhead">
+      <div class="eyebrow">Nuestro brunch</div>
+      <p>Estos son los 7 platos del brunch. Gira la mesa: el plato que se levanta es el que ves descrito. Puedes pedirlo solo o en menú brunch.</p>
+    </div>
     <div class="mcount"><span>Plato <b id="mNum">1</b> de 7</span><span class="mdash" id="mDash"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
     <h2 class="mtitle" id="mTitle">Huevos benedictinos clásicos</h2>
     <p class="mdesc" id="mDesc">Huevos poché al punto sobre brioche tostado, salmón ahumado y aguacate, cubiertos con nuestra salsa holandesa casera y un toque de rúcula.</p>
@@ -585,31 +623,39 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
       </div>
     </div>
     <div class="mplates" id="mPlates">
+      <span class="mtag" id="mTag" aria-hidden="true"></span>
           <div class="mseat" data-i="0" style="--a:0.000deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="Huevos benedictinos clásicos"><img src="assets/mesa/benedict-clasico.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
           <div class="mseat" data-i="1" style="--a:51.429deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="Huevos benedictinos bacon &amp; cheese"><img src="assets/mesa/benedict-bacon.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
           <div class="mseat" data-i="2" style="--a:102.857deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="Truffle Brioche Deluxe"><img src="assets/mesa/truffle-brioche.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
           <div class="mseat" data-i="3" style="--a:154.286deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="Nordic Burrata Toast"><img src="assets/mesa/nordic-burrata.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
           <div class="mseat" data-i="4" style="--a:205.714deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="Green Garden Brunch"><img src="assets/mesa/green-garden.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
           <div class="mseat" data-i="5" style="--a:257.143deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="American Dream"><img src="assets/mesa/american-dream.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
           <div class="mseat" data-i="6" style="--a:308.571deg">
+            <div class="pglow" aria-hidden="true"></div>
             <div class="pshadow" aria-hidden="true"></div>
             <button class="plate" type="button" aria-label="Iberian Truffle Toast"><img src="assets/mesa/iberian-truffle.webp" alt="" draggable="false" loading="lazy" decoding="async"></button>
           </div>
@@ -1213,6 +1259,13 @@ document.getElementById('form').addEventListener('submit',e=>{
 })();
 </script>
 <script>
+/* Favoritos: tocar para dar la vuelta */
+document.querySelectorAll('.fcard').forEach(c => {
+  c.addEventListener('click', e => { if (e.target.closest('a')) return; c.classList.toggle('on'); });
+  c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('on'); } });
+});
+</script>
+<script>
 /* Mesa giratoria en 3D: los platos del brunch alrededor de una mesa de madera inclinada */
 (() => {
   const RMq = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1221,6 +1274,7 @@ document.getElementById('form').addEventListener('submit',e=>{
   const stage = document.getElementById('mStage'), table = document.getElementById('mTable'), tilt = stage.querySelector('.mtilt');
   const seats = [...document.querySelectorAll('#mPlates .mseat')], N = seats.length, STEP = 360 / N;
   let tiltDeg = 32, tyDeg = 0;
+  const tag = document.getElementById('mTag');
   const tEl = document.getElementById('mTitle'), dEl = document.getElementById('mDesc'), pEl = document.getElementById('mPrice'), nEl = document.getElementById('mNum'), dash = [...document.querySelectorAll('#mDash i')];
   const frontAngle = () => innerWidth <= 900 ? 90 : 180;   // dónde queda el plato activo: a la izquierda (escritorio) o abajo, hacia el texto (móvil)
   let cur = 0, target = 0, idx = 0, shown = -1, drag = null, last = performance.now(), visible = false;
@@ -1233,7 +1287,7 @@ document.getElementById('form').addEventListener('submit',e=>{
     const d = D[i];
     sec.classList.add('swap');
     setTimeout(() => {
-      tEl.textContent = d.n; dEl.textContent = d.d;
+      tEl.textContent = d.n; dEl.textContent = d.d; tag.textContent = d.n;
       pEl.innerHTML = '<span><small>Plato</small><b>' + d.p + ' €</b></span><span><small>Menú brunch</small><b>' + d.m + ' €</b></span>';
       nEl.textContent = i + 1; dash.forEach((e, k) => e.classList.toggle('on', k <= i));
       sec.classList.remove('swap');
@@ -1250,9 +1304,12 @@ document.getElementById('form').addEventListener('submit',e=>{
       let x = R * Math.cos(th), y = R * Math.sin(th), z = 0;
       const y1 = y * Math.cos(t) - z * Math.sin(t), z1 = y * Math.sin(t) + z * Math.cos(t);
       const x2 = x * Math.cos(ty) + z1 * Math.sin(ty), z2 = -x * Math.sin(ty) + z1 * Math.cos(ty);
-      const f = P / (P - z2), sc = f * (1 + k * .32);
-      s.style.transform = 'translate3d(' + (W / 2 + x2 * f).toFixed(1) + 'px,' + (W / 2 + y1 * f).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
-      s.style.zIndex = String(500 + Math.round(y1));
+      const f = P / (P - z2), e = k * k * (3 - 2 * k), sc = f * (.86 + e * .62), lift = e * W * .045;
+      const sx = W / 2 + x2 * f, sy = W / 2 + y1 * f;
+      s.style.transform = 'translate3d(' + sx.toFixed(1) + 'px,' + (sy - lift).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+      s.style.setProperty('--k', e.toFixed(3));
+      if (k > .5) { tag.style.transform = 'translate(-50%,0) translate3d(' + sx.toFixed(1) + 'px,' + (sy + W * .02).toFixed(1) + 'px,0)'; }
+      s.style.zIndex = String(500 + Math.round(y1) + (k > .5 ? 1000 : 0));
       s.classList.toggle('on', k > .6);
     });
     show(nearestIdx(cur));
