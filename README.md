@@ -12,7 +12,7 @@ Abre `index.html` en el navegador o sirve la carpeta:
     npx serve .
 
 ## Secciones
-Entrada cinematográfica (la cámara cruza la puerta al hacer scroll) · Los favoritos de la casa(cristal empañado con la palabra escrita que cae y deja ver el plato) · Bebida · Espacio · Historia · Taza roja en 3D · Galería · Cómo llegar · Footer.
+Entrada cinematográfica (la cámara cruza la puerta al hacer scroll) · Los favoritos de la casa · Bebida · Espacio · Historia · Taza roja en 3D · Galería · Cómo llegar · Footer.
 
 Colores: crema `#fbf4e8`, espresso `#3a1d12`, rosado `#efc6b4`, rojo taza `#d33a2c`. Tipografías: Inter e Instrument Serif (cursiva).
 
