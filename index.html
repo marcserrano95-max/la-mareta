@@ -89,18 +89,18 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 @keyframes bob{50%{transform:translateY(4px)}}
 
 /* ---------- TAZA 3D ---------- */
-.cup{position:relative;height:220vh}
-.cup .stick{position:sticky;top:var(--nav);height:calc(100vh - var(--nav));display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:24px;max-width:1440px;margin:0 auto;padding:0 32px}
+.cup{position:relative;height:130vh}
+.cup .stick{position:sticky;top:calc(var(--nav) + 10px);height:auto;padding-top:20px;padding-bottom:20px;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:24px;max-width:1440px;margin:0 auto;padding:0 32px}
 .cup .text{max-width:460px}
 .cup .h2{margin:0 0 18px}
 .cup .lead{margin:0 0 26px}
-.cup model-viewer{width:100%;height:min(78vh,760px);--poster-color:transparent;--progress-bar-height:0px;background:radial-gradient(closest-side,rgba(211,58,44,.10),rgba(211,58,44,0))}
+.cup model-viewer{width:100%;height:min(70vh,680px);--poster-color:transparent;--progress-bar-height:0px;background:radial-gradient(closest-side,rgba(211,58,44,.10),rgba(211,58,44,0))}
 .cup .tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
 .cup .tag i{width:8px;height:8px;border-radius:50%;background:var(--red)}
 @media (max-width:810px){
   .logo-img{height:40px}
   .cup{height:auto}
-  .cup .stick{position:relative;top:0;height:auto;grid-template-columns:1fr;padding:80px 16px 40px}
+  .cup .stick{position:relative;top:0;height:auto;grid-template-columns:1fr;padding:50px 16px 20px}
   .cup model-viewer{height:58vh;order:-1}
 }
 
@@ -131,14 +131,15 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .rcard:nth-child(2n){background:#f6e5d4}
 .rcard:nth-child(3n){background:#f9ece0}
 .rcard .qm{font-family:"Instrument Serif",serif;font-style:italic;font-size:120px;line-height:.6;color:var(--red);height:46px}
-.rcard blockquote{margin:0;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(28px,3vw,42px);line-height:1.08;letter-spacing:-.01em}
+.rcard blockquote{margin:0;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(24px,2.5vw,34px);line-height:1.12;letter-spacing:-.01em}
 .rcard figcaption{display:flex;align-items:center;gap:14px}
 .rcard .av{width:46px;height:46px;border-radius:50%;background:var(--red);color:var(--bg);display:grid;place-items:center;font-weight:800;font-size:18px}
 .rcard figcaption b{display:block;font-size:16px}
-.rcard figcaption small{display:block;font-size:13px;opacity:.6;margin-top:2px}
+.rcard figcaption small{display:block;font-size:13px;opacity:.75;margin-top:2px}
+.rst{font-style:normal;color:#e0a33a;letter-spacing:1px}.rst i{font-style:normal;color:rgba(58,29,18,.2)}
 .rbar{height:3px;border-radius:3px;background:rgba(251,244,232,.15);margin-top:26px;overflow:hidden}
 .rbar i{display:block;height:100%;width:0;background:var(--soft)}
-.omarq{overflow:hidden;padding:26px 0 6px;white-space:nowrap}
+.omarq{overflow:hidden;padding:18px 0 0;white-space:nowrap}
 .omt{display:inline-flex;animation:mq 38s linear infinite}
 .omt span{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(34px,5vw,64px);color:var(--ink);opacity:.9;padding-right:.4em}
 @media (max-width:810px){
@@ -202,7 +203,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
   .mincl{max-width:340px}
 }
 /* ---------- ACCESO A LA CARTA ---------- */
-.cartas{padding:110px 0 30px}
+.cartas{padding:80px 0 10px}
 .cartas .chead{margin-bottom:40px}
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;perspective:1400px}
 .ccard{position:relative;display:block;border-radius:28px;overflow:hidden;min-height:440px;color:var(--bg);text-decoration:none;transform-style:preserve-3d;transition:transform .5s var(--ease),box-shadow .5s var(--ease);box-shadow:0 30px 60px -40px rgba(34,16,10,.6)}
@@ -231,7 +232,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .split.in .w>span{transform:none}
 
 /* ---------- PLATOS ---------- */
-.dishes{padding:120px 0 110px}
+.dishes{padding:90px 0 70px}
 .dishes .head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:44px}
 .dishes .aside{max-width:340px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;font-size:15px;line-height:1.5;opacity:.85}
 .obtn{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:999px;border:1.5px solid var(--ink);text-decoration:none;font-weight:700;font-size:14px;transition:background .3s,color .3s,transform .25s var(--ease)}
@@ -292,7 +293,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .cbtn:active{transform:scale(.97)}
 
 /* ---------- ESPACIO ---------- */
-.space{position:relative;margin-top:110px;height:112vh;min-height:720px;overflow:hidden;color:var(--bg)}
+.space{position:relative;margin-top:70px;height:112vh;min-height:720px;overflow:hidden;color:var(--bg)}
 .space>img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform}
 .space .shade{position:absolute;inset:0;background:linear-gradient(rgba(34,16,10,.55),rgba(34,16,10,.05) 38%,rgba(34,16,10,.1) 60%,rgba(34,16,10,.7))}
 .space .statement{position:absolute;left:32px;top:72px;right:32px}
@@ -308,7 +309,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .seat .cbtn{width:100%;justify-content:space-between}
 
 /* ---------- HISTORIA ---------- */
-.story{padding:130px 0 90px}
+.story{padding:90px 0 30px}
 .story .row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .portrait{border-radius:22px;overflow:hidden;aspect-ratio:4/5;clip-path:inset(12% 8% 12% 8% round 22px);transition:clip-path 1.4s var(--ease)}
 .portrait.in{clip-path:inset(0 0 0 0 round 22px)}
@@ -322,8 +323,8 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 
 /* ---------- GALERÍA ---------- */
 /* Un día en La Mareta: recorrido horizontal con el scroll */
-.day{position:relative;height:420vh;border-bottom:1px solid var(--line)}
-.dstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,4vh,44px);padding-top:var(--nav)}
+.day{position:relative;height:340vh;border-bottom:1px solid var(--line)}
+.dstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(20px,4vh,44px);padding-top:calc(var(--nav) + clamp(16px,4vh,40px))}
 .dhead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:0 clamp(16px,4vw,48px);position:relative;z-index:2}
 .dhead p{max-width:380px;font-size:19px;line-height:1.35;letter-spacing:-.01em;margin:0}
 .dtrack{display:flex;align-items:center;gap:clamp(18px,2.4vw,36px);padding:0 clamp(16px,4vw,48px);width:max-content;will-change:transform;position:relative;z-index:2}
@@ -357,7 +358,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 
 /* ---------- RESEÑAS ---------- */
 .reviews{padding:16px}
-.reviews .panel2{background:var(--light2);border-radius:28px;padding:96px 0 90px;text-align:center;overflow:hidden}
+.reviews .panel2{background:var(--light2);border-radius:28px;padding:72px 0 64px;text-align:center;overflow:hidden}
 .reviews .h2{font-size:clamp(44px,5.6vw,76px);line-height:.92;color:var(--ink)}
 .marquee{margin-top:56px;display:flex;flex-direction:column;gap:14px;-webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .track{display:flex;gap:14px;width:max-content;animation:mq 46s linear infinite}
@@ -370,7 +371,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .chip small{font-weight:700;opacity:.55;font-size:12.5px}
 
 /* ---------- FAQ ---------- */
-.faq{padding:120px 0}
+.faq{padding:60px 0 70px}
 .faq .grid{display:grid;grid-template-columns:1fr 1.15fr;gap:80px}
 .qa{border-top:1px solid var(--line)}
 .item{border-bottom:1px solid var(--line)}
@@ -409,7 +410,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .thanks b{font-style:italic;font-size:16px;display:block}
 .thanks span{font-size:11.5px;font-style:italic;opacity:.65}
 
-.mapmod{padding:110px 0 120px}
+.mapmod{padding:80px 0 90px}
 .mapmod .head p{max-width:460px;opacity:.8;margin:14px 0 36px}
 .mapgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
 .map{position:relative;border-radius:22px;overflow:hidden;background:#efe2cf;min-height:360px;text-decoration:none}
@@ -484,7 +485,7 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
   .ui .side{align-items:flex-start}
   .ui .loc{text-align:left}
   .hint{bottom:auto;top:22px}
-  .dishes{padding:80px 0}
+  .dishes{padding:60px 0}
   .dishes .head{flex-direction:column;align-items:flex-start}
   .grid4{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .fcard .fin{aspect-ratio:3/4.7}.back .ftag{display:none}
@@ -494,11 +495,11 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
   .space .statement{left:20px;top:48px}
   .space .bottom{left:16px;right:16px;bottom:16px;flex-direction:column;align-items:stretch}
   .seat{width:auto}
-  .story{padding:90px 0 60px}
+  .story{padding:60px 0 20px}
   .story .text{padding-top:0}
   .ingr .r{grid-template-columns:110px 1fr}
-  .reviews .panel2{padding:70px 0}
-  .faq{padding:80px 0}
+  .reviews .panel2{padding:56px 0}
+  .faq{padding:44px 0 50px}
   .visit .photo{height:auto;min-height:0;padding:90px 0}
   .paper .big{font-size:44px}
   .mapmod{padding:80px 0}
@@ -805,7 +806,7 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
         <div class="num"><span id="scoreN">0,0</span><small>/5</small></div>
         <div>
           <div class="stars" aria-hidden="true"><i id="starsFill"></i></div>
-          <p>Valoración media en Google<br><b>384 opiniones</b></p>
+          <p>Valoración media en Google<br><b>385 opiniones</b></p>
         </div>
       </div>
       <div class="octrl" data-r style="--d:.2s">
@@ -819,34 +820,34 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
       <div class="deck" id="deck" aria-live="polite">
         <figure class="rcard" data-i="0">
           <span class="qm" aria-hidden="true">“</span>
-          <blockquote>Un sitio perfecto para empezar el día con buen pie. Todo lo que pedimos estaba fresco y delicioso…</blockquote>
-          <figcaption><span class="av" aria-hidden="true">P</span><span><b>Pablo D.</b><small>Reseña de cliente · 5/5</small></span></figcaption>
+          <blockquote>Fuimos a hacer brunch y la experiencia fue muy buena. La comida estaba buenísima, hay mucha variedad para elegir y el servicio fue excelente.</blockquote>
+          <figcaption><span class="av" aria-hidden="true">J</span><span><b>Jaume A.</b><small><em class="rst" aria-label="4 de 5 estrellas">★★★★<i>★</i></em> · Reseña en Google</small></span></figcaption>
         </figure>
         <figure class="rcard" data-i="1">
           <span class="qm" aria-hidden="true">“</span>
-          <blockquote>Las tostadas recién hechas al igual que los croissants.</blockquote>
-          <figcaption><span class="av" aria-hidden="true">C</span><span><b>Cliente</b><small>Reseña en Google</small></span></figcaption>
+          <blockquote>¡Todo espectacular! Probamos los crepes, el brownie de chocolate blanco con pistacho y la galleta de Twix, y estaba todo buenísimo.</blockquote>
+          <figcaption><span class="av" aria-hidden="true">E</span><span><b>Emma R.</b><small><em class="rst" aria-label="5 de 5 estrellas">★★★★★<i></i></em> · Reseña en Google</small></span></figcaption>
         </figure>
         <figure class="rcard" data-i="2">
           <span class="qm" aria-hidden="true">“</span>
-          <blockquote>Absolutely delicious! Best healthy breakfast in Paiporta;)</blockquote>
-          <figcaption><span class="av" aria-hidden="true">M</span><span><b>Marek R.</b><small>Reseña de cliente · 5/5</small></span></figcaption>
+          <blockquote>Lugar perfecto para desayunar y tomar algo después de comer. […] El café es excelente y los cruasanes siempre están recién hechos.</blockquote>
+          <figcaption><span class="av" aria-hidden="true">W</span><span><b>WekeyDav</b><small><em class="rst" aria-label="5 de 5 estrellas">★★★★★<i></i></em> · Reseña en Google</small></span></figcaption>
         </figure>
         <figure class="rcard" data-i="3">
           <span class="qm" aria-hidden="true">“</span>
-          <blockquote>Me encanta desayunar alli.</blockquote>
-          <figcaption><span class="av" aria-hidden="true">E</span><span><b>Esther B.</b><small>Reseña en Google</small></span></figcaption>
+          <blockquote>Increíble todo en presentación. En terraza se está de fábula y si nos faltaba cualquier cosa al momento nos lo traían.</blockquote>
+          <figcaption><span class="av" aria-hidden="true">J</span><span><b>Juan S.</b><small><em class="rst" aria-label="5 de 5 estrellas">★★★★★<i></i></em> · Reseña en Google</small></span></figcaption>
         </figure>
         <figure class="rcard" data-i="4">
           <span class="qm" aria-hidden="true">“</span>
-          <blockquote>pretty place with delicious menu. my favourite in paiporta!</blockquote>
-          <figcaption><span class="av" aria-hidden="true">K</span><span><b>Karen R.</b><small>Reseña de cliente · 5/5</small></span></figcaption>
+          <blockquote>Todo lo que probamos buenísimo, se nota que cuidan cada detalle y que les encanta innovar y ofrecer cosas diferentes.</blockquote>
+          <figcaption><span class="av" aria-hidden="true">M</span><span><b>Marta M.</b><small><em class="rst" aria-label="5 de 5 estrellas">★★★★★<i></i></em> · Reseña en Google</small></span></figcaption>
         </figure>
       </div>
       <div class="rbar" aria-hidden="true"><i id="rBar"></i></div>
     </div>
   </div>
-  <div class="omarq" aria-hidden="true"><div class="omt"><span>Café rico ★ Brunch fresco ★ Cookies XL ★ Sin prisa ★ Café rico ★ Brunch fresco ★ Cookies XL ★ Sin prisa ★&nbsp;</span><span>Café rico ★ Brunch fresco ★ Cookies XL ★ Sin prisa ★ Café rico ★ Brunch fresco ★ Cookies XL ★ Sin prisa ★&nbsp;</span></div></div>
+  <div class="omarq" aria-hidden="true"><div class="omt"><span>Lotus Biscoff ★ Nutella ★ Oreo ★ Kinder Bueno ★ Açaí Alma Libre ★ Matcha ★ Pistacho ★ Tiramisú ★ Lotus Biscoff ★ Nutella ★ Oreo ★ Kinder Bueno ★ Açaí Alma Libre ★ Matcha ★ Pistacho ★ Tiramisú ★ </span><span>Lotus Biscoff ★ Nutella ★ Oreo ★ Kinder Bueno ★ Açaí Alma Libre ★ Matcha ★ Pistacho ★ Tiramisú ★ Lotus Biscoff ★ Nutella ★ Oreo ★ Kinder Bueno ★ Açaí Alma Libre ★ Matcha ★ Pistacho ★ Tiramisú ★ </span></div></div>
 </section>
 
 <!-- FAQ -->
