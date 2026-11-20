@@ -1280,6 +1280,18 @@ document.getElementById('form').addEventListener('submit',e=>{
 })();
 </script>
 <script>
+/* Ir a la carta y volver al mismo punto de la página */
+(() => {
+  document.querySelectorAll('a[href^="carta.html"]').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lm-volver', String(Math.round(scrollY))); } catch (e) {} }));
+  if (location.hash !== '#volver') return;
+  let y = 0; try { y = +sessionStorage.getItem('lm-volver') || 0; } catch (e) {}
+  history.replaceState(null, '', location.pathname + location.search);
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const go = () => window.scrollTo({ top: y, behavior: 'instant' });
+  go(); addEventListener('load', () => { go(); setTimeout(go, 120); });
+})();
+</script>
+<script>
 /* Favoritos: tocar para dar la vuelta */
 document.querySelectorAll('.fcard').forEach(c => {
   c.addEventListener('click', e => { if (e.target.closest('a')) return; c.classList.toggle('on'); });
