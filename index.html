@@ -242,13 +242,15 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .fcard{perspective:1400px;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
 .fcard .fin{position:relative;aspect-ratio:3/4;transform-style:preserve-3d;transition:transform .9s var(--ease)}
 .fcard.on .fin{transform:rotateY(180deg)}
-@media (hover:hover){.fcard:hover .fin{transform:rotateY(180deg)}}
+.fcard .fcap{transition:opacity .2s .2s}.fcard .back>*{opacity:0;transition:opacity .2s}
+.fcard.on .fcap{opacity:0;transition-delay:0s}.fcard.on .back>*{opacity:1;transition-delay:.25s}
+@media (hover:hover){.fcard:hover .fin{transform:rotateY(180deg)}.fcard:hover .fcap{opacity:0;transition-delay:0s}.fcard:hover .back>*{opacity:1;transition-delay:.25s}}
 .fcard:focus-visible .fin{box-shadow:0 0 0 3px var(--red);border-radius:22px}
 .ff{position:absolute;inset:0;border-radius:22px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 30px 60px -40px rgba(34,16,10,.55)}
 .front img{width:100%;height:100%;object-fit:cover}
 .front::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(34,16,10,0) 45%,rgba(34,16,10,.78))}
 .fcap{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:20px;color:var(--bg)}
-.ftag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(251,244,232,.18);backdrop-filter:blur(6px)}
+.ftag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:rgba(34,16,10,.45)}
 .ff h3{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(26px,2.3vw,34px);line-height:1;margin:10px 0 8px;letter-spacing:-.01em}
 .fhint{font-size:13px;font-weight:600;opacity:.85}
 .fhint i{font-style:normal;display:inline-block;margin-left:4px}
@@ -662,8 +664,6 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
   </div>
   <div class="mbar">
   <p class="mhint" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Arrastra la mesa para girarla</p>
-    <div class="mprice" id="mPrice">Plato <b>9,50 €</b><i>·</i>Menú brunch <b>15,00 €</b></div>
-    <p class="mincl">El menú brunch incluye café con leche o clásico, zumo de naranja natural y yogur griego con fruta y granola o el dulce del día casero.</p>
   </div>
 </section>
 
@@ -1278,7 +1278,7 @@ document.querySelectorAll('.fcard').forEach(c => {
   const seats = [...document.querySelectorAll('#mPlates .mseat')], N = seats.length, STEP = 360 / N;
   let tiltDeg = 32, tyDeg = 0;
   const tag = document.getElementById('mTag');
-  const tEl = document.getElementById('mTitle'), dEl = document.getElementById('mDesc'), pEl = document.getElementById('mPrice'), nEl = document.getElementById('mNum'), dash = [...document.querySelectorAll('#mDash i')];
+  const tEl = document.getElementById('mTitle'), dEl = document.getElementById('mDesc'), nEl = document.getElementById('mNum'), dash = [...document.querySelectorAll('#mDash i')];
   const frontAngle = () => innerWidth <= 900 ? 90 : 180;   // dónde queda el plato activo: a la izquierda (escritorio) o abajo, hacia el texto (móvil)
   let cur = 0, target = 0, idx = 0, shown = -1, drag = null, last = performance.now(), visible = false;
   const norm = a => ((a % 360) + 360) % 360;
@@ -1291,7 +1291,6 @@ document.querySelectorAll('.fcard').forEach(c => {
     sec.classList.add('swap');
     setTimeout(() => {
       tEl.textContent = d.n; dEl.textContent = d.d; tag.textContent = d.n;
-      pEl.innerHTML = 'Plato <b>' + d.p + ' €</b><i>·</i>Menú brunch <b>' + d.m + ' €</b>';
       nEl.textContent = i + 1; dash.forEach((e, k) => e.classList.toggle('on', k <= i));
       sec.classList.remove('swap');
     }, RMq ? 0 : 260);
@@ -1318,12 +1317,14 @@ document.querySelectorAll('.fcard').forEach(c => {
     show(nearestIdx(cur));
   }
   // arrastrar
-  stage.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, start: target, moved: 0 }; stage.setPointerCapture(e.pointerId); });
+  const angAt = e => { const r = stage.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; return Math.atan2((e.clientY - cy) / Math.cos(tiltDeg * Math.PI / 180), e.clientX - cx) * 180 / Math.PI; };
+  stage.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, a: angAt(e), acc: 0, start: target, moved: 0 }; stage.setPointerCapture(e.pointerId); });
   stage.addEventListener('pointermove', e => {
     const r = stage.getBoundingClientRect();
     if (!drag) { if (!RMq) { tyDeg = ((e.clientX - r.left) / r.width - .5) * 6; tilt.style.setProperty('--ty', tyDeg.toFixed(2) + 'deg'); } return; }
     const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.moved = Math.max(drag.moved, Math.abs(dx) + Math.abs(dy));
-    target = drag.start + (innerWidth <= 900 ? -dx : dy - dx * .4) * .35; last = performance.now();
+    const a = angAt(e); let da = a - drag.a; if (da > 180) da -= 360; if (da < -180) da += 360; drag.a = a; drag.acc += da;
+    target = drag.start + drag.acc; cur = target; last = performance.now();
   });
   const end = e => { if (!drag) return; const moved = drag.moved; drag = null;
     if (moved < 6) { const s = e.target.closest && e.target.closest('.mseat'); if (s) { goTo(+s.dataset.i); return; } }
