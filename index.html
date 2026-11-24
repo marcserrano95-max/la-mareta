@@ -343,38 +343,72 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .ingr .r span{opacity:.75;line-height:1.45}
 
 /* ---------- GALERÍA ---------- */
-/* Un día en La Mareta: recorrido horizontal con el scroll */
-.day{position:relative;height:340vh;border-bottom:1px solid var(--line)}
-.dstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(20px,4vh,44px);padding-top:calc(var(--nav) + clamp(16px,4vh,40px))}
+/* Un día en La Mareta: de las 08:00 a las 21:00. Con el scroll, el cielo pasa de mañana a noche */
+.day{position:relative;height:380vh;border-bottom:1px solid var(--line);--sky:var(--bg);--txt:var(--ink);background:var(--sky);color:var(--txt)}
+.dstick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(16px,3.2vh,36px);padding-top:calc(var(--nav) + clamp(14px,3.6vh,36px))}
+.dsun{position:absolute;left:0;top:0;border-radius:50%;pointer-events:none;z-index:0;will-change:transform,opacity}
+.dsun{width:clamp(140px,17vw,260px);aspect-ratio:1;background:radial-gradient(circle at 50% 50%,#ffd98f 0,#f7b267 38%,rgba(247,178,103,.35) 56%,rgba(247,178,103,0) 70%)}
+.dstars{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;background-image:radial-gradient(1.5px 1.5px at 12% 22%,#fff8,transparent),radial-gradient(1px 1px at 28% 12%,#fff9,transparent),radial-gradient(1.5px 1.5px at 46% 30%,#fff6,transparent),radial-gradient(1px 1px at 63% 9%,#fffa,transparent),radial-gradient(1.5px 1.5px at 78% 26%,#fff7,transparent),radial-gradient(1px 1px at 90% 14%,#fff9,transparent),radial-gradient(1px 1px at 36% 44%,#fff5,transparent),radial-gradient(1px 1px at 70% 40%,#fff5,transparent)}
 .dhead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:0 clamp(16px,4vw,48px);position:relative;z-index:2}
-.dhead p{max-width:380px;font-size:19px;line-height:1.35;letter-spacing:-.01em;margin:0}
-.dtrack{display:flex;align-items:center;gap:clamp(18px,2.4vw,36px);padding:0 clamp(16px,4vw,48px);width:max-content;will-change:transform;position:relative;z-index:2}
-.dcard{margin:0;flex:0 0 auto;transform-origin:50% 100%;will-change:transform}
-.dcard .ph{border-radius:22px;overflow:hidden;background:var(--tan);box-shadow:0 30px 60px -36px rgba(34,16,10,.55)}
+.day .eyebrow{color:var(--red)}
+.day .h2,.dhead p{color:var(--txt)}
+.dside{display:flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:390px}
+.dhead p{font-size:17px;line-height:1.4;letter-spacing:-.01em;margin:0;opacity:.85}
+.dnow{display:inline-flex;align-items:center;gap:10px;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid rgba(58,29,18,.14);background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);font:600 14px/1.2 Inter,sans-serif;color:var(--ink);cursor:pointer;box-shadow:0 10px 30px -18px rgba(34,16,10,.5);transition:transform .3s var(--ease)}
+.dnow:hover{transform:translateY(-2px)}
+.dnow i{position:relative;width:9px;height:9px;border-radius:50%;background:#2f9e5b;flex:0 0 auto}
+.dnow i::after{content:"";position:absolute;inset:0;border-radius:50%;background:inherit;animation:ping 1.8s ease-out infinite}
+.dnow.closed i{background:var(--red)}.dnow.closed i::after{display:none}
+.dnow em{font-style:normal;font-weight:500;opacity:.7}
+.dbig{position:absolute;left:0;bottom:5vh;z-index:1;white-space:nowrap;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(110px,20vw,300px);line-height:1;color:var(--txt);opacity:.07;pointer-events:none;will-change:transform}
+.dtrack{display:flex;align-items:center;gap:clamp(18px,2.2vw,32px);padding:0 clamp(16px,4vw,48px);width:max-content;will-change:transform;position:relative;z-index:2}
+.dcard{position:relative;margin:0;flex:0 0 auto;width:clamp(250px,24vw,340px);transform-origin:50% 100%;will-change:transform;background:rgba(255,253,249,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:26px;padding:12px 12px 22px;box-shadow:0 30px 60px -34px rgba(34,16,10,.55);color:var(--ink)}
+.dcard .ph{border-radius:18px;overflow:hidden;aspect-ratio:5/4;background:var(--tan)}
 .dcard .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);will-change:transform}
-.dcard.tall .ph{width:clamp(220px,24vw,340px);aspect-ratio:3/4}
-.dcard.wide .ph{width:clamp(300px,36vw,520px);aspect-ratio:4/3}
-.dcard.sq .ph{width:clamp(240px,27vw,380px);aspect-ratio:1/1}
-.dcard figcaption{display:flex;align-items:baseline;gap:12px;margin-top:14px;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(20px,1.8vw,26px);line-height:1.1}
-.dcard figcaption span{font-family:Inter,sans-serif;font-style:normal;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--red)}
-.dbig{position:absolute;left:0;bottom:6vh;z-index:1;white-space:nowrap;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(120px,22vw,320px);line-height:1;color:var(--ink);opacity:.06;pointer-events:none;will-change:transform}
-.dfoot{display:flex;align-items:center;gap:18px;padding:0 clamp(16px,4vw,48px);position:relative;z-index:2}
-.dnum{font-size:14px;font-variant-numeric:tabular-nums;opacity:.7}
-.dnum b{opacity:1}
-.dbar{flex:1;max-width:420px;height:3px;border-radius:3px;background:rgba(58,29,18,.12);overflow:hidden}
-.dbar i{display:block;height:100%;width:0;background:var(--red)}
+.dcard .tx{padding:16px 8px 0}
+.dcard .hr{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.dcard .hr b{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(40px,3.4vw,52px);line-height:.9;letter-spacing:-.01em;white-space:nowrap}
+.dcard .hr small{font:800 10.5px/1.2 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);text-align:right}
+.dcard h3{margin:12px 0 6px;font-size:20px;font-weight:800;letter-spacing:-.03em}
+.dcard p{margin:0;font-size:14.5px;line-height:1.45;opacity:.78}
+.dcard .dgo{display:inline-flex;margin-top:14px;font-size:14px;font-weight:700;border-bottom:1.5px solid currentColor;padding-bottom:2px}
+.dcard.now{box-shadow:0 0 0 2px var(--red),0 30px 60px -34px rgba(34,16,10,.55)}
+.dcard.now::before{content:"Ahora";position:absolute;top:22px;left:22px;z-index:3;padding:6px 11px;border-radius:999px;background:var(--red);color:#fff;font:800 11px/1 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.dcard .art{border-radius:18px;aspect-ratio:5/4;display:grid;place-items:center;position:relative;overflow:hidden}
+.dcard.pause .art{background:linear-gradient(160deg,#f8dccb,#efc6b4)}
+.dcard .clock{width:46%;aspect-ratio:1;border-radius:50%;border:3px solid var(--ink);position:relative;background:#fffaf3}
+.dcard .clock::before,.dcard .clock::after{content:"";position:absolute;left:50%;bottom:50%;width:3px;border-radius:3px;background:var(--ink);transform-origin:50% 100%;margin-left:-1.5px}
+.dcard .clock::before{height:30%;transform:rotate(60deg)}
+.dcard .clock::after{height:40%;background:var(--red);animation:spin 6s linear infinite}
+.dcard .art span{position:absolute;bottom:14px;left:0;right:0;text-align:center;font:700 13px Inter,sans-serif;letter-spacing:.04em}
+.dcard.night{background:var(--deep);color:var(--bg);border:1px solid rgba(246,232,220,.16)}
+.dcard.night .art{background:radial-gradient(circle at 70% 30%,#5a2c1c,#22100a 70%)}
+.dcard.night .art::before{content:"";width:28%;aspect-ratio:1;border-radius:50%;background:#f6e8dc;box-shadow:inset -12px -8px 0 rgba(34,16,10,.25),0 0 50px rgba(246,232,220,.3)}
+.dcard.night .hr small{color:var(--soft)}
+.dcard.night .dgo{color:var(--bg)}
+.dfoot{display:flex;flex-direction:column;gap:10px;padding:0 clamp(16px,4vw,48px);position:relative;z-index:2;max-width:640px}
+.dline{position:relative;height:3px;border-radius:3px;background:color-mix(in srgb,var(--txt) 16%,transparent)}
+.dline i{position:absolute;left:0;top:0;height:100%;width:0;border-radius:3px;background:var(--red)}
+.dline .ddot{position:absolute;top:50%;left:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--red);box-shadow:0 0 0 5px color-mix(in srgb,var(--red) 22%,transparent)}
+.dticks{display:flex;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:.02em}
+.dticks span{opacity:.5;transition:opacity .3s,color .3s}
+.dticks span.on{opacity:1;color:var(--red)}
+.day.dark .dticks span.on{color:var(--soft)}
 @media (max-width:810px){
-  .day{height:520vh}
+  .day{height:560vh}
   .dhead{flex-direction:column;align-items:flex-start;gap:12px}
-  .dhead p{font-size:16px}
-  .dcard.tall .ph{width:62vw}.dcard.wide .ph{width:78vw}.dcard.sq .ph{width:68vw}
+  .dhead p{font-size:15px}
+  .dcard{width:74vw}
+  .dticks{font-size:11px}
 }
+@media (max-height:760px) and (min-width:811px){.dcard .ph,.dcard .art{aspect-ratio:16/11}.dcard p{font-size:13.5px}}
 @media (prefers-reduced-motion:reduce){
   .day{height:auto}
   .dstick{position:relative;height:auto;padding:100px 0 80px}
   .dtrack{width:auto;overflow-x:auto;scroll-snap-type:x mandatory}
   .dcard{scroll-snap-align:start}
   .dcard .ph img{transform:none}
+  .dsun,.dline .ddot{display:none}
 }
 
 /* ---------- RESEÑAS ---------- */
@@ -609,13 +643,13 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
       </article>
       <article class="fcard" data-r style="--d:0.16s" tabindex="0" aria-label="Nordic Burrata Toast: toca para ver más">
         <div class="fin">
-          <div class="ff front"><img src="assets/img/foto-09.jpg" alt="Tostada de pan de masa madre con queso crema, salmón, aguacate, huevo revuelto y burrata" loading="lazy"><div class="fcap"><span class="ftag">Brunch</span><h3>Nordic Burrata Toast</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
+          <div class="ff front"><img src="assets/img/foto-29.jpg" alt="Nordic Burrata Toast: pan payés con queso crema, salmón ahumado, aguacate, huevos revueltos y burrata, con rúcula" loading="lazy"><div class="fcap"><span class="ftag">Brunch</span><h3>Nordic Burrata Toast</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
           <div class="ff back"><span class="ftag">Brunch</span><h3>Nordic Burrata Toast</h3><p>Pan payés tostado con queso crema, aguacate, salmón ahumado y huevos revueltos melosos, coronada con queso burrata y cebollino.</p><b class="fprice">Plato 8,00 € · Menú brunch 14,50 €</b><a href="carta.html#brunch">Ver en la carta</a></div>
         </div>
       </article>
       <article class="fcard" data-r style="--d:0.24s" tabindex="0" aria-label="Cookies XL: toca para ver más">
         <div class="fin">
-          <div class="ff front"><img src="assets/img/foto-10.jpg" alt="Caja de cookies XL de La Mareta: Oreo, pistacho y Kinder" loading="lazy"><div class="fcap"><span class="ftag">Obrador</span><h3>Cookies XL</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
+          <div class="ff front"><img src="assets/img/foto-30.jpg" alt="Caja de cookies XL de La Mareta: Oreo, pistacho y Kinder" loading="lazy"><div class="fcap"><span class="ftag">Obrador</span><h3>Cookies XL</h3><span class="fhint">Toca para ver más <i>↻</i></span></div></div>
           <div class="ff back"><span class="ftag">Obrador</span><h3>Cookies XL</h3><p>Horneadas en casa: Oreo, pistacho, Kinder… y en caja para llevar, perfectas para regalar.</p><b class="fprice">Pregunta por las de hoy en barra</b><a href="https://www.instagram.com/lamaretapaiporta/" target="_blank" rel="noopener">Verlas en Instagram ↗</a></div>
         </div>
       </article>
@@ -700,7 +734,7 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
         <div class="ctext"><span class="ctag">De lunes a sábado · 8:00 a 12:00</span><h3>Desayunos</h3><p>Tostadas + café desde 2,80 €</p><span class="cgo">Ver desayunos <i>→</i></span></div>
       </a>
       <a class="ccard" href="carta.html#carta" data-r style="--d:.12s">
-        <div class="cimg"><img src="assets/img/foto-07.jpg" alt="Truffle Brioche Deluxe con huevo, bacon y salsa de trufa, con boniato y tomate cherry" loading="lazy"></div>
+        <div class="cimg"><img src="assets/img/foto-32.jpg" alt="Mesa de La Mareta vista desde arriba: crepe de Nutella con fresa y plátano, tostadas, cookies XL, tartas y un matcha" loading="lazy"></div>
         <div class="ctext"><span class="ctag">Brunch, tostadas, bowls, crepes y bebidas</span><h3>La carta</h3><p>Brunch con menú desde 14,00 €</p><span class="cgo">Ver la carta <i>→</i></span></div>
       </a>
     </div>
@@ -779,24 +813,49 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 
 <section class="day" id="dia" aria-label="Un día en La Mareta">
   <div class="dstick">
-    <div class="dbig" aria-hidden="true"><span>despacio · despacio · despacio · despacio ·</span></div>
+    <div class="dstars" aria-hidden="true"></div>
+    <div class="dsun" aria-hidden="true"></div>
+    <div class="dbig" aria-hidden="true"><span>buenos días · buenas tardes · hasta mañana · buenos días ·</span></div>
     <div class="dhead">
       <div>
         <div class="eyebrow" data-r>Un día en La Mareta</div>
-        <h2 class="h2 split" data-split>Aquí se va más despacio.</h2>
+        <h2 class="h2 split" data-split>Ven a la hora que quieras.</h2>
       </div>
-      <p data-r style="--d:.15s">Un café en barra, un desayuno al sol y buena compañía alrededor de la mesa.</p>
+      <div class="dside" data-r style="--d:.15s">
+        <button class="dnow closed" id="dNow" type="button"><i aria-hidden="true"></i><span>Horario de hoy</span></button>
+        <p>De las 08:00 a las 21:00: desliza y mira qué te espera en cada momento del día.</p>
+      </div>
     </div>
     <div class="dtrack" id="dtrack">
-      <figure class="dcard tall"><div class="ph"><img src="assets/img/foto-05.jpg" alt="Latte con arte en taza roja junto a cookies de red velvet y chocolate" loading="lazy" decoding="async"></div><figcaption><span>01</span>Primer café, sin prisa.</figcaption></figure>
-      <figure class="dcard wide"><div class="ph"><img src="assets/img/foto-06.jpg" alt="Vitrina con croissants recién hechos y donuts de pistacho" loading="lazy" decoding="async"></div><figcaption><span>02</span>Croissants recién hechos.</figcaption></figure>
-      <figure class="dcard sq"><div class="ph"><img src="assets/img/foto-13.jpg" alt="Tarta de queso al horno y cookies de pistacho y Kinder en la vitrina" loading="lazy" decoding="async"></div><figcaption><span>03</span>Del obrador a la vitrina.</figcaption></figure>
-      <figure class="dcard tall"><div class="ph"><img src="assets/img/foto-01.jpg" alt="Huevos benedict con bacon, tostada y zumo de naranja" loading="lazy" decoding="async"></div><figcaption><span>04</span>Brunch largo, sin mirar el reloj.</figcaption></figure>
-      <figure class="dcard wide"><div class="ph"><img src="assets/img/foto-03.jpg" alt="Dos bowls de açaí con fresa, kiwi, plátano y granola" loading="lazy" decoding="async"></div><figcaption><span>05</span>Açaí bowls con fruta fresca.</figcaption></figure>
-      <figure class="dcard sq"><div class="ph"><img src="assets/img/foto-14.jpg" alt="Tostada con huevo poché, jamón, tomates cherry, aguacate y salsa" loading="lazy" decoding="async"></div><figcaption><span>06</span>Tostadas con huevo poché.</figcaption></figure>
-      <figure class="dcard tall"><div class="ph"><img src="assets/img/foto-04.jpg" alt="Tartas de queso de pistacho y de Lotus" loading="lazy" decoding="async"></div><figcaption><span>07</span>Cheesecake de pistacho y de Lotus.</figcaption></figure>
+      <article class="dcard">
+        <div class="ph"><img src="assets/img/foto-37.jpg" alt="Bandeja de croissants bañados en chocolate rosa, blanco, verde y negro con virutas de colores" loading="lazy" decoding="async"></div>
+        <div class="tx"><div class="hr"><b>08:00</b><small>Abrimos</small></div><h3>Se enciende la cafetera</h3><p>Croissants recién hechos y el primer café de especialidad, molido al momento.</p></div>
+      </article>
+      <article class="dcard">
+        <div class="ph"><img src="assets/img/foto-05.jpg" alt="Latte con arte en taza roja junto a cookies de red velvet y chocolate" loading="lazy" decoding="async"></div>
+        <div class="tx"><div class="hr"><b>8 – 12</b><small>Lunes a sábado</small></div><h3>Menú desayunos</h3><p>Tostada + café desde 2,80 €: clásica, jamón, aguacate, salmón o huevo poché.</p><a class="dgo" href="carta.html#desayunos">Ver desayunos</a></div>
+      </article>
+      <article class="dcard">
+        <div class="ph"><img src="assets/img/foto-01.jpg" alt="Huevos benedict con bacon, tostada y zumo de naranja" loading="lazy" decoding="async"></div>
+        <div class="tx"><div class="hr"><b>8 – 14</b><small>Toda la mañana</small></div><h3>Brunch sin prisa</h3><p>Siete platos, solos o en menú brunch desde 14,00 €: benedictinos, tostadas, pancakes…</p><a class="dgo" href="#mesa">Ver la mesa del brunch</a></div>
+      </article>
+      <article class="dcard pause">
+        <div class="art" aria-hidden="true"><div class="clock"></div><span>14:00 → 17:30</span></div>
+        <div class="tx"><div class="hr"><b>14:00</b><small>Mediodía</small></div><h3>Pausa para comer</h3><p>Las mañanas terminan a las 14:00. Por la tarde volvemos a abrir a las 17:30.</p></div>
+      </article>
+      <article class="dcard">
+        <div class="ph"><img src="assets/img/foto-38.jpg" alt="Donuts glaseados de colores con nubes, galleta y chocolate sobre papel de periódico" loading="lazy" decoding="async"></div>
+        <div class="tx"><div class="hr"><b>17:30</b><small>L, M, X, V y D</small></div><h3>Tardes de café y algo dulce</h3><p>Hasta las 21:00. Café, cookies XL, donuts y tartas del obrador, para tomar aquí o llevar.</p></div>
+      </article>
+      <article class="dcard night">
+        <div class="art" aria-hidden="true"></div>
+        <div class="tx"><div class="hr"><b>21:00</b><small>Hasta mañana</small></div><h3>Te esperamos</h3><p>C/ Albal, 1 · Paiporta. Mañana volvemos a abrir a las 08:00.</p><a class="dgo" href="https://www.google.com/maps/search/?api=1&amp;query=La+Mareta+C%2F+Albal+1+Paiporta" target="_blank" rel="noopener">Cómo llegar ↗</a></div>
+      </article>
     </div>
-    <div class="dfoot"><span class="dnum"><b id="dIdx">01</b> / 07</span><div class="dbar"><i id="dBar"></i></div></div>
+    <div class="dfoot">
+      <div class="dline"><i id="dBar"></i><span class="ddot" id="dDot"></span></div>
+      <div class="dticks"><span class="on">Abrimos</span><span>Desayuno</span><span>Brunch</span><span>Pausa</span><span>Tarde</span><span>Noche</span></div>
+    </div>
   </div>
 </section>
 
@@ -996,7 +1055,7 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 </footer>
 
 <script>
-window.THUMBS={"cookiecut":"assets/img/foto-15.jpg","tostada":"assets/img/foto-16.jpg","pancakes":"assets/img/foto-17.jpg","kinder":"assets/img/foto-18.jpg","cheesecake":"assets/img/foto-19.jpg","bensalmon":"assets/img/foto-20.jpg","crepe":"assets/img/foto-21.jpg","tiramisu":"assets/img/foto-22.jpg","tray":"assets/img/foto-23.jpg","caja":"assets/img/foto-24.jpg","benbacon":"assets/img/foto-25.jpg","vitrina":"assets/img/foto-26.jpg","acaicup":"assets/img/foto-27.jpg","cookieslatte":"assets/img/foto-28.jpg"};
+window.THUMBS={"cookiecut":"assets/img/foto-15.jpg","tostada":"assets/img/foto-16.jpg","pancakes":"assets/img/foto-17.jpg","kinder":"assets/img/foto-18.jpg","cheesecake":"assets/img/foto-19.jpg","bensalmon":"assets/img/foto-34.jpg","crepe":"assets/img/foto-35.jpg","tiramisu":"assets/img/foto-22.jpg","tray":"assets/img/foto-23.jpg","caja":"assets/img/foto-36.jpg","benbacon":"assets/img/foto-25.jpg","vitrina":"assets/img/foto-26.jpg","acaicup":"assets/img/foto-27.jpg","cookieslatte":"assets/img/foto-28.jpg"};
 (()=>{
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
@@ -1086,11 +1145,15 @@ if(RM){
   poster.querySelector('source').srcset=last('mobile');poster.querySelector('img').src=last('desktop');
 }
 
-/* ---------- Un día en La Mareta: recorrido horizontal ---------- */
+/* ---------- Un día en La Mareta: recorrido por las horas, del día a la noche ---------- */
 const daySec=document.getElementById('dia'),dTrack=document.getElementById('dtrack'),
-      dCards=[...dTrack.querySelectorAll('.dcard')],dIdx=document.getElementById('dIdx'),dBar=document.getElementById('dBar'),
-      dBig=daySec.querySelector('.dbig span');
-let dCur=0;
+      dCards=[...dTrack.querySelectorAll('.dcard')],dBar=document.getElementById('dBar'),dDot=document.getElementById('dDot'),
+      dTicks=[...daySec.querySelectorAll('.dticks span')],dBig=daySec.querySelector('.dbig span'),
+      dSun=daySec.querySelector('.dsun'),dStars=daySec.querySelector('.dstars');
+const SKY=[[0,[251,244,232]],[.3,[250,238,216]],[.52,[248,226,198]],[.7,[241,200,178]],[.86,[98,46,30]],[1,[34,16,10]]];
+const mixC=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+const skyAt=t=>{for(let i=1;i<SKY.length;i++)if(t<=SKY[i][0]){const[p,a]=SKY[i-1],[q,b]=SKY[i];return mixC(a,b,(t-p)/(q-p))}return SKY[SKY.length-1][1]};
+let dCur=0,dLast=-1;
 function renderDay(){
   if(RM)return;
   const r=daySec.getBoundingClientRect();
@@ -1106,12 +1169,43 @@ function renderDay(){
     const b=c.getBoundingClientRect(),d=(b.left+b.width/2-mid)/innerWidth;
     if(Math.abs(d)<bd){bd=Math.abs(d);best=i;}
     const k=Math.max(-1,Math.min(1,d));
-    c.style.transform='translateY('+(Math.abs(k)*28*(i%2?-1:1)).toFixed(1)+'px) rotate('+(k*-5).toFixed(2)+'deg) scale('+(1-Math.abs(k)*.08).toFixed(3)+')';
+    c.style.transform='translateY('+(Math.abs(k)*26*(i%2?-1:1)).toFixed(1)+'px) rotate('+(k*-4).toFixed(2)+'deg) scale('+(1-Math.abs(k)*.07).toFixed(3)+')';
     const im=c.querySelector('img');if(im)im.style.transform='scale(1.18) translateX('+(k*-9).toFixed(2)+'%)';
   });
-  dIdx.textContent=String(Math.round(dCur*(dCards.length-1))+1).padStart(2,'0');
-  dBar.style.width=(dCur*100).toFixed(1)+'%';
+  // cielo: de la mañana a la noche
+  const n=clamp((dCur-.8)/.1);
+  daySec.style.setProperty('--sky','rgb('+skyAt(dCur)+')');
+  daySec.style.setProperty('--txt','rgb('+mixC([58,29,18],[251,244,232],n)+')');
+  daySec.classList.toggle('dark',n>.5);
+  const ang=Math.PI*(1-Math.min(1,dCur/.86)),sw=dSun.offsetWidth;
+  dSun.style.transform='translate3d('+((.5+.44*Math.cos(ang))*innerWidth-sw/2).toFixed(1)+'px,'+((.62-.5*Math.sin(ang))*innerHeight-sw/2).toFixed(1)+'px,0)';
+  dSun.style.opacity=(.75*(1-clamp((dCur-.72)/.14))).toFixed(3);
+  dStars.style.opacity=clamp((dCur-.86)/.1).toFixed(3);
+  dBar.style.width=(dCur*100).toFixed(1)+'%';dDot.style.left=(dCur*100).toFixed(1)+'%';
+  best=Math.round(dCur*(dCards.length-1));if(best!==dLast){dLast=best;dTicks.forEach((s,i)=>s.classList.toggle('on',i===best));}
 }
+/* ¿Está abierto ahora? (hora de Paiporta) */
+(function(){
+  const btn=document.getElementById('dNow');if(!btn)return;
+  const P={};new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Madrid',weekday:'short',hour:'numeric',minute:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(p=>P[p.type]=p.value);
+  const m=(+P.hour%24)*60+(+P.minute),dow=P.weekday;
+  const tarde=['Mon','Tue','Wed','Fri','Sun'].includes(dow),desayuno=dow!=='Sun';
+  let open=false,txt,idx;
+  if(m<480){txt='Ahora cerrado <em>· abrimos a las 08:00</em>';idx=0}
+  else if(m<720&&desayuno){open=true;txt='Abierto <em>· hora del desayuno</em>';idx=1}
+  else if(m<840){open=true;txt='Abierto <em>· hasta las 14:00</em>';idx=2}
+  else if(m<1050){txt=tarde?'Cerrado a mediodía <em>· volvemos a las 17:30</em>':'Esta tarde no abrimos <em>· mañana desde las 08:00</em>';idx=tarde?3:5}
+  else if(m<1260&&tarde){open=true;txt='Abierto <em>· hasta las 21:00</em>';idx=4}
+  else{txt='Ahora cerrado <em>· mañana desde las 08:00</em>';idx=5}
+  btn.querySelector('span').innerHTML=txt;btn.classList.toggle('closed',!open);
+  const card=dCards[idx];card.classList.add('now');
+  btn.addEventListener('click',()=>{
+    if(RM){card.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});return;}
+    const max=dTrack.scrollWidth-innerWidth,x=card.offsetLeft+card.offsetWidth/2-innerWidth/2;
+    const top=daySec.getBoundingClientRect().top+scrollY+clamp(x/max)*(daySec.offsetHeight-innerHeight);
+    scrollTo({top,behavior:'smooth'});
+  });
+})();
 
 /* ---------- Taza 3D: gira con el scroll ---------- */
 const cupSec=document.getElementById('taza'),cup3d=document.getElementById('cup3d');
