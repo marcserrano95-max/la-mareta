@@ -45,6 +45,8 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .how b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:13px;margin-bottom:10px}
 .how span{display:block;font-weight:700;font-size:14.5px;line-height:1.25}
 .how small{display:block;font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.35}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.modes span{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:var(--light2);font-size:14px;font-weight:600}
 .cta{display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 26px;border-radius:999px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:16px;margin-top:28px;box-shadow:0 14px 30px -14px rgba(211,58,44,.8);transition:transform .25s var(--ease)}
 .cta:hover{transform:translateY(-2px)}
 .collage{position:relative;aspect-ratio:1/1.05}
@@ -173,6 +175,9 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .total b{font-size:30px;letter-spacing:-.04em}
 .wa{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:999px;background:#25d366;color:#08361a;font-weight:800;font-size:16px;text-decoration:none}
 .wa[aria-disabled="true"]{opacity:.4;pointer-events:none}
+.drawer .seg button{padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.drawer .seg button svg{opacity:.8}
+.drawer .seg button b{font-size:14px}
 .fine{font-size:12.5px;color:var(--muted);text-align:center;margin:0;line-height:1.45}
 
 footer.site{border-top:1px solid var(--line);padding:30px 0 110px;font-size:14px;color:var(--muted)}
@@ -227,13 +232,14 @@ footer.site a{font-weight:600;color:var(--ink)}
     <div>
       <div class="eyebrow" data-r>Encargos La Mareta</div>
       <h1 data-r style="--d:.06s">Dulces por encargo, <span class="serif">para llevar a casa.</span></h1>
-      <p class="lead" data-r style="--d:.12s">Tartas de queso, bizcochos, crumble cookies caseras, packs para la oficina y desayunos para regalar. Haz tu pedido en un minuto.</p>
+      <p class="lead" data-r style="--d:.12s">Tartas de queso, bizcochos, crumble cookies caseras, packs para la oficina y desayunos para regalar. Haz tu pedido en un minuto y recógelo en tienda o recíbelo en casa.</p>
       <ol class="how" data-r style="--d:.18s">
         <li><b>1</b><div><span>Elige</span><small>Sabor, tamaño o pack</small></div></li>
         <li><b>2</b><div><span>Añade</span><small>El total se calcula solo</small></div></li>
-        <li><b>3</b><div><span>Envía</span><small>Por WhatsApp, ya escrito</small></div></li>
+        <li><b>3</b><div><span>Reserva</span><small>Recoges en tienda o te lo llevamos</small></div></li>
       </ol>
-      <a class="cta" href="#tartas" data-r style="--d:.24s">Ver el catálogo <span aria-hidden="true">↓</span></a>
+      <div class="modes" data-r style="--d:.22s"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6"/></svg>Reserva y recoge en tienda</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>Envío a domicilio por Uber</span></div>
+      <a class="cta" href="#tartas" data-r style="--d:.26s">Ver el catálogo <span aria-hidden="true">↓</span></a>
     </div>
     <div class="collage" data-r style="--d:.1s">
       <div class="a"><img src="assets/img/foto-13.jpg" alt="Tarta de queso de La Mareta sobre un pie de cristal, rodeada de crumble cookies" style="object-position:50% 30%"></div>
@@ -346,7 +352,7 @@ footer.site a{font-weight:600;color:var(--ink)}
   <div class="wrap">
     <div class="eyebrow">¿Listo?</div>
     <h2>Revisa tu pedido y envíalo</h2>
-    <p>Pulsa el botón de WhatsApp y el mensaje sale escrito con todo lo que has elegido. La Mareta te confirma el pedido y el día de recogida.</p>
+    <p>Pulsa el botón de WhatsApp y el mensaje sale escrito con todo lo que has elegido. La Mareta te confirma el pedido y el día de recogida o de entrega.</p>
     <button class="cta" type="button" id="endBtn" style="border:0;cursor:pointer">Ver mi pedido</button>
   </div>
 </section>
@@ -367,16 +373,25 @@ footer.site a{font-weight:600;color:var(--ink)}
   <div class="body">
     <div id="items"></div>
     <div id="form">
+      <div class="lbl">¿Cómo lo quieres?</div>
+      <div class="seg" id="mode" role="group" aria-label="Recogida o envío">
+        <button type="button" data-m="tienda" aria-pressed="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18M3 9v11h18V9M9 20v-6h6v6"/></svg><b>Reservar y recoger</b><small>Pagas y lo recoges en C/ Albal, 1</small></button>
+        <button type="button" data-m="envio" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><b>Envío a domicilio</b><small>Te lo llevamos por Uber</small></button>
+      </div>
+      <div id="envioBox" hidden>
+        <label class="field"><span>Dirección de entrega</span><input id="oAddr" autocomplete="street-address" placeholder="Calle, número, piso y población"></label>
+      </div>
+      <div class="tip" id="payNote" style="margin-top:12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg><span id="payTxt">Al confirmar tu pedido te indicamos cómo pagar. Una vez pagado, queda reservado y listo para recoger.</span></div>
       <div class="lbl">Tus datos</div>
       <label class="field"><span>Nombre</span><input id="oName" autocomplete="name" placeholder="¿A nombre de quién?"></label>
-      <label class="field"><span>Día de recogida</span><input id="oDate" type="date"></label>
+      <label class="field"><span id="dateL">Día de recogida</span><input id="oDate" type="date"></label>
       <label class="field"><span>Notas (opcional)</span><textarea id="oNote" placeholder="Alergias, sabor favorito de cookies…"></textarea></label>
     </div>
   </div>
   <footer>
     <div class="total"><span>Total</span><b id="oTot">0 €</b></div>
-    <a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Enviar pedido por WhatsApp</a>
-    <p class="fine">La Mareta te confirmará por WhatsApp el pedido, el día de recogida y la forma de pago.</p>
+    <a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg><span id="waTxt">Reservar por WhatsApp</span></a>
+    <p class="fine">La Mareta te confirmará por WhatsApp el pedido, el día, el envío si lo pides y la forma de pago.</p>
   </footer>
 </aside>
 
@@ -453,15 +468,24 @@ function render(){
   const a=document.getElementById('wa');a.setAttribute('aria-disabled',n?'false':'true');
   if(!n){a.href='#';return}
   const name=document.getElementById('oName').value.trim(),date=document.getElementById('oDate').value,note=document.getElementById('oNote').value.trim();
-  let msg='¡Hola, La Mareta! Me gustaría hacer este encargo:\n\n';
+  let msg='¡Hola, La Mareta! Me gustaría hacer este pedido:\n\n';
   cart.forEach((q,k)=>msg+=`• ${q} × ${NAMES[k][0]} — ${eur(q*NAMES[k][1])}\n`);
-  msg+=`\nTotal: ${eur(tot)}`;
-  if(date)msg+=`\nRecogida: ${new Date(date+'T12:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'})}`;
+  msg+=`\nTotal: ${eur(tot)}${mode==='envio'?' + envío':''}`;
+  const addr=document.getElementById('oAddr').value.trim();
+  msg+=mode==='envio'?`\nModalidad: envío a domicilio por Uber${addr?' — '+addr:''}`:`\nModalidad: reservar y recoger en tienda (C/ Albal, 1)`;
+  if(date)msg+=`\n${mode==='envio'?'Día de entrega':'Recogida'}: ${new Date(date+'T12:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'})}`;
   if(name)msg+=`\nA nombre de: ${name}`;
   if(note)msg+=`\nNotas: ${note}`;
   a.href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg);
 }
-['oName','oDate','oNote'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+let mode='tienda';
+document.querySelectorAll('#mode button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;
+  document.querySelectorAll('#mode button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.getElementById('envioBox').hidden=mode!=='envio';
+  document.getElementById('dateL').textContent=mode==='envio'?'Día de entrega':'Día de recogida';
+  document.getElementById('payTxt').textContent=mode==='envio'?'Al confirmar te decimos el coste del envío por Uber y cómo pagar. Una vez pagado, te lo enviamos el día acordado.':'Al confirmar tu pedido te indicamos cómo pagar. Una vez pagado, queda reservado y listo para recoger.';
+  document.getElementById('waTxt').textContent=mode==='envio'?'Pedir con envío por WhatsApp':'Reservar por WhatsApp';render()});
+['oName','oDate','oNote','oAddr'].forEach(id=>document.getElementById(id).addEventListener('input',render));
 {const t=new Date();t.setDate(t.getDate()+1);document.getElementById('oDate').min=t.toISOString().slice(0,10)}
 function openCart(o){drawer.classList.toggle('on',o);veil.classList.toggle('on',o);drawer.setAttribute('aria-hidden',!o);document.body.style.overflow=o?'hidden':'';render()}
 document.getElementById('cartBtn').onclick=()=>openCart(true);
