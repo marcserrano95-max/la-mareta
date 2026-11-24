@@ -73,6 +73,7 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .media .main img{width:100%;height:100%;object-fit:cover}
 .media .thumbs{display:flex;gap:10px;margin-top:10px}
 .media .thumbs img{width:88px;height:88px;border-radius:16px;object-fit:cover}
+.media .thumbs{overflow:hidden}
 .info h2{font-size:clamp(36px,4.2vw,56px);font-weight:800;letter-spacing:-.045em;line-height:1;margin:12px 0 0}
 .info .lead{font-size:16.5px;line-height:1.55;color:var(--muted);margin:14px 0 0;max-width:480px}
 .rules{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
@@ -90,6 +91,8 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .opts{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .opt{display:flex;align-items:center;gap:14px;padding:16px 2px;border-bottom:1px solid var(--line)}
 .opt .dot{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--c,var(--tan));box-shadow:inset 0 -6px 10px rgba(0,0,0,.12),inset 0 0 0 3px rgba(255,255,255,.35)}
+.opt .ico{flex:0 0 auto;width:56px;height:56px;border-radius:50%;background:var(--c);display:grid;place-items:center}
+.opt .ico svg{width:46px;height:46px}
 .opt .nm{flex:1;min-width:0}
 .opt .nm b{display:block;font-size:16.5px;letter-spacing:-.01em}
 .opt .nm small{display:block;font-size:13px;color:var(--muted);margin-top:2px;line-height:1.35}
@@ -207,6 +210,8 @@ footer.site a{font-weight:600;color:var(--ink)}
   .bz{min-height:240px;padding:24px}
   .opt{gap:12px}
   .opt .dot{width:34px;height:34px}
+  .opt .ico{width:48px;height:48px}
+  .opt .ico svg{width:40px;height:40px}
   .ctl{width:auto}
   .gift{margin:70px 8px 0;border-radius:28px;min-height:640px}
   .gift::before{background:linear-gradient(0deg,rgba(34,16,10,.94) 35%,rgba(34,16,10,.5) 68%,rgba(34,16,10,.1))}
@@ -263,9 +268,9 @@ footer.site a{font-weight:600;color:var(--ink)}
 <section class="cat" id="tartas">
   <div class="wrap prod">
     <div class="media" data-r>
-      <div class="main"><img src="assets/img/foto-13.jpg" alt="Tarta de queso entera de La Mareta" style="object-position:45% 22%" loading="lazy"></div>
+      <div class="main"><img src="assets/img/foto-04.jpg" alt="Tartas de queso de Lotus y de pistacho de La Mareta" style="object-position:50% 62%" loading="lazy"></div>
       <div class="thumbs">
-        <img src="assets/img/foto-04.jpg" alt="Tartas de queso de Lotus y pistacho" style="object-position:50% 60%" loading="lazy">
+        <img src="assets/encargos/tarta-entera.webp" alt="Tarta de queso entera de La Mareta" loading="lazy">
       </div>
     </div>
     <div class="info">
@@ -399,14 +404,24 @@ footer.site a{font-weight:600;color:var(--ink)}
 /* ===== Catálogo (copiado del documento de la clienta; no inventar productos ni precios) ===== */
 const WHATSAPP='34664138279';
 const TARTAS=[
-  {id:'vina',n:'La Viña',g:38,c:'#f0d39a'},
-  {id:'dino',n:'Dinosaurio',g:42,c:'#5c3420'},
-  {id:'choco',n:'Choco flakes',g:42,c:'#4b2a19'},
-  {id:'tosta',n:'Tostarica',g:42,c:'#cf9f62'},
-  {id:'pista',n:'Pistacho',g:45,c:'#a4a865'},
-  {id:'lotus',n:'Lotus',g:42,c:'#b8783f'},
-  {id:'hippo',n:'Happy Hippo',g:58,c:'#efe2cc'}
+  {id:'vina',n:'La Viña',g:38,c:'#fbecd0',ico:'vina'},
+  {id:'dino',n:'Dinosaurio',g:42,c:'#efe0d6',ico:'dino'},
+  {id:'choco',n:'Choco flakes',g:42,c:'#efe0d6',ico:'choco'},
+  {id:'tosta',n:'Tostarica',g:42,c:'#f8e9cf',ico:'tosta'},
+  {id:'pista',n:'Pistacho',g:45,c:'#eef1de',ico:'pista'},
+  {id:'lotus',n:'Lotus',g:42,c:'#f6e3cf',ico:'lotus'},
+  {id:'hippo',n:'Happy Hippo',g:58,c:'#f6ecdc',ico:'hippo'}
 ];
+/* Dibujos propios de cada sabor (sin logos de marcas) — viewBox 0 0 48 48 */
+const ICONS={
+vina:`<g transform="translate(-4 -3) scale(1.16)"><path d="M8 21 14 27v11L8 32z" fill="#ead6a6"/><path d="M14 27 40 19v10L14 38z" fill="#f6e6c0"/><path d="M14 35.5 40 27v3L14 38z" fill="#b98247"/><path d="M8 21 33 12.5c4-1.3 7.5 1.5 7 6.5L14 27z" fill="#e9a84e"/><path d="M33 12.5c4-1.3 7.5 1.5 7 6.5" fill="none" stroke="#7a3d16" stroke-width="3" stroke-linecap="round"/><path d="M13 22.5 30 17" stroke="#c97d32" stroke-width="2" stroke-linecap="round" opacity=".6"/></g>`,
+dino:`<g transform="translate(-3 -4) scale(1.13)"><path d="M7 33c3-1 6-2 9-5 2-3 5-5 9-5h3c2 0 3-2 3-4v-6c0-3 4-4.5 6-2.5 1.6 1.6 1 4.5-1.5 4.5H35v8c3 2 5 5 5.5 9H38l-1.5-3-1.5 3h-3v-3H20l-1 3h-3v-3c-3 1.5-6 2.5-9 2z" fill="#5a321e"/><circle cx="35" cy="12.6" r="1.1" fill="#fbf4e8"/><path d="M22 27.5h2M27 26.5h2M24.5 30h2" stroke="#7d4a2c" stroke-width="1.6" stroke-linecap="round"/></g>`,
+choco:`<path d="M7 21l8-8 10 2 2 9-8 6-11-2z" fill="#6b3b1f"/><path d="M11 20l5-4 6 1" stroke="#a06a3e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 10l10-2 7 7-2 8-9 1-5-6z" fill="#55301a"/><path d="M29 11l6-1 3 4" stroke="#8d5732" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 31l11-5 12 3 2 8-10 5-13-3z" fill="#7a4526"/><path d="M18 31l7-3 8 2" stroke="#b07a48" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,
+tosta:`<g transform="rotate(-10 24 24)"><rect x="9" y="13" width="30" height="22" rx="3" fill="#e2ad62"/><rect x="11.5" y="15.5" width="25" height="17" rx="2" fill="none" stroke="#f3cd8a" stroke-width="1.3"/><g fill="#b07a36"><circle cx="16" cy="20" r="1.4"/><circle cx="24" cy="20" r="1.4"/><circle cx="32" cy="20" r="1.4"/><circle cx="16" cy="28" r="1.4"/><circle cx="24" cy="28" r="1.4"/><circle cx="32" cy="28" r="1.4"/></g></g>`,
+pista:`<g transform="rotate(-28 24 25)"><ellipse cx="24" cy="25" rx="11.5" ry="15" fill="#ead6ab"/><path d="M24 10c-6.4 0-11.5 6.7-11.5 15s5.1 15 11.5 15" fill="none" stroke="#c4a571" stroke-width="1.6"/><ellipse cx="25.5" cy="24" rx="7" ry="11" fill="#93b54c"/><path d="M22 16c-1.5 3-1.8 7 .5 11" stroke="#7d5d82" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".55"/><path d="M28 17c1 2 1.4 5 .6 8" stroke="#c4de86" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>`,
+lotus:`<g transform="rotate(-14 24 24)"><rect x="8" y="14" width="32" height="21" rx="3.5" fill="#c27a3c"/><rect x="10.5" y="16.5" width="27" height="16" rx="2.2" fill="none" stroke="#8f5223" stroke-width="1.3" stroke-dasharray="2.2 1.8"/><path d="M15 22.5h18M17 27h14" stroke="#e2a96b" stroke-width="1.7" stroke-linecap="round"/></g>`,
+hippo:`<ellipse cx="13.5" cy="15" rx="3.6" ry="3.2" fill="#e2c48f"/><ellipse cx="34.5" cy="15" rx="3.6" ry="3.2" fill="#e2c48f"/><ellipse cx="24" cy="22" rx="13" ry="11" fill="#f0dbb0"/><ellipse cx="24" cy="31" rx="14" ry="9" fill="#e9cc96"/><circle cx="18.5" cy="20.5" r="1.8" fill="#4a2a18"/><circle cx="29.5" cy="20.5" r="1.8" fill="#4a2a18"/><ellipse cx="19" cy="31" rx="2" ry="2.6" fill="#8a5a33"/><ellipse cx="29" cy="31" rx="2" ry="2.6" fill="#8a5a33"/><path d="M20 36.5q4 2 8 0" stroke="#8a5a33" stroke-width="1.5" fill="none" stroke-linecap="round"/>`
+};
 const PEQ=8;
 const COOKIES=[
   {key:'cookies-4',n:'Pack de 4 cookies',p:14,s:'3,50 € cada cookie'},
@@ -441,10 +456,10 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)
 
 /* listas */
 let size='g';
-function rowHTML(key,name,sub,price,dot,badge){
-  return `<li class="opt">${dot?`<span class="dot" style="--c:${dot}"></span>`:''}<div class="nm"><b>${name}${badge?`<em>${badge}</em>`:''}</b>${sub?`<small>${sub}</small>`:''}</div><span class="pr">${eur(price)}</span><span class="ctl" data-key="${key}"></span></li>`}
+function rowHTML(key,name,sub,price,dot,badge,ico){
+  return `<li class="opt">${ico?`<span class="ico" style="--c:${dot}"><svg viewBox="0 0 48 48" aria-hidden="true">${ICONS[ico]}</svg></span>`:dot?`<span class="dot" style="--c:${dot}"></span>`:''}<div class="nm"><b>${name}${badge?`<em>${badge}</em>`:''}</b>${sub?`<small>${sub}</small>`:''}</div><span class="pr">${eur(price)}</span><span class="ctl" data-key="${key}"></span></li>`}
 function drawLists(){
-  document.getElementById('tartasList').innerHTML=TARTAS.map(t=>rowHTML(`tarta-${t.id}-${size}`,t.n,size==='g'?'12-14 raciones':'2-3 porciones',size==='g'?t.g:PEQ,t.c)).join('');
+  document.getElementById('tartasList').innerHTML=TARTAS.map(t=>rowHTML(`tarta-${t.id}-${size}`,t.n,size==='g'?'12-14 raciones':'2-3 porciones',size==='g'?t.g:PEQ,t.c,'',t.ico)).join('');
   document.getElementById('cookiesList').innerHTML=COOKIES.map(c=>rowHTML(c.key,c.n,c.s,c.p,null,c.best)).join('');
   document.getElementById('oficinaList').innerHTML=OFICINA.map(o=>rowHTML(o.key,o.n,o.s,o.p,o.c)).join('');
   document.getElementById('bizList').innerHTML=BIZ.map(b=>`<article class="bz" style="--bgc:${b.bgc};--fgc:${b.fgc}"><div class="t"><span>Bizcocho entero</span><h3>${b.short||b.n}</h3><p>${b.d}</p></div><div class="ft"><span class="pr">${eur(b.p)}</span><span class="ctl" data-key="${b.key}" style="width:auto"></span></div></article>`).join('');
