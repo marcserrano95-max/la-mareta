@@ -46,7 +46,8 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .links a span{display:block;transition:transform .45s var(--ease)}
 .links a span+span{position:absolute;top:100%;left:0}
 .links a:hover span{transform:translateY(-100%)}
-.nav .right{justify-self:end}
+.nav .right{justify-self:end;display:flex;gap:8px}
+.pill.order{background:var(--red);color:#fff}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:700;font-size:14px;transition:transform .25s var(--ease),background .3s}
 .pill:hover{transform:translateY(-2px)}
 .pill:active{transform:scale(.97);transition-duration:.1s}
@@ -549,6 +550,8 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
   .wrap{padding:0 20px}
   .nav .bar{padding:0 16px;grid-template-columns:1fr auto}
   .links{display:none}
+  .nav .right{gap:6px}
+  .nav .pill{padding:10px 14px;font-size:13.5px}
   .ui{left:20px;right:20px;bottom:22px;flex-direction:column;align-items:flex-start;gap:18px}
   .ui .copy{width:100%}
   .hint{bottom:auto;top:22px}
@@ -605,11 +608,10 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
     <a class="logo" href="#top" aria-label="La Mareta, inicio"><img class="logo-img" src="assets/logo.webp" alt="La Mareta · Coffee &amp; Brunch" width="720" height="343"></a>
     <nav class="links" aria-label="Principal">
       <a href="carta.html"><span>Carta</span><span aria-hidden="true">Carta</span></a>
-      <a href="encargos.html"><span>Encargos</span><span aria-hidden="true">Encargos</span></a>
       <a href="#espacio"><span>Espacio</span><span aria-hidden="true">Espacio</span></a>
       <a href="#historia"><span>Historia</span><span aria-hidden="true">Historia</span></a>
     </nav>
-    <div class="right"><a class="pill" href="#visita">Cómo llegar ↗</a></div>
+    <div class="right"><a class="pill order" href="encargos.html">Encargos</a><a class="pill" href="#visita">Cómo llegar ↗</a></div>
   </div>
 </header>
 
@@ -680,6 +682,24 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
       </article>
     </div>
   </div>
+</section>
+
+<!-- ENCARGOS -->
+<section class="encargo" aria-labelledby="encargo-t">
+  <a class="ebox" href="encargos.html" data-r>
+    <div class="etx">
+      <span class="eyebrow">Nuevo · Dulces por encargo</span>
+      <h2 class="h2" id="encargo-t">¿Te lo llevas <em>a casa?</em></h2>
+      <p>Tartas de queso desde 8 €, packs de crumble cookies, bizcochos, pack oficina y desayunos regalo. Arma tu pedido y nos lo mandas por WhatsApp.</p>
+      <span class="ego">Ver encargos <i>→</i></span>
+    </div>
+    <div class="eart" aria-hidden="true">
+      <img src="assets/encargos/cookie-2.webp" alt="" style="--x:8%;--y:6%;--s:42%;--r:-12deg" loading="lazy">
+      <img src="assets/encargos/cookie-3.webp" alt="" style="--x:52%;--y:0%;--s:36%;--r:16deg" loading="lazy">
+      <img src="assets/encargos/cookie-5.webp" alt="" style="--x:30%;--y:44%;--s:46%;--r:4deg" loading="lazy">
+      <img src="assets/encargos/cookie-1.webp" alt="" style="--x:68%;--y:48%;--s:32%;--r:-20deg" loading="lazy">
+    </div>
+  </a>
 </section>
 
 <!-- MESA -->
@@ -764,24 +784,6 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
       </a>
     </div>
   </div>
-</section>
-
-<!-- ENCARGOS -->
-<section class="encargo" aria-labelledby="encargo-t">
-  <a class="ebox" href="encargos.html" data-r>
-    <div class="etx">
-      <span class="eyebrow">Nuevo · Dulces por encargo</span>
-      <h2 class="h2" id="encargo-t">¿Te lo llevas <em>a casa?</em></h2>
-      <p>Tartas de queso desde 8 €, packs de crumble cookies, bizcochos, pack oficina y desayunos regalo. Arma tu pedido y nos lo mandas por WhatsApp.</p>
-      <span class="ego">Ver encargos <i>→</i></span>
-    </div>
-    <div class="eart" aria-hidden="true">
-      <img src="assets/encargos/cookie-2.webp" alt="" style="--x:8%;--y:6%;--s:42%;--r:-12deg" loading="lazy">
-      <img src="assets/encargos/cookie-3.webp" alt="" style="--x:52%;--y:0%;--s:36%;--r:16deg" loading="lazy">
-      <img src="assets/encargos/cookie-5.webp" alt="" style="--x:30%;--y:44%;--s:46%;--r:4deg" loading="lazy">
-      <img src="assets/encargos/cookie-1.webp" alt="" style="--x:68%;--y:48%;--s:32%;--r:-20deg" loading="lazy">
-    </div>
-  </a>
 </section>
 
 <!-- BEBIDA -->
