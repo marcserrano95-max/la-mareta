@@ -31,6 +31,11 @@ img{display:block;max-width:100%}
 a{color:inherit}
 .wrap{max-width:1360px;margin:0 auto;padding:0 32px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+section .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 12px;border-radius:999px;font-size:12.5px;background:color-mix(in srgb,currentColor 11%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,currentColor 26%,transparent)}
+section .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:0 0 auto}
+section .r .eyebrow{display:block;padding:0;background:none;box-shadow:none;font-size:12px}
+section .r .eyebrow::before{display:none}
+.ebox .eyebrow::before{display:none}
 .h2{font-size:clamp(34px,4.4vw,56px);font-weight:800;letter-spacing:-.045em;line-height:1;margin:14px 0 0}
 .lead{font-size:17px;line-height:1.55;font-weight:500}
 
@@ -594,9 +599,15 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 .ego{display:inline-flex;align-items:center;gap:12px;padding:15px 24px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;font-size:15px;transition:transform .3s var(--ease)}
 .ego i{font-style:normal;transition:transform .3s var(--ease)}
 .ebox:hover .ego{transform:translateY(-2px)}.ebox:hover .ego i{transform:translateX(4px)}
-.eart{position:relative;aspect-ratio:1.15}
-.eart img{position:absolute;left:var(--x);top:var(--y);width:var(--s);aspect-ratio:1;border-radius:50%;object-fit:cover;transform:rotate(var(--r));box-shadow:0 30px 40px -20px rgba(0,0,0,.7);transition:transform .8s var(--ease)}
-.ebox:hover .eart img{transform:rotate(calc(var(--r)*-1)) translateY(-8px) scale(1.04)}
+.eart{position:relative;aspect-ratio:1.05;perspective:1100px}
+.estage{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(var(--tx,8deg)) rotateY(var(--ty,-14deg));transition:transform .6s var(--ease)}
+.ec{position:absolute;left:var(--x);top:var(--y);width:var(--w);aspect-ratio:1;margin:0;border-radius:22px;overflow:hidden;background:#3a1d12;box-shadow:0 34px 50px -24px rgba(0,0,0,.75);transform:translateZ(var(--z)) rotate(var(--r));animation:efloat 6s ease-in-out infinite;animation-delay:var(--f)}
+.ec img{width:100%;height:100%;object-fit:cover}
+.ec span{position:absolute;left:10px;bottom:10px;padding:6px 10px;border-radius:999px;background:rgba(251,244,232,.94);color:var(--ink);font-size:12px;font-weight:700;white-space:nowrap}
+.ec:nth-child(-n+2) span{top:10px;bottom:auto}
+@media (max-width:810px){.ec{border-radius:16px}.ec span{font-size:10.5px;padding:4px 8px;left:7px;bottom:7px}.ec:nth-child(-n+2) span{top:7px}}
+@keyframes efloat{50%{transform:translateZ(calc(var(--z) + 18px)) rotate(var(--r)) translateY(-8px)}}
+.ebox .eyebrow .new{display:inline-block;background:var(--red);color:#fff;padding:4px 9px;border-radius:999px;margin-right:2px;letter-spacing:.1em}
 @media (max-width:810px){.ebox{grid-template-columns:1fr}.eart{max-width:340px;width:100%;margin:0 auto}}
 </style>
 </head>
@@ -688,16 +699,19 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
 <section class="encargo" aria-labelledby="encargo-t">
   <a class="ebox" href="encargos.html" data-r>
     <div class="etx">
-      <span class="eyebrow">Nuevo · Dulces por encargo</span>
+      <span class="eyebrow"><b class="new">Nuevo</b>Dulces por encargo</span>
       <h2 class="h2" id="encargo-t">¿Te lo llevas <em>a casa?</em></h2>
       <p>Tartas de queso desde 8 €, packs de crumble cookies, bizcochos, pack oficina y desayunos regalo. Arma tu pedido y nos lo mandas por WhatsApp.</p>
       <span class="ego">Ver encargos <i>→</i></span>
     </div>
-    <div class="eart" aria-hidden="true">
-      <img src="assets/encargos/cookie-2.webp" alt="" style="--x:8%;--y:6%;--s:42%;--r:-12deg" loading="lazy">
-      <img src="assets/encargos/cookie-3.webp" alt="" style="--x:52%;--y:0%;--s:36%;--r:16deg" loading="lazy">
-      <img src="assets/encargos/cookie-5.webp" alt="" style="--x:30%;--y:44%;--s:46%;--r:4deg" loading="lazy">
-      <img src="assets/encargos/cookie-1.webp" alt="" style="--x:68%;--y:48%;--s:32%;--r:-20deg" loading="lazy">
+    <div class="eart" id="eart" aria-hidden="true">
+      <div class="estage">
+        <figure class="ec" style="--x:4%;--y:4%;--w:46%;--z:40px;--r:-8deg;--f:0s"><img src="assets/encargos/t-tarta.webp" alt="" loading="lazy"><span>Tartas de queso</span></figure>
+        <figure class="ec" style="--x:54%;--y:0%;--w:40%;--z:10px;--r:7deg;--f:-1.5s"><img src="assets/encargos/t-carrot.webp" alt="" loading="lazy"><span>Carrot cake</span></figure>
+        <figure class="ec" style="--x:30%;--y:38%;--w:44%;--z:90px;--r:2deg;--f:-3s"><img src="assets/encargos/t-cesta.webp" alt="" loading="lazy"><span>Desayuno regalo</span></figure>
+        <figure class="ec" style="--x:-2%;--y:56%;--w:36%;--z:20px;--r:9deg;--f:-4.5s"><img src="assets/encargos/t-minis.webp" alt="" loading="lazy"><span>Pack oficina</span></figure>
+        <figure class="ec" style="--x:66%;--y:52%;--w:36%;--z:55px;--r:-10deg;--f:-2.2s"><img src="assets/encargos/t-cookies.webp" alt="" loading="lazy"><span>Cookies</span></figure>
+      </div>
     </div>
   </a>
 </section>
@@ -1558,6 +1572,14 @@ customElements.whenDefined('model-viewer').then(()=>{
   mv.addEventListener('load',()=>{window.__cupReady=true;window.__cupJump=true;},{once:true});
   mv.src=mv.dataset.src;
 });
+</script>
+<script>
+(()=>{const e=document.getElementById('eart');if(!e||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const s=e.querySelector('.estage');
+  const box=e.closest('.ebox');
+  box.addEventListener('pointermove',ev=>{const r=e.getBoundingClientRect();const x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;s.style.setProperty('--ty',(x*28)+'deg');s.style.setProperty('--tx',(-y*20+6)+'deg')});
+  box.addEventListener('pointerleave',()=>{s.style.removeProperty('--ty');s.style.removeProperty('--tx')});
+  addEventListener('scroll',()=>{if(matchMedia('(hover:hover)').matches)return;const r=e.getBoundingClientRect();const p=Math.max(-1,Math.min(1,(r.top+r.height/2-innerHeight/2)/innerHeight));s.style.setProperty('--ty',(p*-26)+'deg');s.style.setProperty('--tx',(8+p*10)+'deg')},{passive:true});
+})();
 </script>
 </body>
 </html>
