@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encargos — La Mareta, dulces por encargo en Paiporta</title>
+<meta name="description" content="Encarga en La Mareta: tartas de queso, bizcochos, packs de crumble cookies caseras, pack oficina y desayunos regalo. Haz tu pedido por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%233a1d12'/><g fill='none' stroke='%23fbf4e8' stroke-width='2.4' stroke-linecap='round' transform='translate(4 4)'><path d='M4 12a8 8 0 0 1 16 0'/><path d='M3 17c2-1.6 3.6-1.6 5.4 0s3.6 1.6 5.4 0 3.6-1.6 5.4 0'/></g></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf4e8;--ink:#3a1d12;--deep:#22100a;--soft:#efc6b4;--red:#d33a2c;--tan:#ecd6b2;--light2:#efdccb;--kraft:#c99a66;--line:rgba(58,29,18,.14);--nav:64px;--ease:cubic-bezier(.22,1,.36,1)}
+@property --ang{syntax:"<angle>";inherits:true;initial-value:360deg}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400}
+.wrap{max-width:1360px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.h2{font-size:clamp(38px,5vw,68px);font-weight:800;letter-spacing:-.045em;line-height:.98;margin:12px 0 0}
+.h2 .serif{font-weight:400;letter-spacing:-.02em}
+.lead{font-size:17px;line-height:1.55;margin:16px 0 0;max-width:480px;opacity:.85}
+[data-r]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+[data-r].in{opacity:1;transform:none}
+
+/* barra */
+.nav{position:sticky;top:0;z-index:50;height:var(--nav);background:rgba(251,244,232,.86);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--line)}
+.nav .bar{height:100%;max-width:1440px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav img{display:block;height:46px;width:auto}
+.nav .r{display:flex;gap:8px;align-items:center}
+.nav .back{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;border:1px solid var(--line)}
+.cartbtn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;background:var(--ink);color:var(--bg);border:0;font-weight:700;font-size:14px;cursor:pointer;transition:transform .25s var(--ease)}
+.cartbtn:hover{transform:translateY(-2px)}
+.cartbtn .n{min-width:22px;height:22px;border-radius:99px;background:var(--red);display:grid;place-items:center;font-size:12px;padding:0 6px}
+.cartbtn.bump{animation:bump .5s var(--ease)}
+@keyframes bump{40%{transform:scale(1.12)}}
+
+/* cabecera con vitrina 3D */
+.hero{position:relative;padding:70px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:center;min-height:calc(100svh - var(--nav) - 70px)}
+.hero h1{font-size:clamp(64px,9vw,150px);font-weight:800;letter-spacing:-.06em;line-height:.86;margin:16px 0 0}
+.hero h1 .serif{display:block;font-weight:400;letter-spacing:-.025em;color:var(--red)}
+.hero .lead{font-size:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chips a{padding:10px 16px;border-radius:999px;background:var(--light2);text-decoration:none;font-weight:600;font-size:14px;transition:background .3s,color .3s,transform .3s var(--ease)}
+.chips a:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px)}
+.vitrina{position:relative;height:min(78svh,640px);perspective:1500px;cursor:grab;touch-action:pan-y;user-select:none}
+.vitrina:active{cursor:grabbing}
+.ring{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d}
+.vcard{position:absolute;left:calc(var(--w)/-2);top:calc(var(--h)/-2);--w:clamp(170px,16vw,230px);--h:calc(var(--w)*1.3);width:var(--w);height:var(--h);border-radius:20px;overflow:hidden;text-decoration:none;background:#e9d8c2;box-shadow:0 30px 50px -30px rgba(34,16,10,.6);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.vcard img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.vcard span{position:absolute;left:10px;bottom:10px;padding:7px 11px;border-radius:99px;background:rgba(251,244,232,.92);font-size:12.5px;font-weight:700}
+.vfloor{position:absolute;left:50%;bottom:6%;width:70%;height:60px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(34,16,10,.22),transparent);filter:blur(6px)}
+.vhint{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:13px;font-weight:600;opacity:.6}
+
+/* sección genérica */
+.sec{padding:120px 0}
+.sec .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+
+/* tarta 3D */
+.tartas{background:var(--deep);color:var(--bg);border-radius:36px;margin:0 16px}
+.tartas .eyebrow{color:var(--soft)}
+.tgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.stage{position:relative;aspect-ratio:1;max-height:620px;perspective:1100px;touch-action:pan-y;cursor:grab;user-select:none}
+.stage:active{cursor:grabbing}
+.stage .glow{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(closest-side,rgba(239,198,180,.28),transparent);filter:blur(10px)}
+.cake{position:absolute;left:50%;top:54%;width:min(64%,380px);aspect-ratio:1;transform:translate(-50%,-50%) rotateX(58deg) rotateZ(var(--rz,0deg)) translateY(var(--off,0%));transform-style:preserve-3d;transition:--ang 1s var(--ease);--ang:360deg}
+.cake.small{--ang:42deg;width:min(112%,640px);--off:24%}
+@property --off{syntax:"<percentage>";inherits:false;initial-value:0%}
+.cake{transition:--ang 1s var(--ease),width 1s var(--ease),--off 1s var(--ease)}
+.cake .ly{position:absolute;inset:0;border-radius:50%;-webkit-mask:conic-gradient(from -21deg,#000 0 var(--ang),transparent 0);mask:conic-gradient(from -21deg,#000 0 var(--ang),transparent 0)}
+.cake .shadow{position:absolute;inset:-6%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),transparent);transform:translateZ(-2px)}
+.cake .top{background:radial-gradient(circle at 50% 50%,#f6e6bd 0 58%,#d9a55e 70%,#8c4a1e 86%,#5b2c12 98%)}
+.cake .top::after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from -21deg,transparent 0 29.4deg,rgba(91,44,18,.28) 29.4deg 30deg);opacity:var(--lines,1);transition:opacity .6s}
+.cake.small .top::after{opacity:0}
+.cake .topping{position:absolute;inset:13%;border-radius:50%;transition:background .6s,inset .6s,opacity .6s}
+.cake .bits{position:absolute;inset:0}
+.cake .bits i{position:absolute;border-radius:40%;transition:background .6s,opacity .6s,transform .6s var(--ease)}
+.stage .tip{position:absolute;left:0;right:0;bottom:4%;text-align:center;font-size:13px;font-weight:600;opacity:.55}
+.tform h3{font-size:clamp(30px,3vw,44px);letter-spacing:-.04em;margin:0;line-height:1}
+.tform .tprice{font-size:clamp(46px,5vw,72px);font-weight:800;letter-spacing:-.05em;margin:14px 0 4px;display:flex;align-items:baseline;gap:10px}
+.tform .tprice small{font-size:15px;font-weight:600;opacity:.6;letter-spacing:0}
+.seg{display:inline-flex;padding:5px;border-radius:999px;background:rgba(251,244,232,.08);margin:22px 0 18px;position:relative}
+.seg button{position:relative;z-index:1;border:0;background:none;padding:12px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px;color:var(--bg);transition:color .4s}
+.seg button small{display:block;font-weight:500;font-size:11.5px;opacity:.7;margin-top:3px}
+.seg button[aria-pressed="true"]{color:var(--deep)}
+.seg .pill{position:absolute;top:5px;bottom:5px;left:5px;border-radius:999px;background:var(--bg);transition:transform .5s var(--ease),width .5s var(--ease)}
+.flavs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.flav{display:flex;align-items:center;gap:10px;padding:12px 12px;border-radius:14px;border:1px solid rgba(251,244,232,.14);background:none;cursor:pointer;text-align:left;color:var(--bg);transition:background .3s,border-color .3s,transform .3s var(--ease)}
+.flav:hover{transform:translateY(-2px);border-color:rgba(251,244,232,.4)}
+.flav[aria-pressed="true"]{background:var(--bg);color:var(--deep);border-color:var(--bg)}
+.flav i{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.flav b{font-size:14px;font-weight:700;line-height:1.15}
+.flav small{display:block;font-size:12px;font-weight:500;opacity:.65;margin-top:2px}
+.addrow{display:flex;gap:10px;align-items:center;margin-top:26px;flex-wrap:wrap}
+.qty{display:inline-flex;align-items:center;border-radius:999px;border:1px solid currentColor;height:50px}
+.qty button{width:44px;height:100%;border:0;background:none;cursor:pointer;font-size:20px;font-weight:600}
+.qty output{min-width:26px;text-align:center;font-weight:700}
+.add{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 24px;border-radius:999px;border:0;background:var(--red);color:#fff;font-weight:700;font-size:15px;cursor:pointer;transition:transform .25s var(--ease),background .3s}
+.add:hover{transform:translateY(-2px)}
+.add.ok{background:#3f7a4a}
+.note{font-size:13px;opacity:.6;margin-top:14px}
+
+/* cajas 3D (cookies y regalo) */
+.boxstage{position:relative;height:440px;perspective:1200px;display:grid;place-items:center}
+.box{--bw:330px;--bd:220px;--bh:58px;position:relative;width:var(--bw);height:var(--bd);transform-style:preserve-3d;transform:rotateX(48deg) rotateZ(-22deg);transition:width .7s var(--ease)}
+.box .f{position:absolute;background:var(--kraft);backface-visibility:visible}
+.box .floor{inset:0;background:#efe4d3;transform:translateZ(0);box-shadow:inset 0 0 40px rgba(120,80,40,.35);overflow:hidden}
+.box .sh{position:absolute;inset:-10%;background:radial-gradient(closest-side,rgba(34,16,10,.38),transparent);transform:translateZ(-1px) translate(6%,8%)}
+.box .wf,.box .wb{left:0;width:100%;height:var(--bh);transform-origin:top;transform:rotateX(90deg)}
+.box .wb{top:0;background:linear-gradient(#a67543,#c4925c)}
+.box .wf{top:100%;background:linear-gradient(#d7aa77,#b8854f)}
+.box .wl,.box .wr{top:0;height:100%;width:var(--bh);transform-origin:left;transform:rotateY(-90deg)}
+.box .wl{left:0;background:linear-gradient(90deg,#c99a66,#b07c48)}
+.box .wr{left:100%;background:linear-gradient(90deg,#d7aa77,#c4935e)}
+.box .lid{left:0;top:0;width:100%;height:100%;transform-origin:top;transform:translateZ(var(--bh)) rotateX(var(--open,0deg));transition:transform 1.1s var(--ease);background:linear-gradient(135deg,#d3a670,#c08f5a);display:grid;place-items:center;box-shadow:inset 0 0 0 2px rgba(120,80,40,.15)}
+.box .lid .stk{background:#fffaf1;padding:12px 16px;text-align:center;box-shadow:0 1px 0 rgba(0,0,0,.08);}
+.box .lid .stk b{display:block;font-weight:800;letter-spacing:.06em;font-size:15px;color:var(--ink)}
+.box .lid .stk small{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+.box .lid .stk i{display:block;width:14px;height:14px;border-radius:50%;border:2px solid var(--red);margin:6px auto 0}
+.box.open .lid{--open:112deg}
+.box .lid .stk{transition:transform 0s .45s}
+.box.open .lid .stk{transform:scaleY(-1)}
+.cookies{position:absolute;inset:8%;display:grid;grid-template-columns:repeat(var(--cols,2),1fr);grid-template-rows:repeat(2,1fr);gap:6%;place-items:center}
+.cookies img{width:100%;max-width:120px;aspect-ratio:1;border-radius:50%;object-fit:cover;box-shadow:0 6px 10px -4px rgba(60,30,10,.5);transform:translateZ(6px);animation:drop .7s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes drop{from{opacity:0;transform:translateY(-40px) scale(1.3)}}
+.gift .floor img{width:100%;height:100%;object-fit:cover}
+
+.cookies-sec .grid2,.regalo .grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.packs{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.pack{flex:1 1 120px;padding:18px;border-radius:20px;border:1px solid var(--line);background:#fff8ee;cursor:pointer;text-align:left;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s}
+.pack:hover{transform:translateY(-3px)}
+.pack[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pack b{display:block;font-size:30px;letter-spacing:-.04em;font-weight:800}
+.pack span{font-size:13px;font-weight:600;opacity:.7}
+.pack em{display:block;font-style:normal;font-size:20px;font-weight:700;margin-top:10px}
+
+/* tarjetas de producto */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;border-radius:26px;overflow:hidden;background:#fff8ee;border:1px solid var(--line);display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .5s var(--ease),box-shadow .5s;will-change:transform}
+.card:hover{box-shadow:0 40px 60px -40px rgba(34,16,10,.5)}
+.card .ph{aspect-ratio:4/3;overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .ph.type{display:grid;place-items:center;background:var(--bgc,var(--tan));color:var(--fgc,var(--ink));padding:20px;text-align:center}
+.card .ph.type .serif{font-size:clamp(40px,4vw,58px);line-height:.95}
+.card .ph.type::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.35),transparent 40%),repeating-radial-gradient(circle at 80% 110%,rgba(0,0,0,.05) 0 2px,transparent 2px 14px)}
+.card .tx{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .tag{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.card h3{margin:0;font-size:22px;letter-spacing:-.03em;line-height:1.1}
+.card p{margin:0;font-size:14.5px;line-height:1.5;opacity:.75}
+.card .ft{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:14px}
+.card .pr{font-size:26px;font-weight:800;letter-spacing:-.04em}
+.mini{height:44px;padding:0 18px;border-radius:999px;border:0;background:var(--ink);color:var(--bg);font-weight:700;font-size:14px;cursor:pointer;transition:transform .25s var(--ease),background .3s}
+.mini:hover{transform:translateY(-2px)}
+.mini.ok{background:#3f7a4a}
+.bizcochos .cards{grid-template-columns:repeat(2,1fr)}
+
+/* regalo */
+.regalo{background:var(--soft);border-radius:36px;margin:0 16px}
+.regalo .eyebrow{color:var(--ink)}
+.regalo .pr{font-size:64px;font-weight:800;letter-spacing:-.05em;margin:18px 0 0}
+
+/* cómo encargar */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.step{padding:26px;border-radius:24px;border:1px solid var(--line)}
+.step b{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:56px;line-height:1;color:var(--red)}
+.step h3{margin:10px 0 6px;font-size:20px;letter-spacing:-.02em}
+.step p{margin:0;font-size:14.5px;line-height:1.5;opacity:.75}
+
+/* pedido */
+.dock{position:fixed;left:50%;bottom:18px;z-index:60;transform:translate(-50%,140%);transition:transform .6s var(--ease)}
+.dock.on{transform:translate(-50%,0)}
+.dock button{display:flex;align-items:center;gap:14px;padding:12px 12px 12px 22px;border-radius:999px;border:0;background:var(--ink);color:var(--bg);box-shadow:0 20px 40px -16px rgba(34,16,10,.6);cursor:pointer;font-weight:600;font-size:15px;white-space:nowrap}
+.dock button b{padding:10px 16px;border-radius:999px;background:var(--red);color:#fff}
+.veil{position:fixed;inset:0;z-index:70;background:rgba(34,16,10,.45);opacity:0;pointer-events:none;transition:opacity .4s}
+.veil.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:80;width:min(440px,100%);background:var(--bg);transform:translateX(102%);visibility:hidden;transition:transform .6s var(--ease),visibility 0s .6s;display:flex;flex-direction:column;box-shadow:-30px 0 60px -30px rgba(34,16,10,.5)}
+.drawer.on{transform:none;visibility:visible;transition:transform .6s var(--ease)}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.drawer header h2{margin:0;font-size:24px;letter-spacing:-.03em}
+.x{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;font-size:20px}
+.items{flex:1;overflow:auto;padding:10px 24px}
+.item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.item b{display:block;font-size:15px}
+.item small{font-size:13px;opacity:.65}
+.item .qty{height:38px;border-color:var(--line)}
+.item .qty button{width:34px;font-size:17px}
+.empty{padding:40px 0;text-align:center;opacity:.6}
+.drawer footer{padding:18px 24px 24px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.drawer label{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.drawer input,.drawer textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font:500 15px Inter,sans-serif;color:var(--ink)}
+.drawer textarea{min-height:60px;resize:vertical}
+.drawer .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.total{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:15px;margin-top:4px}
+.total b{font-size:30px;letter-spacing:-.04em}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;height:54px;border-radius:999px;border:0;background:#25d366;color:#0b3d1c;font-weight:800;font-size:16px;cursor:pointer;text-decoration:none}
+.wa[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.fine{font-size:12.5px;opacity:.6;text-align:center;margin:0}
+
+footer.site{padding:60px 0 120px;text-align:center;font-size:14px;opacity:.75}
+footer.site a{font-weight:700}
+
+@media (max-width:900px){
+  .wrap{padding:0 20px}
+  .hero{padding-top:40px}
+  .hero .wrap,.tgrid,.cookies-sec .grid2,.regalo .grid2{grid-template-columns:1fr}
+  .hero .wrap{min-height:0}
+  .vitrina{height:440px}
+  .vcard{--w:150px}
+  .sec{padding:80px 0}
+  .tartas,.regalo{margin:0 8px;border-radius:28px}
+  .stage{max-height:none;margin:-30px -10px -40px}
+  .cards,.bizcochos .cards,.steps{grid-template-columns:1fr}
+  .boxstage{height:340px}
+  .regalo .boxstage{margin-top:40px}
+  .cookies-sec .box{scale:.82}
+  .box{--bw:250px;--bd:160px;--bh:44px}
+  .nav .bar{padding:0 16px}
+  .nav .back span{display:none}
+  .seg button{padding:11px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="bar">
+    <a href="index.html" aria-label="La Mareta, inicio"><img src="assets/logo.webp" alt="La Mareta · Coffee &amp; Brunch" width="720" height="343"></a>
+    <div class="r">
+      <a class="back" href="index.html">← <span>Volver a la web</span></a>
+      <button class="cartbtn" id="cartBtn" type="button">Tu pedido <span class="n" id="cartN">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- CABECERA + VITRINA -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-r>Dulces por encargo</div>
+      <h1 data-r style="--d:.08s">Llévate<span class="serif">La Mareta</span></h1>
+      <p class="lead" data-r style="--d:.16s">Tartas de queso, bizcochos, cookies caseras y cajas para regalar o para la oficina. Elige, arma tu pedido y nos lo mandas por WhatsApp.</p>
+      <nav class="chips" data-r style="--d:.24s" aria-label="Secciones">
+        <a href="#tartas">Tartas de queso</a><a href="#cookies">Crumble cookies</a><a href="#bizcochos">Bizcochos</a><a href="#oficina">Pack oficina</a><a href="#regalo">Desayuno regalo</a>
+      </nav>
+    </div>
+    <div class="vitrina" id="vitrina" aria-label="Vitrina de encargos: arrastra para girarla">
+      <div class="vfloor"></div>
+      <div class="ring" id="ring"></div>
+      <div class="vhint">Arrastra para girar la vitrina</div>
+    </div>
+  </div>
+</section>
+
+<!-- TARTAS DE QUESO -->
+<section class="sec tartas" id="tartas">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow" data-r>Tartas de queso</div>
+        <h2 class="h2" data-r style="--d:.08s">Elige el sabor,<br><span class="serif">nosotros la horneamos.</span></h2>
+      </div>
+    </div>
+    <div class="tgrid">
+      <div class="stage" id="stage" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="cake" id="cake"></div>
+        <div class="tip">Arrastra para girar la tarta</div>
+      </div>
+      <div class="tform">
+        <h3 id="tName">La Viña</h3>
+        <div class="tprice"><span id="tPrice">38 €</span><small id="tSize">tarta grande · 12-14 raciones</small></div>
+        <div class="seg" id="seg" role="group" aria-label="Tamaño">
+          <span class="pill" id="segPill"></span>
+          <button type="button" data-size="g" aria-pressed="true">Grande<small>12-14 raciones</small></button>
+          <button type="button" data-size="p" aria-pressed="false">Pequeña<small>2-3 porciones · 8 €</small></button>
+        </div>
+        <div class="flavs" id="flavs" role="group" aria-label="Sabor"></div>
+        <div class="addrow">
+          <div class="qty"><button type="button" data-q="-1" aria-label="Una menos">−</button><output id="tQty">1</output><button type="button" data-q="1" aria-label="Una más">+</button></div>
+          <button class="add" id="tAdd" type="button">Añadir al pedido</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COOKIES -->
+<section class="sec cookies-sec" id="cookies">
+  <div class="wrap grid2">
+    <div class="boxstage">
+      <div class="box open" id="cbox"></div>
+    </div>
+    <div>
+      <div class="eyebrow" data-r>Pack crumble cookies caseras</div>
+      <h2 class="h2" data-r style="--d:.08s">Llena la caja<br><span class="serif">a tu medida.</span></h2>
+      <p class="lead" data-r style="--d:.14s">Nuestras crumble cookies caseras, en caja para llevar. Elige cuántas quieres y mira cómo se llena.</p>
+      <div class="packs" id="packs"></div>
+      <div class="addrow">
+        <div class="qty" style="color:var(--ink)"><button type="button" data-q="-1" aria-label="Una menos">−</button><output id="cQty">1</output><button type="button" data-q="1" aria-label="Una más">+</button></div>
+        <button class="add" id="cAdd" type="button">Añadir al pedido</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIZCOCHOS -->
+<section class="sec bizcochos" id="bizcochos" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow" data-r>Bizcochos</div>
+        <h2 class="h2" data-r style="--d:.08s">Para compartir <span class="serif">en casa.</span></h2>
+      </div>
+    </div>
+    <div class="cards" data-cards="bizcochos"></div>
+  </div>
+</section>
+
+<!-- PACK OFICINA -->
+<section class="sec" id="oficina" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow" data-r>Pack oficina</div>
+        <h2 class="h2" data-r style="--d:.08s">El desayuno de la reunión,<br><span class="serif">resuelto.</span></h2>
+      </div>
+    </div>
+    <div class="cards" data-cards="oficina"></div>
+  </div>
+</section>
+
+<!-- DESAYUNO REGALO -->
+<section class="sec regalo" id="regalo">
+  <div class="wrap grid2">
+    <div>
+      <div class="eyebrow" data-r>Desayunos regalo</div>
+      <h2 class="h2" data-r style="--d:.08s">Una caja<br><span class="serif">que se abre sola.</span></h2>
+      <p class="lead" data-r style="--d:.14s">Caja con surtido de dulce y salado variado para desayunar o merendar, para unas 2-4 personas.</p>
+      <div class="pr" data-r style="--d:.2s">35 €</div>
+      <div class="addrow">
+        <button class="add" id="gAdd" type="button" style="background:var(--ink)">Añadir al pedido</button>
+      </div>
+    </div>
+    <div class="boxstage">
+      <div class="box gift" id="gbox"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO ENCARGAR -->
+<section class="sec" id="como">
+  <div class="wrap">
+    <div class="eyebrow" data-r>Cómo encargar</div>
+    <h2 class="h2" data-r style="--d:.08s">Tres pasos <span class="serif">y listo.</span></h2>
+    <div class="steps">
+      <div class="step" data-r><b>1</b><h3>Arma tu pedido</h3><p>Añade tartas, cookies o cajas. El total se calcula solo.</p></div>
+      <div class="step" data-r style="--d:.1s"><b>2</b><h3>Envíalo por WhatsApp</h3><p>Pulsa el botón y el mensaje sale escrito con todo tu pedido.</p></div>
+      <div class="step" data-r style="--d:.2s"><b>3</b><h3>Te lo confirmamos</h3><p>Te contestamos para cerrar el día de recogida en C/ Albal, 1, Paiporta.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <p>La Mareta · Coffee &amp; Brunch · C/ Albal, 1, Paiporta · <a href="tel:+34664138279">664 13 82 79</a></p>
+  <p><a href="index.html">Volver a la web</a> · <a href="carta.html">Ver la carta</a></p>
+</footer>
+
+<div class="dock" id="dock"><button type="button" id="dockBtn">Ver tu pedido <b id="dockTot">0 €</b></button></div>
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Tu pedido" aria-hidden="true">
+  <header><h2>Tu pedido</h2><button class="x" id="close" type="button" aria-label="Cerrar">×</button></header>
+  <div class="items" id="items"></div>
+  <footer>
+    <div class="two">
+      <div><label for="oName">Nombre</label><input id="oName" autocomplete="name" placeholder="Tu nombre"></div>
+      <div><label for="oDate">Recogida</label><input id="oDate" type="date"></div>
+    </div>
+    <div><label for="oNote">Notas</label><textarea id="oNote" placeholder="Alergias, mensaje para la tarta…"></textarea></div>
+    <div class="total"><span>Total orientativo</span><b id="oTot">0 €</b></div>
+    <a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-disabled="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Enviar pedido por WhatsApp</a>
+    <p class="fine">La Mareta te confirmará el pedido y el día de recogida.</p>
+  </footer>
+</aside>
+
+<script>
+/* ===== Datos del catálogo (copiados del documento de la clienta) ===== */
+const WHATSAPP='34664138279';
+const TARTAS=[
+  {id:'vina',n:'La Viña',g:38,c:'#e9cf9a',top:null},
+  {id:'dino',n:'Dinosaurio',g:42,c:'#5a3220',top:{bg:'radial-gradient(circle at 40% 35%,#6d3e26,#4a2716)',bits:['#e7d3b0','#3a1d12'],n:26,s:7}},
+  {id:'choco',n:'Choco flakes',g:42,c:'#4b2a19',top:{bg:'radial-gradient(circle at 40% 35%,#5c331f,#3d1f12)',bits:['#d9b77a','#c79a55'],n:60,s:5}},
+  {id:'tosta',n:'Tostarica',g:42,c:'#c89a5c',top:{bg:'radial-gradient(circle at 40% 35%,#d4a86c,#b98648)',bits:['#e6c48d','#8f5d2e'],n:22,s:9}},
+  {id:'pista',n:'Pistacho',g:45,c:'#a2a564',top:{bg:'radial-gradient(circle at 40% 35%,#b0b273,#8f9455)',bits:['#9bbb4a','#7d9a3a'],n:70,s:5}},
+  {id:'lotus',n:'Lotus',g:42,c:'#b8783f',top:{bg:'radial-gradient(circle at 40% 35%,#c48a52,#a5682f)',bits:['#8a5528','#d6a066'],n:90,s:4}},
+  {id:'hippo',n:'Happy Hippo',g:58,c:'#efe2cc',top:{bg:'radial-gradient(circle at 40% 35%,#f4ead8,#e2d0b2)',bits:['#7a4a2a','#d9c39c'],n:16,s:11}}
+];
+const PEQ=8;
+const COOKIES=[{n:4,p:14},{n:6,p:20},{n:8,p:28}];
+const CARDS={
+  bizcochos:[
+    {id:'carrot',tag:'Bizcocho',n:'Carrot cake',p:35,d:'El clásico bizcocho de zanahoria, entero para compartir.',type:'Carrot<br>cake',bgc:'#e8a86a'},
+    {id:'coca',tag:'Bizcocho',n:'Coca llanda de chocolate y lacasitos',p:25,d:'Coca llanda de chocolate con lacasitos, entera para compartir.',type:'Coca<br>llanda',bgc:'#5a3220',fgc:'#fbf4e8'}
+  ],
+  oficina:[
+    {id:'molletes',tag:'Salado',n:'Pack 8 molletes salados',p:24,d:'Ocho molletes salados para el desayuno del equipo.',type:'8 molletes<br>salados',bgc:'#ecd6b2'},
+    {id:'cruas',tag:'Dulce',n:'Pack 8 cruasanes rellenos dulces',p:20,d:'Ocho cruasanes rellenos dulces.',img:'assets/img/foto-06.jpg',alt:'Bandejas de cruasanes en la vitrina de La Mareta'},
+    {id:'minis',tag:'Dulce',n:'Pack 24 mini cruasanes rellenos',p:24,d:'Veinticuatro mini cruasanes rellenos de diferentes sabores: Nutella, pistacho, Kinder y Lotus.',img:'assets/img/foto-37.jpg',alt:'Mini cruasanes de colores de La Mareta'}
+  ]
+};
+const VITRINA=[
+  {img:'assets/img/foto-04.jpg',t:'Tartas de queso',h:'#tartas'},
+  {img:'assets/img/foto-10.jpg',t:'Crumble cookies',h:'#cookies'},
+  {img:'assets/img/foto-37.jpg',t:'Mini cruasanes',h:'#oficina'},
+  {img:'assets/img/foto-13.jpg',t:'Tarta y cookies',h:'#tartas'},
+  {img:'assets/img/foto-06.jpg',t:'Pack oficina',h:'#oficina'},
+  {img:'assets/img/foto-32.jpg',t:'Desayuno regalo',h:'#regalo'},
+  {img:'assets/img/foto-30.jpg',t:'Caja de cookies',h:'#cookies'}
+];
+const eur=v=>(Math.round(v*100)/100).toLocaleString('es-ES')+' €';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===== Pedido ===== */
+const cart=new Map();
+function addItem(key,name,price,q){
+  const it=cart.get(key)||{name,price,q:0};it.q+=q;cart.set(key,it);renderCart();
+  const b=document.getElementById('cartBtn');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');
+}
+function flash(btn){const t=btn.textContent;btn.classList.add('ok');btn.textContent='¡Añadido!';setTimeout(()=>{btn.classList.remove('ok');btn.textContent=t},1300)}
+function renderCart(){
+  let n=0,tot=0;cart.forEach(it=>{n+=it.q;tot+=it.q*it.price});
+  document.getElementById('cartN').textContent=n;
+  document.getElementById('dockTot').textContent=eur(tot);
+  document.getElementById('oTot').textContent=eur(tot);
+  document.getElementById('dock').classList.toggle('on',n>0&&!document.getElementById('drawer').classList.contains('on'));
+  const box=document.getElementById('items');
+  if(!n){box.innerHTML='<p class="empty">Aún no has añadido nada.<br>Elige algo rico del catálogo.</p>'}
+  else{box.innerHTML='';cart.forEach((it,k)=>{
+    const row=document.createElement('div');row.className='item';
+    row.innerHTML=`<div><b></b><small>${eur(it.price)} / ud. · ${eur(it.price*it.q)}</small></div><div class="qty"><button type="button" aria-label="Quitar uno">−</button><output>${it.q}</output><button type="button" aria-label="Añadir uno">+</button></div>`;
+    row.querySelector('b').textContent=it.name;
+    const [m,p]=row.querySelectorAll('button');
+    m.onclick=()=>{it.q--;if(it.q<=0)cart.delete(k);renderCart()};
+    p.onclick=()=>{it.q++;renderCart()};
+    box.appendChild(row)})}
+  updateWA(n,tot);
+}
+function updateWA(n,tot){
+  const a=document.getElementById('wa');
+  a.setAttribute('aria-disabled',n?'false':'true');
+  if(!n){a.href='#';return}
+  const name=document.getElementById('oName').value.trim();
+  const date=document.getElementById('oDate').value;
+  const note=document.getElementById('oNote').value.trim();
+  let msg='¡Hola, La Mareta! Me gustaría hacer este encargo:\n\n';
+  cart.forEach(it=>{msg+=`• ${it.q} × ${it.name} — ${eur(it.price*it.q)}\n`});
+  msg+=`\nTotal orientativo: ${eur(tot)}`;
+  if(date){const d=new Date(date+'T12:00');msg+=`\nRecogida: ${d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'})}`}
+  if(name)msg+=`\nA nombre de: ${name}`;
+  if(note)msg+=`\nNotas: ${note}`;
+  a.href='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg);
+}
+['oName','oDate','oNote'].forEach(id=>document.getElementById(id).addEventListener('input',renderCart));
+const drawer=document.getElementById('drawer'),veil=document.getElementById('veil');
+function openCart(o){drawer.classList.toggle('on',o);veil.classList.toggle('on',o);drawer.setAttribute('aria-hidden',!o);renderCart()}
+document.getElementById('cartBtn').onclick=()=>openCart(true);
+document.getElementById('dockBtn').onclick=()=>openCart(true);
+document.getElementById('close').onclick=()=>openCart(false);
+veil.onclick=()=>openCart(false);
+addEventListener('keydown',e=>{if(e.key==='Escape')openCart(false)});
+{const t=new Date();t.setDate(t.getDate()+1);document.getElementById('oDate').min=t.toISOString().slice(0,10)}
+
+/* ===== Vitrina giratoria ===== */
+(()=>{
+  const ring=document.getElementById('ring'),v=document.getElementById('vitrina');
+  const N=VITRINA.length,step=360/N;
+  VITRINA.forEach((c,i)=>{const a=document.createElement('a');a.className='vcard';a.href=c.h;a.draggable=false;
+    a.innerHTML=`<img src="${c.img}" alt="" loading="lazy" draggable="false"><span>${c.t}</span>`;ring.appendChild(a)});
+  const cards=[...ring.children];
+  let rot=0,vel=reduce?0:-.08,drag=null,moved=0;
+  function R(){return Math.max(220,Math.min(380,v.clientWidth*.52))}
+  function draw(){const r=R();cards.forEach((c,i)=>{const a=i*step+rot;c.style.transform=`rotateY(${a}deg) translateZ(${r}px)`;
+      const f=Math.cos(a*Math.PI/180);c.style.opacity=.35+.65*Math.max(0,f);c.style.zIndex=Math.round(f*100)+100});
+    ring.style.transform=`translateZ(${-r}px) rotateX(-6deg)`}
+  function tick(){if(!drag){rot+=vel;if(!reduce)vel+=(-.08-vel)*.02}draw();requestAnimationFrame(tick)}
+  v.addEventListener('pointerdown',e=>{drag={x:e.clientX,r:rot,t:performance.now()};moved=0;v.setPointerCapture(e.pointerId)});
+  v.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;moved=Math.abs(dx);const nr=drag.r+dx*.35;vel=nr-rot;rot=nr});
+  v.addEventListener('pointerup',()=>{drag=null});
+  v.addEventListener('click',e=>{if(moved>6){e.preventDefault();return}
+    const a=e.target.closest('.vcard');if(a){e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})}},true);
+  tick();
+})();
+
+/* ===== Tarta de queso 3D ===== */
+(()=>{
+  const cake=document.getElementById('cake'),stage=document.getElementById('stage');
+  const L=26,TH=.17;// capas y grosor relativo al diámetro
+  let html='<div class="shadow"></div>';
+  for(let i=0;i<L;i++){const t=i/(L-1);
+    const col=t<.18?`hsl(30,${42-t*40}%,${36+t*60}%)`:`hsl(${38+t*6},${48+t*10}%,${70+t*12}%)`;
+    html+=`<div class="ly" style="transform:translateZ(calc(var(--d) * ${t}));background:${col};filter:brightness(${.78+t*.22})"></div>`}
+  html+='<div class="ly top" style="transform:translateZ(calc(var(--d) + 1px))"><div class="topping"></div><div class="bits"></div></div>';
+  cake.innerHTML=html;
+  const size=()=>cake.style.setProperty('--d',(cake.clientWidth*TH)+'px');size();addEventListener('resize',size);
+  const topping=cake.querySelector('.topping'),bits=cake.querySelector('.bits');
+  // pedacitos en posiciones fijas (pseudoaleatorias)
+  let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const P=[];for(let i=0;i<90;i++){const a=rnd()*Math.PI*2,r=Math.sqrt(rnd())*34;P.push([50+Math.cos(a)*r,50+Math.sin(a)*r,rnd()*180,.6+rnd()*.8])}
+  bits.innerHTML=P.map(p=>`<i style="left:${p[0]}%;top:${p[1]}%"></i>`).join('');
+  const bitEls=[...bits.children];
+  let cur=TARTAS[0],sz='g',q=1;
+  const fl=document.getElementById('flavs');
+  TARTAS.forEach(t=>{const b=document.createElement('button');b.type='button';b.className='flav';b.style.setProperty('--c',t.c);b.dataset.id=t.id;
+    b.innerHTML=`<i></i><span><b>${t.n}</b><small>${t.g} €</small></span>`;b.onclick=()=>pick(t);fl.appendChild(b)});
+  function pick(t){cur=t;
+    fl.querySelectorAll('.flav').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===t.id));
+    document.getElementById('tName').textContent=t.n;
+    const tp=t.top;
+    topping.style.opacity=tp?1:0;if(tp)topping.style.background=tp.bg;
+    bitEls.forEach((e,i)=>{const p=P[i];const on=tp&&i<tp.n;
+      e.style.opacity=on?1:0;
+      if(tp){const s=tp.s*p[3];e.style.width=s+'px';e.style.height=(s*(.6+(i%3)*.2))+'px';e.style.background=tp.bits[i%2]}
+      e.style.transform=`translate(-50%,-50%) rotate(${p[2]}deg) translateZ(${on?2:14}px)`});
+    price()}
+  function price(){const p=sz==='g'?cur.g:PEQ;
+    document.getElementById('tPrice').textContent=eur(p);
+    document.getElementById('tSize').textContent=sz==='g'?'tarta grande · 12-14 raciones':'tamaño pequeño · 2-3 porciones';
+    fl.querySelectorAll('.flav small').forEach((s,i)=>s.textContent=eur(sz==='g'?TARTAS[i].g:PEQ))}
+  const seg=document.getElementById('seg'),pill=document.getElementById('segPill');
+  function setSize(s){sz=s;cake.classList.toggle('small',s==='p');
+    seg.querySelectorAll('button').forEach(b=>{const on=b.dataset.size===s;b.setAttribute('aria-pressed',on);if(on){pill.style.width=b.offsetWidth+'px';pill.style.transform=`translateX(${b.offsetLeft-5}px)`}});price()}
+  seg.querySelectorAll('button').forEach(b=>b.onclick=()=>setSize(b.dataset.size));
+  addEventListener('resize',()=>setSize(sz));
+  document.fonts.ready.then(()=>setSize(sz));
+  document.querySelectorAll('#tartas .qty button').forEach(b=>b.onclick=()=>{q=Math.max(1,q+ +b.dataset.q);document.getElementById('tQty').textContent=q});
+  document.getElementById('tAdd').onclick=e=>{const p=sz==='g'?cur.g:PEQ;
+    addItem('tarta-'+cur.id+'-'+sz,`Tarta de queso ${cur.n} (${sz==='g'?'grande, 12-14 raciones':'pequeña, 2-3 porciones'})`,p,q);flash(e.currentTarget)};
+  // giro: automático + arrastre + scroll
+  let rz=-30,v=reduce?0:.12,drag=null;
+  stage.addEventListener('pointerdown',e=>{drag={x:e.clientX,r:rz};stage.setPointerCapture(e.pointerId)});
+  stage.addEventListener('pointermove',e=>{if(!drag)return;const n=drag.r+(e.clientX-drag.x)*.5;v=n-rz;rz=n});
+  stage.addEventListener('pointerup',()=>drag=null);
+  (function loop(){if(!drag){rz+=v;if(!reduce)v+=(.12-v)*.03}cake.style.setProperty('--rz',rz+'deg');requestAnimationFrame(loop)})();
+  pick(TARTAS[0]);
+})();
+
+/* ===== Caja de cookies ===== */
+function buildBox(el,inner){
+  el.innerHTML=`<div class="sh"></div><div class="f floor">${inner}</div><div class="f wb"></div><div class="f wl"></div><div class="f wr"></div><div class="f wf"></div>
+  <div class="f lid"><div class="stk"><b>LA MARETA</b><small>Coffee &amp; Brunch</small><i></i></div></div>`;
+}
+(()=>{
+  const box=document.getElementById('cbox');
+  buildBox(box,'<div class="cookies" id="cks"></div>');
+  const cks=document.getElementById('cks'),packs=document.getElementById('packs');
+  let cur=COOKIES[1],q=1;
+  COOKIES.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='pack';
+    b.innerHTML=`<b>${c.n}</b><span>cookies</span><em>${eur(c.p)}</em>`;b.onclick=()=>set(c);b.dataset.n=c.n;packs.appendChild(b)});
+  function set(c){cur=c;
+    packs.querySelectorAll('.pack').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.n===c.n));
+    const cols=c.n/2;box.style.setProperty('--cols',cols);
+    const base=parseFloat(getComputedStyle(box).getPropertyValue('--bd'))||220;
+    box.style.width=(base*cols/2*1.05)+'px';
+    cks.style.setProperty('--cols',cols);
+    cks.innerHTML=Array.from({length:c.n},(_,i)=>`<img src="assets/encargos/cookie-${i%6+1}.webp" alt="" style="--d:${i*.07}s">`).join('')}
+  addEventListener('resize',()=>set(cur));
+  document.querySelectorAll('#cookies .qty button').forEach(b=>b.onclick=()=>{q=Math.max(1,q+ +b.dataset.q);document.getElementById('cQty').textContent=q});
+  document.getElementById('cAdd').onclick=e=>{addItem('cookies-'+cur.n,`Pack de ${cur.n} crumble cookies caseras`,cur.p,q);flash(e.currentTarget)};
+  set(cur);
+})();
+
+/* ===== Tarjetas (bizcochos y pack oficina) ===== */
+document.querySelectorAll('[data-cards]').forEach(wrap=>{
+  CARDS[wrap.dataset.cards].forEach((c,i)=>{
+    const el=document.createElement('article');el.className='card';el.setAttribute('data-r','');el.style.setProperty('--d',(i*.08)+'s');
+    const ph=c.img?`<div class="ph"><img src="${c.img}" alt="${c.alt}" loading="lazy"></div>`
+                 :`<div class="ph type" style="--bgc:${c.bgc};${c.fgc?'--fgc:'+c.fgc:''}"><span class="serif">${c.type}</span></div>`;
+    el.innerHTML=`${ph}<div class="tx"><span class="tag">${c.tag}</span><h3>${c.n}</h3><p>${c.d}</p><div class="ft"><span class="pr">${eur(c.p)}</span><button class="mini" type="button">Añadir</button></div></div>`;
+    el.querySelector('.mini').onclick=e=>{addItem(c.id,c.n,c.p,1);flash(e.currentTarget)};
+    if(!reduce&&matchMedia('(hover:hover)').matches){
+      el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        el.style.transform=`perspective(900px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`});
+      el.addEventListener('pointerleave',()=>el.style.transform='')}
+    wrap.appendChild(el)})
+});
+
+/* ===== Caja regalo: se abre al llegar ===== */
+(()=>{
+  const g=document.getElementById('gbox');
+  buildBox(g,'<img src="assets/img/foto-32.jpg" alt="Surtido de dulce y salado de La Mareta">');
+  new IntersectionObserver(es=>es.forEach(e=>g.classList.toggle('open',e.isIntersecting)),{threshold:.6}).observe(g.parentElement);
+  document.getElementById('gAdd').onclick=e=>{addItem('regalo','Desayuno regalo (caja dulce y salado, 2-4 personas)',35,1);flash(e.currentTarget)};
+})();
+
+/* ===== Apariciones ===== */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+renderCart();
+</script>
+</body>
+</html>
