@@ -52,7 +52,7 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .collage{position:relative;aspect-ratio:1/1.05}
 .collage .a{position:absolute;right:0;top:0;width:82%;height:86%;border-radius:32px;overflow:hidden;box-shadow:0 40px 70px -40px rgba(34,16,10,.55)}
 .collage .b{position:absolute;left:0;bottom:0;width:46%;aspect-ratio:1;border-radius:24px;overflow:hidden;border:6px solid var(--bg);box-shadow:0 30px 50px -30px rgba(34,16,10,.6)}
-.collage img{width:100%;height:100%;object-fit:cover}
+.collage img,.collage video{width:100%;height:100%;object-fit:cover;display:block}
 .badge{position:absolute;right:18px;bottom:22%;background:var(--card);border-radius:18px;padding:14px 18px;box-shadow:0 20px 40px -20px rgba(34,16,10,.45)}
 .badge small{display:block;font-size:12px;color:var(--muted);font-weight:600}
 .badge b{font-size:26px;letter-spacing:-.04em}
@@ -73,7 +73,10 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 .media .main img{width:100%;height:100%;object-fit:cover}
 .media .thumbs{display:flex;gap:10px;margin-top:10px}
 .media .thumbs img{width:88px;height:88px;border-radius:16px;object-fit:cover}
-.media .thumbs{overflow:hidden}
+.media .thumbs img{cursor:pointer;opacity:.6;transition:opacity .3s,outline-color .3s;outline:2px solid transparent;outline-offset:2px}
+.media .thumbs img.on,.media .thumbs img:hover{opacity:1}
+.media .thumbs img.on{outline-color:var(--ink)}
+.media .main img{transition:opacity .35s}
 .info h2{font-size:clamp(36px,4.2vw,56px);font-weight:800;letter-spacing:-.045em;line-height:1;margin:12px 0 0}
 .info .lead{font-size:16.5px;line-height:1.55;color:var(--muted);margin:14px 0 0;max-width:480px}
 .rules{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
@@ -109,10 +112,15 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 
 /* bizcochos */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.duo .bz:not(.ph){min-height:420px}
 .bz{position:relative;border-radius:28px;padding:30px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:var(--bgc);color:var(--fgc,var(--ink))}
 .bz::before{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.14)}
 .bz::after{content:"";position:absolute;right:40px;top:60px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.1)}
 .bz .t{position:relative;z-index:1}
+.bz.ph{min-height:420px}
+.bz.ph>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 65%}
+.bz.ph::before{right:auto;top:auto;inset:0;width:auto;height:auto;border-radius:0;background:linear-gradient(rgba(34,16,10,.85),rgba(34,16,10,.25) 40%,rgba(34,16,10,.15) 52%,rgba(34,16,10,.65) 76%,rgba(34,16,10,.95));z-index:0}
+.bz.ph::after{display:none}
 .bz .t span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
 .bz h3{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(40px,4vw,56px);line-height:.95;margin:10px 0 0;letter-spacing:-.01em}
 .bz p{margin:10px 0 0;font-size:14.5px;opacity:.8;max-width:300px}
@@ -124,8 +132,10 @@ button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
 
 /* regalo */
 .gift{margin:100px 16px 0;border-radius:36px;overflow:hidden;position:relative;color:var(--bg);min-height:560px;display:flex;align-items:flex-end}
-.gift>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gift>img,.gift>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .gift::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(34,16,10,.9),rgba(34,16,10,.6) 45%,rgba(34,16,10,.05))}
+.gift .gpic{position:absolute;z-index:2;right:clamp(24px,5vw,70px);top:50%;transform:translateY(-50%) rotate(3deg);width:clamp(200px,24vw,320px);aspect-ratio:3/4;margin:0;border-radius:20px;overflow:hidden;border:8px solid var(--bg);box-shadow:0 40px 60px -30px rgba(0,0,0,.6)}
+.gift .gpic img{width:100%;height:100%;object-fit:cover}
 .gift .in{position:relative;z-index:2;padding:clamp(30px,5vw,64px);max-width:640px}
 .gift .eyebrow{color:var(--soft)}
 .gift h2{font-size:clamp(40px,5vw,72px);font-weight:800;letter-spacing:-.05em;line-height:.95;margin:12px 0 0}
@@ -214,6 +224,7 @@ footer.site a{font-weight:600;color:var(--ink)}
   .opt .ico svg{width:40px;height:40px}
   .ctl{width:auto}
   .gift{margin:70px 8px 0;border-radius:28px;min-height:640px}
+  .gift .gpic{top:24px;right:20px;transform:rotate(3deg);width:150px}
   .gift::before{background:linear-gradient(0deg,rgba(34,16,10,.94) 35%,rgba(34,16,10,.5) 68%,rgba(34,16,10,.1))}
 }
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;animation:none!important}html{scroll-behavior:auto}}
@@ -247,8 +258,8 @@ footer.site a{font-weight:600;color:var(--ink)}
       <a class="cta" href="#tartas" data-r style="--d:.26s">Ver el catálogo <span aria-hidden="true">↓</span></a>
     </div>
     <div class="collage" data-r style="--d:.1s">
-      <div class="a"><img src="assets/img/foto-13.jpg" alt="Tarta de queso de La Mareta sobre un pie de cristal, rodeada de crumble cookies" style="object-position:50% 30%"></div>
-      <div class="b"><img src="assets/img/foto-10.jpg" alt="Caja de crumble cookies de La Mareta" style="object-position:55% 60%"></div>
+      <div class="a"><img src="assets/img/foto-47.jpg" alt="Tartas de queso de pistacho, Happy Hippo y Lotus de La Mareta" style="object-position:50% 45%"></div>
+      <div class="b"><video src="assets/encargos/tartitas.mp4" poster="assets/encargos/tartitas-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Tartitas de La Mareta recién hechas"></video></div>
       <div class="badge"><small>Tartas de queso desde</small><b>8 €</b></div>
     </div>
   </div>
@@ -268,9 +279,12 @@ footer.site a{font-weight:600;color:var(--ink)}
 <section class="cat" id="tartas">
   <div class="wrap prod">
     <div class="media" data-r>
-      <div class="main"><img src="assets/img/foto-04.jpg" alt="Tartas de queso de Lotus y de pistacho de La Mareta" style="object-position:50% 62%" loading="lazy"></div>
+      <div class="main"><img id="tartaMain" src="assets/img/foto-47.jpg" alt="Tartas de queso de pistacho, Happy Hippo y Lotus de La Mareta en la vitrina" style="object-position:50% 50%" loading="lazy"></div>
       <div class="thumbs">
-        <img src="assets/encargos/tarta-entera.webp" alt="Tarta de queso entera de La Mareta" loading="lazy">
+        <img src="assets/img/foto-47.jpg" data-pos="50% 50%" alt="Tartas de queso de pistacho, Happy Hippo y Lotus" loading="lazy">
+        <img src="assets/encargos/tarta-pequena.jpg" data-full="assets/img/foto-48.jpg" data-pos="75% 45%" alt="Tartas de queso pequeñas de Tostarica y Dinosaurio" loading="lazy">
+        <img src="assets/encargos/tarta-porcion.jpg" data-full="assets/img/foto-46.jpg" data-pos="50% 55%" alt="Porción de tarta de queso de La Mareta" loading="lazy">
+        <img src="assets/img/foto-04.jpg" data-pos="50% 62%" alt="Tartas de queso de Lotus y de pistacho" style="object-position:50% 62%" loading="lazy">
       </div>
     </div>
     <div class="info">
@@ -340,7 +354,8 @@ footer.site a{font-weight:600;color:var(--ink)}
 
 <!-- DESAYUNO REGALO -->
 <section class="gift" id="regalo">
-  <img src="assets/img/foto-32.jpg" alt="Surtido de dulce y salado de La Mareta visto desde arriba" loading="lazy">
+  <video class="bgv" src="assets/encargos/cestas.mp4" poster="assets/encargos/cestas-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cestas de desayuno regalo de La Mareta preparadas junto al ventanal"></video>
+  <figure class="gpic"><img src="assets/img/foto-40.jpg" alt="Cesta de desayuno regalo de La Mareta con globo" loading="lazy"></figure>
   <div class="in">
     <div class="eyebrow">Desayunos regalo</div>
     <h2>Regala un desayuno <span class="serif">de La Mareta.</span></h2>
@@ -429,7 +444,7 @@ const COOKIES=[
   {key:'cookies-8',n:'Pack de 8 cookies',p:28,s:'3,50 € cada cookie'}
 ];
 const BIZ=[
-  {key:'carrot',n:'Carrot cake',p:35,d:'Bizcocho de zanahoria, entero.',bgc:'#e9a465',fgc:'#3a1d12'},
+  {key:'carrot',n:'Carrot cake',p:35,d:'Bizcocho de zanahoria, entero.',bgc:'#3a1d12',fgc:'#fbf4e8',img:'assets/img/foto-45.jpg',alt:'Carrot cake de La Mareta, entera y en porción'},
   {key:'coca',n:'Coca llanda de chocolate y lacasitos',short:'Coca llanda',p:25,d:'De chocolate y con lacasitos, entera.',bgc:'#4a2717',fgc:'#fbf4e8'}
 ];
 const OFICINA=[
@@ -462,10 +477,11 @@ function drawLists(){
   document.getElementById('tartasList').innerHTML=TARTAS.map(t=>rowHTML(`tarta-${t.id}-${size}`,t.n,size==='g'?'12-14 raciones':'2-3 porciones',size==='g'?t.g:PEQ,t.c,'',t.ico)).join('');
   document.getElementById('cookiesList').innerHTML=COOKIES.map(c=>rowHTML(c.key,c.n,c.s,c.p,null,c.best)).join('');
   document.getElementById('oficinaList').innerHTML=OFICINA.map(o=>rowHTML(o.key,o.n,o.s,o.p,o.c)).join('');
-  document.getElementById('bizList').innerHTML=BIZ.map(b=>`<article class="bz" style="--bgc:${b.bgc};--fgc:${b.fgc}"><div class="t"><span>Bizcocho entero</span><h3>${b.short||b.n}</h3><p>${b.d}</p></div><div class="ft"><span class="pr">${eur(b.p)}</span><span class="ctl" data-key="${b.key}" style="width:auto"></span></div></article>`).join('');
+  document.getElementById('bizList').innerHTML=BIZ.map(b=>`<article class="bz${b.img?' ph':''}" style="--bgc:${b.bgc};--fgc:${b.fgc}">${b.img?`<img src="${b.img}" alt="${b.alt}" loading="lazy">`:''}<div class="t"><span>Bizcocho entero</span><h3>${b.short||b.n}</h3><p>${b.d}</p></div><div class="ft"><span class="pr">${eur(b.p)}</span><span class="ctl" data-key="${b.key}" style="width:auto"></span></div></article>`).join('');
   render()}
 document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{size=b.dataset.size;
-  document.querySelectorAll('#seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLists()});
+  document.querySelectorAll('#seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLists();
+  const m=document.querySelector('#tartas .media');showIn(m,m.querySelectorAll('.thumbs img')[size==='g'?0:1])});
 
 /* pedido */
 const drawer=document.getElementById('drawer'),veil=document.getElementById('veil');
@@ -513,6 +529,15 @@ addEventListener('keydown',e=>{if(e.key==='Escape')openCart(false)});
 let tt;function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');
   const b=document.getElementById('cartBtn');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');
   clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('on'),1800)}
+
+/* galerías: la miniatura tocada pasa a la foto grande */
+function showIn(media,img){const main=media.querySelector('.main img');if(!img||main.dataset.cur===img.src)return;
+  main.style.opacity=0;setTimeout(()=>{main.src=img.dataset.full||img.src;main.alt=img.alt;main.style.objectPosition=img.dataset.pos||'50% 50%';main.dataset.cur=img.src;main.style.opacity=1},200);
+  media.querySelectorAll('.thumbs img').forEach(t=>t.classList.toggle('on',t===img))}
+document.querySelectorAll('.media').forEach(m=>{const th=[...m.querySelectorAll('.thumbs img')];const main=m.querySelector('.main img');
+  if(!th.some(t=>(t.dataset.full||t.src)===main.src)){const first=document.createElement('img');first.src=main.src;first.alt=main.alt;first.dataset.pos=main.style.objectPosition||'50% 50%';first.loading='lazy';m.querySelector('.thumbs').prepend(first)}
+  m.querySelector('.thumbs img').classList.add('on');
+  m.querySelectorAll('.thumbs img').forEach(t=>t.addEventListener('click',()=>showIn(m,t)))});
 
 /* pestaña activa según la sección visible */
 const tabs=[...document.querySelectorAll('.tabs a')];
