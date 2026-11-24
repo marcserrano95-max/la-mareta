@@ -272,7 +272,7 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .drink{padding:0 16px;margin-top:90px}
 .drink .board{background:#f3dccd;color:var(--ink);text-align:center;padding:clamp(56px,7vw,96px) clamp(20px,4vw,56px) clamp(48px,6vw,80px);position:relative;isolation:isolate}
 .drink .board::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 50% 55%,rgba(255,250,240,.75),transparent 70%)}
-.drink .eyebrow{color:var(--red)}
+.drink .board .eyebrow{display:inline-block;color:#fff;background:var(--red);font-size:13px;letter-spacing:.14em;padding:9px 16px;border-radius:999px;box-shadow:0 10px 24px -12px rgba(211,58,44,.7)}
 .sp-title{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(54px,8vw,120px);line-height:.92;letter-spacing:-.02em;margin:12px 0 14px}
 .sp-sub{font-size:18px;line-height:1.45;max-width:460px;margin:0 auto;opacity:.8}
 .sp-stage{display:grid;grid-template-columns:1fr minmax(0,380px) 1fr;align-items:center;gap:clamp(20px,4vw,56px);margin:clamp(36px,5vw,60px) auto 0;max-width:1100px}
@@ -316,12 +316,13 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 /* ---------- ESPACIO ---------- */
 .space{position:relative;margin-top:70px;height:112vh;min-height:720px;overflow:hidden;color:var(--bg)}
 .space>img{position:absolute;left:0;top:-12%;width:100%;height:124%;object-fit:cover;will-change:transform}
-.space .shade{position:absolute;inset:0;background:linear-gradient(rgba(34,16,10,.55),rgba(34,16,10,.05) 38%,rgba(34,16,10,.1) 60%,rgba(34,16,10,.7))}
+.space .shade{position:absolute;inset:0;background:linear-gradient(rgba(34,16,10,.78),rgba(34,16,10,.35) 30%,rgba(34,16,10,.08) 50%,rgba(34,16,10,.2) 65%,rgba(34,16,10,.85))}
 .space .statement{position:absolute;left:32px;top:72px;right:32px}
 .space .statement .eyebrow{color:var(--soft)}
-.space .h2{font-size:clamp(40px,6vw,84px)}
+.space .h2{font-size:clamp(40px,6vw,84px);text-shadow:0 4px 30px rgba(34,16,10,.55)}
+.space .statement .eyebrow{font-size:13px;text-shadow:0 2px 12px rgba(34,16,10,.6)}
 .space .bottom{position:absolute;left:32px;right:32px;bottom:40px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.space .bottom p{max-width:340px;font-size:15px;line-height:1.5;margin:0}
+.space .bottom p{max-width:460px;font-size:clamp(17px,1.5vw,21px);font-weight:500;line-height:1.5;margin:0;padding:20px 24px;border-radius:20px;background:rgba(34,16,10,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);text-shadow:0 1px 8px rgba(34,16,10,.4)}
 .seat{background:var(--bg);color:var(--ink);border-radius:22px;padding:26px;width:340px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
 .seat h4{font-size:22px;letter-spacing:-.03em;margin:0 0 14px;line-height:1.1}
 .seat .it{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;font-weight:500}
