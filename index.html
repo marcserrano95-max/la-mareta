@@ -1458,10 +1458,12 @@ document.getElementById('form').addEventListener('submit',e=>{
 <script>
 /* Ir a la carta y volver al mismo punto de la página */
 (() => {
-  document.querySelectorAll('a[href^="carta.html"]').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lm-volver', String(Math.round(scrollY))); } catch (e) {} }));
-  if (location.hash !== '#volver') return;
+  document.querySelectorAll('a[href^="carta.html"],a[href^="encargos.html"]').forEach(a => a.addEventListener('click', () => { try { sessionStorage.setItem('lm-volver', String(Math.round(scrollY))); } catch (e) {} }));
+  const nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+  if (location.hash !== '#volver' && nav.type !== 'back_forward') return;
   let y = 0; try { y = +sessionStorage.getItem('lm-volver') || 0; } catch (e) {}
-  history.replaceState(null, '', location.pathname + location.search);
+  if (!y && /encargos/.test(document.referrer)) { const enc = document.querySelector('.encargo'); if (enc) y = enc.getBoundingClientRect().top + scrollY - 80; }
+  if (location.hash === '#volver') history.replaceState(null, '', location.pathname + location.search);
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   const go = () => window.scrollTo({ top: y, behavior: 'instant' });
   go(); addEventListener('load', () => { go(); setTimeout(go, 120); });
