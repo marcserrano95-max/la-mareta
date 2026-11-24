@@ -366,10 +366,10 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .dcard .ph{border-radius:18px;overflow:hidden;aspect-ratio:5/4;background:var(--tan)}
 .dcard .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);will-change:transform}
 .dcard .tx{padding:16px 8px 0}
-.dcard .hr{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.dcard .hr b{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(40px,3.4vw,52px);line-height:.9;letter-spacing:-.01em;white-space:nowrap}
-.dcard .hr small{font:800 10.5px/1.2 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red);text-align:right}
-.dcard h3{margin:12px 0 6px;font-size:20px;font-weight:800;letter-spacing:-.03em}
+.dcard .hr{display:flex;flex-direction:column-reverse;align-items:flex-start;gap:6px}
+.dcard .hr b{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;font-size:clamp(30px,2.5vw,38px);line-height:.9;letter-spacing:-.01em;white-space:nowrap}
+.dcard .hr small{font:800 10.5px/1.2 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.dcard h3{margin:10px 0 6px;font-size:20px;font-weight:800;letter-spacing:-.03em}
 .dcard p{margin:0;font-size:14.5px;line-height:1.45;opacity:.78}
 .dcard .dgo{display:inline-flex;margin-top:14px;font-size:14px;font-weight:700;border-bottom:1.5px solid currentColor;padding-bottom:2px}
 .dcard.now{box-shadow:0 0 0 2px var(--red),0 30px 60px -34px rgba(34,16,10,.55)}
@@ -382,8 +382,9 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .dcard .clock::after{height:40%;background:var(--red);animation:spin 6s linear infinite}
 .dcard .art span{position:absolute;bottom:14px;left:0;right:0;text-align:center;font:700 13px Inter,sans-serif;letter-spacing:.04em}
 .dcard.night{background:var(--deep);color:var(--bg);border:1px solid rgba(246,232,220,.16)}
-.dcard.night .art{background:radial-gradient(circle at 70% 30%,#5a2c1c,#22100a 70%)}
-.dcard.night .art::before{content:"";width:28%;aspect-ratio:1;border-radius:50%;background:#f6e8dc;box-shadow:inset -12px -8px 0 rgba(34,16,10,.25),0 0 50px rgba(246,232,220,.3)}
+.dcard.night .ph{position:relative;background:#22100a}
+.dcard.night .ph img{filter:brightness(.55) saturate(.75) sepia(.25)}
+.dcard.night .ph::after{content:"";position:absolute;right:14%;top:14%;width:16%;aspect-ratio:1;border-radius:50%;background:#f6e8dc;box-shadow:inset -8px -6px 0 rgba(34,16,10,.25),0 0 40px rgba(246,232,220,.45);z-index:2}
 .dcard.night .hr small{color:var(--soft)}
 .dcard.night .dgo{color:var(--bg)}
 .dfoot{display:flex;flex-direction:column;gap:10px;padding:0 clamp(16px,4vw,48px);position:relative;z-index:2;max-width:640px}
@@ -395,13 +396,22 @@ body.navon .nav{transform:none;box-shadow:0 10px 30px -20px rgba(34,16,10,.35)}
 .dticks span.on{opacity:1;color:var(--red)}
 .day.dark .dticks span.on{color:var(--soft)}
 @media (max-width:810px){
-  .day{height:560vh}
-  .dhead{flex-direction:column;align-items:flex-start;gap:12px}
-  .dhead p{font-size:15px}
-  .dcard{width:74vw}
+  .day{height:460vh}
+  .dstick{gap:14px;padding-top:calc(var(--nav) + 12px)}
+  .dhead{flex-direction:column;align-items:flex-start;gap:10px}
+  .day .h2{font-size:30px;margin-top:8px}
+  .dhead p{display:none}
+  .dcard{width:min(64vw,300px);padding:9px 9px 16px;border-radius:22px}
+  .dcard .ph{aspect-ratio:4/3;border-radius:15px}
+  .dcard .tx{padding:12px 6px 0}
+  .dcard .hr b{font-size:26px}
+  .dcard h3{font-size:17px;margin:8px 0 4px}
+  .dcard p{font-size:13px;line-height:1.4}
+  .dcard .dgo{margin-top:10px;font-size:13px}
+  .dcard.now::before{top:16px;left:16px}
   .dticks{font-size:11px}
 }
-@media (max-height:760px) and (min-width:811px){.dcard .ph,.dcard .art{aspect-ratio:16/11}.dcard p{font-size:13.5px}}
+@media (max-height:760px) and (min-width:811px){.dcard .ph{aspect-ratio:16/11}.dcard p{font-size:13.5px}}
 @media (prefers-reduced-motion:reduce){
   .day{height:auto}
   .dstick{position:relative;height:auto;padding:100px 0 80px}
@@ -833,22 +843,22 @@ footer{position:relative;background:var(--ink);color:var(--bg);border-radius:32p
       </article>
       <article class="dcard">
         <div class="ph"><img src="assets/img/foto-05.jpg" alt="Latte con arte en taza roja junto a cookies de red velvet y chocolate" loading="lazy" decoding="async"></div>
-        <div class="tx"><div class="hr"><b>8 – 12</b><small>Lunes a sábado</small></div><h3>Menú desayunos</h3><p>Tostada + café desde 2,80 €: clásica, jamón, aguacate, salmón o huevo poché.</p><a class="dgo" href="carta.html#desayunos">Ver desayunos</a></div>
+        <div class="tx"><div class="hr"><b>08:00 – 12:00</b><small>Lunes a sábado</small></div><h3>Menú desayunos</h3><p>Tostada + café desde 2,80 €: clásica, jamón, aguacate, salmón o huevo poché.</p><a class="dgo" href="carta.html#desayunos">Ver desayunos</a></div>
       </article>
       <article class="dcard">
         <div class="ph"><img src="assets/img/foto-01.jpg" alt="Huevos benedict con bacon, tostada y zumo de naranja" loading="lazy" decoding="async"></div>
-        <div class="tx"><div class="hr"><b>8 – 14</b><small>Toda la mañana</small></div><h3>Brunch sin prisa</h3><p>Siete platos, solos o en menú brunch desde 14,00 €: benedictinos, tostadas, pancakes…</p><a class="dgo" href="#mesa">Ver la mesa del brunch</a></div>
+        <div class="tx"><div class="hr"><b>08:00 – 14:00</b><small>Toda la mañana</small></div><h3>Brunch sin prisa</h3><p>Siete platos, solos o en menú brunch desde 14,00 €: benedictinos, tostadas, pancakes…</p><a class="dgo" href="#mesa">Ver la mesa del brunch</a></div>
       </article>
       <article class="dcard pause">
-        <div class="art" aria-hidden="true"><div class="clock"></div><span>14:00 → 17:30</span></div>
-        <div class="tx"><div class="hr"><b>14:00</b><small>Mediodía</small></div><h3>Pausa para comer</h3><p>Las mañanas terminan a las 14:00. Por la tarde volvemos a abrir a las 17:30.</p></div>
+        <div class="ph"><img src="assets/img/foto-11.jpg" alt="Interior de La Mareta: barra de madera, vitrina de dulces y mesas" loading="lazy" decoding="async"></div>
+        <div class="tx"><div class="hr"><b>14:00 – 17:30</b><small>Mediodía</small></div><h3>Pausa a mediodía</h3><p>Cerramos a las 14:00 y volvemos a abrir a las 17:30.</p></div>
       </article>
       <article class="dcard">
         <div class="ph"><img src="assets/img/foto-38.jpg" alt="Donuts glaseados de colores con nubes, galleta y chocolate sobre papel de periódico" loading="lazy" decoding="async"></div>
-        <div class="tx"><div class="hr"><b>17:30</b><small>L, M, X, V y D</small></div><h3>Tardes de café y algo dulce</h3><p>Hasta las 21:00. Café, cookies XL, donuts y tartas del obrador, para tomar aquí o llevar.</p></div>
+        <div class="tx"><div class="hr"><b>17:30 – 21:00</b><small>L, M, X, V y D</small></div><h3>Tardes de café y algo dulce</h3><p>Hasta las 21:00. Café, cookies XL, donuts y tartas del obrador, para tomar aquí o llevar.</p></div>
       </article>
       <article class="dcard night">
-        <div class="art" aria-hidden="true"></div>
+        <div class="ph"><img src="assets/img/foto-39.jpg" alt="Fachada de La Mareta en la calle Albal de Paiporta" loading="lazy" decoding="async"></div>
         <div class="tx"><div class="hr"><b>21:00</b><small>Hasta mañana</small></div><h3>Te esperamos</h3><p>C/ Albal, 1 · Paiporta. Mañana volvemos a abrir a las 08:00.</p><a class="dgo" href="https://www.google.com/maps/search/?api=1&amp;query=La+Mareta+C%2F+Albal+1+Paiporta" target="_blank" rel="noopener">Cómo llegar ↗</a></div>
       </article>
     </div>
